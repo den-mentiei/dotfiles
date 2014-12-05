@@ -45,6 +45,20 @@ set number
 " required for powerline fonts symbols
 set encoding=utf-8
 
+" search immediately
+set incsearch
+
+" highlight search
+set hlsearch
+
+" TODO: toggle hlsearch on hotkey
+
+" http://www.viemu.com/blog/2009/06/16/a-vim-and-viemu-mapping-you-really-cant-miss-never-type-noh-again/
+nnoremap <esc> :noh<return><esc>
+
+" i want my backspace back!
+set backspace=indent,eol,start
+
 " \\\ GUI \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
 if has("gui_running")
