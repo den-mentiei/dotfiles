@@ -66,6 +66,8 @@ if has("gui_running")
   set guioptions=
   if has("gui_win32")
     set guifont=Ubuntu_mono_derivative_Powerlin:h10:cRUSSIAN
+    " start maximized on windows
+    au GUIEnter * simalt ~x
   endif
 endif
 
