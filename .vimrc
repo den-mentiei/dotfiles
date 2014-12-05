@@ -50,7 +50,7 @@ if has("gui_running")
   " hides menus, toolbars, widgets
   set guioptions=
   if has("gui_win32")
-    set guifont=Sauce_Code_Powerline:h9:cANSI
+    set guifont=Ubuntu_mono_derivative_Powerlin:h10:cRUSSIAN
   endif
 endif
 
