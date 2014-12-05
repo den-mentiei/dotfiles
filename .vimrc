@@ -86,6 +86,9 @@ set background=light
 colorscheme solarized
 let g:solarized_termcolors = 256
 
+" switch between light/dark with <F5>. TODO: remap to other button, maybe.
+call togglebg#map("")
+
 " \\\ GITGUTTER \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
 let g:gitgutter_max_signs = 500
@@ -97,6 +100,7 @@ let g:airline_enabled = 1
 let g:airline_enable_fugitive = 1
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
+let g:airline_theme = 'solarized'
 
 " to be always shown
 set laststatus=2
@@ -104,3 +108,4 @@ set laststatus=2
 " \\\ UNITE \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
 nnoremap <C-p> :Unite file_rec/async<cr>
+
