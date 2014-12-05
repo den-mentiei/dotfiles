@@ -68,6 +68,13 @@ nnoremap <esc> :noh<return><esc>
 " i want my backspace back!
 set backspace=indent,eol,start
 
+" highlight current line
+set cursorline
+
+" i want to see the whitespace
+nmap <leader>l :set list!<cr>
+set listchars=tab:›—,trail:•,extends:»,precedes:«
+
 " \\\ GUI \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
 if has("gui_running")
