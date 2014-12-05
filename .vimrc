@@ -20,3 +20,13 @@ set hidden
 
 " shows line numbers
 set number
+
+" \\\ GUI \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+if has('gui_running')
+  " hides menus, toolbars, widgets
+  set guioptions=
+  if has("gui_win32")
+    set guifont=Consolas:h11:cANSI
+  endif
+endif
