@@ -41,13 +41,16 @@ set hidden
 " shows line numbers
 set number
 
+" required for powerline fonts symbols
+set encoding=utf-8
+
 " \\\ GUI \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
-if has('gui_running')
+if has("gui_running")
   " hides menus, toolbars, widgets
   set guioptions=
   if has("gui_win32")
-    set guifont=Consolas:h11:cANSI
+    set guifont=Sauce_Code_Powerline:h9:cANSI
   endif
 endif
 
