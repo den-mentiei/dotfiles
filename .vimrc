@@ -32,6 +32,7 @@ NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'airblade/vim-gitgutter'
 NeoBundle 'bling/vim-airline'
 NeoBundle 'altercation/vim-colors-solarized'
+NeoBundle 'Shougo/unite.vim'
 
 call neobundle#end()
 
@@ -99,3 +100,7 @@ let g:airline#extensions#tabline#enabled = 1
 
 " to be always shown
 set laststatus=2
+
+" \\\ UNITE \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+nnoremap <C-p> :Unite file_rec/async<cr>
