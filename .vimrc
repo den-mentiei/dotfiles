@@ -23,6 +23,7 @@ NeoBundleFetch 'Shougo/neobundle.vim'
 NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'airblade/vim-gitgutter'
 NeoBundle 'bling/vim-airline'
+NeoBundle 'altercation/vim-colors-solarized'
 
 call neobundle#end()
 
@@ -53,6 +54,11 @@ if has("gui_running")
     set guifont=Ubuntu_mono_derivative_Powerlin:h10:cRUSSIAN
   endif
 endif
+
+" \\\ THEME \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+set background=light
+colorscheme solarized
+let g:solarized_termcolors=256
 
 " \\\ GITGUTTER \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
