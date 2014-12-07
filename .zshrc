@@ -1,3 +1,6 @@
+# i want my colors
+export TERM="xterm-256color"
+
 # Set up the prompt
 
 autoload -Uz promptinit
