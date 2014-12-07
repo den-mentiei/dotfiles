@@ -42,6 +42,9 @@ NeoBundleCheck
 
 " \\\ ETC \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
+" i love fast redraws
+set ttyfast
+
 " syntax highlight by default
 syntax on
 
