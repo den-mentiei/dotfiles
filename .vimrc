@@ -85,6 +85,12 @@ endif
 " start scrolling the horizontal window border
 set scrolloff=5
 
+" remember more commands
+set history=1000
+
+" use more levels of undo
+set undolevels=1000
+
 " \\\ GUI \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
 if has("gui_running")
@@ -99,8 +105,11 @@ endif
 
 " \\\ THEME \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
+if &t_Co >= 256 || has("gui_running")
+  let g:solarized_termcolors = 256
+endif
+
 set background=light
-let g:solarized_termcolors = 256
 colorscheme solarized
 
 " switch between light/dark with <F5>. TODO: remap to other button, maybe.
