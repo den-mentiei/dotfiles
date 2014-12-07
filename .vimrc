@@ -100,8 +100,8 @@ endif
 " \\\ THEME \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
 set background=light
-colorscheme solarized
 let g:solarized_termcolors = 256
+colorscheme solarized
 
 " switch between light/dark with <F5>. TODO: remap to other button, maybe.
 call togglebg#map("")
