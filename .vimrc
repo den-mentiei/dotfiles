@@ -65,6 +65,9 @@ set hlsearch
 " http://www.viemu.com/blog/2009/06/16/a-vim-and-viemu-mapping-you-really-cant-miss-never-type-noh-again/
 nnoremap <esc> :noh<return><esc>
 
+" hides search highlights on vimrc reload
+set nohlsearch
+
 " i want my backspace back!
 set backspace=indent,eol,start
 
@@ -90,6 +93,15 @@ set history=1000
 
 " use more levels of undo
 set undolevels=1000
+
+" \\\ KEYMAPS \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+" TODO: map this to something useful.
+" TODO: investigate why arrows can be pressed in Ubuntu Terminal.
+map <up> <nop>
+map <down> <nop>
+map <left> <nop>
+map <right> <nop>
 
 " \\\ GUI \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
