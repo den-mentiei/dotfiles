@@ -71,9 +71,19 @@ set backspace=indent,eol,start
 " highlight current line
 set cursorline
 
-" i want to see the whitespace
+" i want to see the whitespace, sometimes
 nmap <leader>l :set list!<cr>
 set listchars=tab:›—,trail:•,extends:»,precedes:«
+
+" centralize backups, swapfiles and undo history
+set backupdir=~/.vim/backups
+set directory=~/.vim/swaps
+if exists("&undodir")
+	set undodir=~/.vim/undo
+endif
+
+" start scrolling the horizontal window border
+set scrolloff=5
 
 " \\\ GUI \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
