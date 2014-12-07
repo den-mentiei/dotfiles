@@ -45,6 +45,9 @@ NeoBundleCheck
 " i love fast redraws
 set ttyfast
 
+" smaller timeout to remove lag from airline when leaving insert mode
+set ttimeoutlen=50
+
 " syntax highlight by default
 syntax on
 
