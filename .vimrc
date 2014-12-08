@@ -71,9 +71,6 @@ set hlsearch
 " http://www.viemu.com/blog/2009/06/16/a-vim-and-viemu-mapping-you-really-cant-miss-never-type-noh-again/
 nnoremap <esc> :noh<return><esc>
 
-" hides search highlights on vimrc reload
-set nohlsearch
-
 " i want my backspace back!
 set backspace=indent,eol,start
 
@@ -88,7 +85,7 @@ set listchars=tab:›—,trail:•,extends:»,precedes:«
 set backupdir=~/.vim/backups
 set directory=~/.vim/swaps
 if exists("&undodir")
-	set undodir=~/.vim/undo
+  set undodir=~/.vim/undo
 endif
 
 " start scrolling the horizontal window border
@@ -148,6 +145,11 @@ let g:airline_theme = 'solarized'
 
 " to be always shown
 set laststatus=2
+
+" dont duplicate airline info
+if (g:airline_enabled == 1)
+  set noshowmode
+endif
 
 " \\\ UNITE \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
