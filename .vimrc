@@ -81,15 +81,18 @@ set cursorline
 " use tabs instead of spaces
 set tabstop=4 softtabstop=4 shiftwidth=4 noexpandtab
 
-" i want to see the whitespace, sometimes
+" i want to see the whitespace
+set list
+set listchars=tab:›\ ,trail:•,extends:»,precedes:«
+
+" i dont want to see the whitespace, sometimes
 nmap <leader>l :set list!<cr>
-set listchars=tab:›—,trail:•,extends:»,precedes:«
 
 " centralize backups, swapfiles and undo history
 set backupdir=~/.vim/backups
 set directory=~/.vim/swaps
 if exists("&undodir")
-  set undodir=~/.vim/undo
+	set undodir=~/.vim/undo
 endif
 
 " remember more commands
@@ -134,12 +137,15 @@ colorscheme solarized
 " switch between light/dark with <F5>. TODO: remap to other button, maybe.
 call togglebg#map("")
 
+" solarized bg of special chars is not ok
+highlight clear SpecialKey
+
 " \\\ GITGUTTER \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
 let g:gitgutter_max_signs = 500
 let g:gitgutter_map_keys = 0
 
-" \\\ ARILINE \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+" \\\ AIRLINE \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
 let g:airline_enabled = 1
 let g:airline_enable_fugitive = 1
@@ -152,7 +158,7 @@ set laststatus=2
 
 " dont duplicate airline info
 if (g:airline_enabled == 1)
-  set noshowmode
+	set noshowmode
 endif
 
 " \\\ UNITE \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
