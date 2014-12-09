@@ -2,3 +2,4 @@
 .vim/backups
 .vim/swaps
 .vim/undo
+.netrwhist
