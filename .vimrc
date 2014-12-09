@@ -104,6 +104,12 @@ set undolevels=1000
 " start scrolling the horizontal window border
 set scrolloff=5
 
+" opens new vertical split windows to the right
+set splitright
+
+" opens new split windows to the bottom
+set splitbelow
+
 " \\\ KEYMAPS \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
 " TODO: map this to something useful.
@@ -122,6 +128,11 @@ if has("gui_running")
 		set guifont=Ubuntu_mono_derivative_Powerlin:h10:cRUSSIAN
 		" start maximized on windows
 		au GUIEnter * simalt ~x
+	endif
+else
+	if $COLORTERM == 'gnome-terminal'
+		" gnome-terminal doesn't tell the correct number of colors
+		set t_Co=256
 	endif
 endif
 
