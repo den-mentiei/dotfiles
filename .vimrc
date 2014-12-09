@@ -36,6 +36,7 @@ NeoBundle 'Shougo/unite.vim'
 
 call neobundle#end()
 
+" auto-detect file types
 filetype plugin indent on
 
 NeoBundleCheck
@@ -77,6 +78,9 @@ set backspace=indent,eol,start
 " highlight current line
 set cursorline
 
+" use tabs instead of spaces
+set tabstop=4 softtabstop=4 shiftwidth=4 noexpandtab
+
 " i want to see the whitespace, sometimes
 nmap <leader>l :set list!<cr>
 set listchars=tab:›—,trail:•,extends:»,precedes:«
@@ -88,14 +92,14 @@ if exists("&undodir")
   set undodir=~/.vim/undo
 endif
 
-" start scrolling the horizontal window border
-set scrolloff=5
-
 " remember more commands
 set history=1000
 
 " use more levels of undo
 set undolevels=1000
+
+" start scrolling the horizontal window border
+set scrolloff=5
 
 " \\\ KEYMAPS \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
@@ -109,19 +113,19 @@ map <right> <nop>
 " \\\ GUI \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
 if has("gui_running")
-  " hides menus, toolbars, widgets
-  set guioptions=
-  if has("gui_win32")
-    set guifont=Ubuntu_mono_derivative_Powerlin:h10:cRUSSIAN
-    " start maximized on windows
-    au GUIEnter * simalt ~x
-  endif
+	" hides menus, toolbars, widgets
+	set guioptions=
+	if has("gui_win32") || has("gui_win64")
+		set guifont=Ubuntu_mono_derivative_Powerlin:h10:cRUSSIAN
+		" start maximized on windows
+		au GUIEnter * simalt ~x
+	endif
 endif
 
 " \\\ THEME \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
 if &t_Co >= 256 || has("gui_running")
-  let g:solarized_termcolors = 256
+	let g:solarized_termcolors = 256
 endif
 
 set background=light
