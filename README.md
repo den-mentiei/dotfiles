@@ -13,5 +13,5 @@ TBD.
 - [ ] docs: Fill the installation section with some information.
 - [ ] scripts: Add basic scripts for symlinking on Linux.
 - [ ] scripts: Add basic scripts for symlinking on Windows (`mklink`).
-- [ ] scripts: Add scripts to install NeoBundle on Linux. Or investigate how to use it as a submodule (https://github.com/Shougo/neobundle.vim/issues/349).
+- [x] scripts: Add scripts to install NeoBundle on Linux. Or investigate how to use it as a submodule (https://github.com/Shougo/neobundle.vim/issues/349).
 - [x] scripts: Add scripts to install powerline fonts on Linux (https://powerline.readthedocs.org/en/latest/installation/linux.html#fonts-installation).
