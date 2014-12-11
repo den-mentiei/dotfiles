@@ -67,10 +67,8 @@ set incsearch
 " highlight search
 set hlsearch
 
-" TODO: toggle hlsearch on hotkey
-
-" http://www.viemu.com/blog/2009/06/16/a-vim-and-viemu-mapping-you-really-cant-miss-never-type-noh-again/
-nnoremap <leader>s :noh<return><esc>
+" toggling
+nnoremap <leader>s :set hlsearch!<cr>
 
 " i want my backspace back!
 set backspace=indent,eol,start
@@ -145,7 +143,7 @@ set background=light
 colorscheme solarized
 
 " switch between light/dark with <F5>. TODO: remap to other button, maybe.
-call togglebg#map("")
+call togglebg#map("<F5>")
 
 " solarized bg of special chars is not ok
 highlight clear SpecialKey
