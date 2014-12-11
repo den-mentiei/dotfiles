@@ -70,7 +70,7 @@ set hlsearch
 " TODO: toggle hlsearch on hotkey
 
 " http://www.viemu.com/blog/2009/06/16/a-vim-and-viemu-mapping-you-really-cant-miss-never-type-noh-again/
-nnoremap <esc> :noh<return><esc>
+nnoremap <leader>s :noh<return><esc>
 
 " i want my backspace back!
 set backspace=indent,eol,start
@@ -112,12 +112,11 @@ set splitbelow
 
 " \\\ KEYMAPS \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
-" TODO: map this to something useful.
 " TODO: investigate why arrows can be pressed in Ubuntu Terminal.
-map <up> <nop>
-map <down> <nop>
-map <left> <nop>
-map <right> <nop>
+nnoremap <left> :bprev<cr>
+nnoremap <right> :bnext<cr>
+nnoremap <up> :tabnext<cr>
+nnoremap <down> :tabprev<cr>
 
 " \\\ GUI \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
