@@ -108,6 +108,9 @@ set splitright
 " opens new split windows to the bottom
 set splitbelow
 
+" do not inc/dec octal numbers as it can lead to errors
+set nrformats-=octal
+
 " \\\ KEYMAPS \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
 " TODO: investigate why arrows can be pressed in Ubuntu Terminal.
