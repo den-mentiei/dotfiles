@@ -18,3 +18,5 @@ TBD.
 - [ ] zsh: setup nice promt (with a lovely λ).
 - [ ] zsh: setup aliases.
 - [ ] zsh: setup needed plugins.
+- [ ] scripts: auto-install oh-my-zsh.
+- [ ] git: create basic git config with name/email, at least.
