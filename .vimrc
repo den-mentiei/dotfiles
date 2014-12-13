@@ -122,8 +122,8 @@ nnoremap <down> :tabprev<cr>
 " \\\ GUI \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
 if has("gui_running")
-	" hides menus, toolbars, widgets
-	set guioptions=
+	" hides menus, toolbars, widgets and use console dialog promts
+	set guioptions=c
 	if has("gui_win32") || has("gui_win64")
 		set guifont=Ubuntu_mono_derivative_Powerlin:h10:cRUSSIAN
 		" start maximized on windows
