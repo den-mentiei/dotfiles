@@ -142,11 +142,11 @@ if &t_Co >= 256 || has("gui_running")
 	let g:solarized_termcolors = 256
 endif
 
+" temporary - as dark theme is broken in gnome terminal
+" (https://github.com/altercation/vim-colors-solarized/issues/72#issuecomment-66922017)
+let g:solarized_termcolors = 16
 set background=dark
 colorscheme solarized
-
-" switch between light/dark with <F5>. TODO: remap to other button, maybe.
-call togglebg#map("<F5>")
 
 " solarized bg of special chars is not ok
 highlight clear SpecialKey
