@@ -20,3 +20,4 @@ TBD.
 - [ ] zsh: setup needed plugins.
 - [ ] scripts: auto-install oh-my-zsh.
 - [ ] git: create basic git config with name/email, at least.
+- [ ] scripts: solarized for gnome terminal install script (https://github.com/Anthony25/gnome-terminal-colors-solarized).
