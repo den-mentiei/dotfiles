@@ -142,7 +142,7 @@ if &t_Co >= 256 || has("gui_running")
 	let g:solarized_termcolors = 256
 endif
 
-set background=light
+set background=dark
 colorscheme solarized
 
 " switch between light/dark with <F5>. TODO: remap to other button, maybe.
