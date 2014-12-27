@@ -33,6 +33,7 @@ NeoBundle 'airblade/vim-gitgutter'
 NeoBundle 'bling/vim-airline'
 NeoBundle 'altercation/vim-colors-solarized'
 NeoBundle 'Shougo/unite.vim'
+NeoBundle 'tpope/vim-surround'
 
 call neobundle#end()
 
