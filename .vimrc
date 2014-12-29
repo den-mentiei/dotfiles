@@ -112,6 +112,9 @@ set splitbelow
 " do not inc/dec octal numbers as it can lead to errors
 set nrformats-=octal
 
+" do not want to miss the changes
+set autoread
+
 " \\\ KEYMAPS \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
 " TODO: investigate why arrows can be pressed in Ubuntu Terminal.
