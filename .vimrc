@@ -180,4 +180,19 @@ endif
 
 call unite#filters#matcher_default#use(['matcher_fuzzy'])
 call unite#custom#source('buffer,file,file_rec', 'sorters', 'sorter_rank')
-nnoremap <C-p> :Unite -start-insert buffer file_rec/async<cr>
+nnoremap <C-p> :Unite -start-insert -auto-preview buffer file_rec/async<cr>
+
+" custom mapping for unite buffers
+function! s:unite_settings()
+	" close unite buffer
+	imap <buffer> jk <Plug>(unite_exit)
+	" enable navigation with C-j and C-k in insert mode
+	imap <buffer> <C-j> <Plug>(unite_select_next_line)
+	imap <buffer> <C-k> <Plug>(unite_select_previous_line)
+endfunction
+
+" \\\ AUTOCMD \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+if has("autocmd")
+	autocmd FileType unite call s:unite_settings()
+endif
