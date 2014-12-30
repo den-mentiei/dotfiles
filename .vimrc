@@ -178,4 +178,6 @@ endif
 
 " \\\ UNITE \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
-nnoremap <C-p> :Unite file_rec/async<cr>
+call unite#filters#matcher_default#use(['matcher_fuzzy'])
+call unite#custom#source('buffer,file,file_rec', 'sorters', 'sorter_rank')
+nnoremap <C-p> :Unite -start-insert buffer file_rec/async<cr>
