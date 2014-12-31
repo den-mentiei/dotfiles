@@ -42,6 +42,8 @@ NeoBundle 'Lokaltog/vim-easymotion'
 NeoBundle 'terryma/vim-multiple-cursors'
 NeoBundle 'scrooloose/nerdcommenter'
 NeoBundle 'vim-scripts/vim-sjson'
+NeoBundle 'vim-ruby/vim-ruby'
+NeoBundle 'mattn/emmet-vim'
 
 call neobundle#end()
 
@@ -234,6 +236,12 @@ map <Leader>e <Plug>(easymotion-prefix)
 map <Leader>j <Plug>(easymotion-j)
 map <Leader>k <Plug>(easymotion-k)
 
+" \\\ EMMET \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+" i'll manually install it for some file types
+let g:user_emmet_install_global = 0
+let g:user_emmet_leader_key='<C-y>'
+
 " \\\ AUTOCMD \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
 if has("autocmd")
@@ -250,4 +258,6 @@ if has("autocmd")
 	autocmd BufRead,BufNewFile *.strings setfiletype sjson
 	autocmd BufRead,BufNewFile *.script_flow_nodes setfiletype sjson
 	autocmd BufRead,BufNewFile *.package setfiletype sjson
+
+	autocmd FileType html,css EmmetInstall
 endif
