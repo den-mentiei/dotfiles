@@ -69,7 +69,7 @@ set incsearch
 set hlsearch
 
 " toggling
-nnoremap <leader>s :set hlsearch!<cr>
+nnoremap <leader>h :set hlsearch!<cr>
 
 " i want my backspace back!
 set backspace=indent,eol,start
@@ -114,6 +114,10 @@ set nrformats-=octal
 
 " do not want to miss the changes
 set autoread
+
+" turns off physical line wrapping (ie: automatic insertion of newlines)
+set nowrap
+set textwidth=0 wrapmargin=0
 
 " \\\ KEYMAPS \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
@@ -180,7 +184,15 @@ endif
 
 call unite#filters#matcher_default#use(['matcher_fuzzy'])
 call unite#custom#source('buffer,file,file_rec', 'sorters', 'sorter_rank')
-nnoremap <C-p> :Unite -start-insert -auto-preview buffer file_rec/async<cr>
+
+" setups a line source alias
+let g:unite_source_alias_aliases = {}
+let g:unite_source_alias_aliases.line_fuzzy = 'line'
+" with a custom matcher for it
+call unite#custom#source('line_fuzzy', 'matchers', 'matcher_fuzzy')
+
+nnoremap <C-p> :Unite -start-insert -no-split -auto-preview buffer file_rec/async<cr>
+nnoremap <leader>l :Unite -start-insert -no-split line_fuzzy<cr>
 
 " custom mapping for unite buffers
 function! s:unite_settings()
