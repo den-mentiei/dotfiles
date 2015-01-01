@@ -123,11 +123,15 @@ set textwidth=0 wrapmargin=0
 
 " \\\ KEYMAPS \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
-" TODO: investigate why arrows can be pressed in Ubuntu Terminal.
 nnoremap <left> :bprev<cr>
 nnoremap <right> :bnext<cr>
 nnoremap <up> :tabnext<cr>
 nnoremap <down> :tabprev<cr>
+
+" TODO: make it a function that can handle different states correctly or
+" replace with some already-done plugin.
+" closes a buffer without breaking a split, if more than one left
+nnoremap <leader>d :bp<bar>bd #<cr><cr>
 
 " \\\ GUI \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
@@ -184,14 +188,14 @@ endif
 
 " \\\ UNITE \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
-call unite#filters#matcher_default#use(['matcher_fuzzy'])
-call unite#custom#source('buffer,file,file_rec', 'sorters', 'sorter_rank')
-
 " setups a line source alias
 let g:unite_source_alias_aliases = {}
 let g:unite_source_alias_aliases.line_fuzzy = 'line'
 " with a custom matcher for it
 call unite#custom#source('line_fuzzy', 'matchers', 'matcher_fuzzy')
+
+call unite#filters#matcher_default#use(['matcher_fuzzy'])
+call unite#custom#source('line,line_fuzzy,buffer,file,file_rec', 'sorters', 'sorter_rank')
 
 nnoremap <C-p> :Unite -start-insert -no-split -auto-preview buffer file_rec/async<cr>
 nnoremap <leader>l :Unite -start-insert -no-split line_fuzzy<cr>
