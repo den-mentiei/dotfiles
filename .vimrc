@@ -2,6 +2,8 @@ set nocompatible
 
 filetype off
 
+let mapleader = ","
+
 " \\\ EASY VIMRC \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
 " opens vimrc
