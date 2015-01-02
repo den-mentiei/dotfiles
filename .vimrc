@@ -110,9 +110,6 @@ set scrolloff=5
 " opens new vertical split windows to the right
 set splitright
 
-" opens new split windows to the bottom
-set splitbelow
-
 " do not inc/dec octal numbers as it can lead to errors
 set nrformats-=octal
 
