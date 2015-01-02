@@ -130,6 +130,12 @@ nnoremap <right> :bnext<cr>
 nnoremap <up> :tabnext<cr>
 nnoremap <down> :tabprev<cr>
 
+" use ctrl-[hjkl] to select the active split
+nmap <silent> <C-k> :wincmd k<cr>
+nmap <silent> <C-j> :wincmd j<cr>
+nmap <silent> <C-h> :wincmd h<cr>
+nmap <silent> <C-l> :wincmd l<cr>
+
 " TODO: make it a function that can handle different states correctly or
 " replace with some already-done plugin.
 " closes a buffer without breaking a split, if more than one left
