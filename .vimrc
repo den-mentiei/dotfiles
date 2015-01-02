@@ -107,6 +107,9 @@ set undolevels=1000
 " start scrolling the horizontal window border
 set scrolloff=5
 
+" opens new horizontal split to the bottom
+set splitbelow
+
 " opens new vertical split windows to the right
 set splitright
 
