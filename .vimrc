@@ -107,7 +107,7 @@ set history=1000
 set undolevels=1000
 
 " start scrolling the horizontal window border
-set scrolloff=5
+set scrolloff=8
 
 " opens new horizontal split to the bottom
 set splitbelow
