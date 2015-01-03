@@ -38,6 +38,8 @@ NeoBundle 'Shougo/unite.vim'
 NeoBundle 'tpope/vim-surround'
 NeoBundle 'tpope/vim-repeat'
 NeoBundle 'tpope/vim-unimpaired'
+NeoBundle 'Lokaltog/vim-easymotion'
+NeoBundle 'terryma/vim-multiple-cursors'
 
 call neobundle#end()
 
@@ -211,11 +213,21 @@ nnoremap <leader>l :Unite -start-insert -no-split line_fuzzy<cr>
 " custom mapping for unite buffers
 function! s:unite_settings()
 	" close unite buffer
-	imap <buffer> jk <Plug>(unite_exit)
+	imap <buffer> jj <Plug>(unite_exit)
 	" enable navigation with C-j and C-k in insert mode
 	imap <buffer> <C-j> <Plug>(unite_select_next_line)
 	imap <buffer> <C-k> <Plug>(unite_select_previous_line)
 endfunction
+
+" \\\ EASYMOTION \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+" disable default mappings
+"let g:EasyMotion_do_mapping
+
+map <Leader>e <Plug>(easymotion-prefix)
+
+map <Leader>j <Plug>(easymotion-j)
+map <Leader>k <Plug>(easymotion-k)
 
 " \\\ AUTOCMD \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
