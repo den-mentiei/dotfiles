@@ -41,6 +41,7 @@ NeoBundle 'tpope/vim-unimpaired'
 NeoBundle 'Lokaltog/vim-easymotion'
 NeoBundle 'terryma/vim-multiple-cursors'
 NeoBundle 'scrooloose/nerdcommenter'
+NeoBundle 'vim-scripts/vim-sjson'
 
 call neobundle#end()
 
@@ -143,6 +144,9 @@ nmap <silent> <C-l> :wincmd l<cr>
 " replace with some already-done plugin.
 " closes a buffer without breaking a split, if more than one left
 nnoremap <leader>d :bp<bar>bd #<cr><cr>
+
+" for pasting in a lot of text
+nnoremap <leader>p :set paste!<cr>
 
 " \\\ GUI \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
