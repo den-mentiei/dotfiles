@@ -238,4 +238,7 @@ map <Leader>k <Plug>(easymotion-k)
 
 if has("autocmd")
 	autocmd FileType unite call s:unite_settings()
+
+	autocmd BufRead,BufNewFile *.render_config setfiletype sjson
+	autocmd BufRead,BufNewFile *.shader_node setfiletype sjson
 endif
