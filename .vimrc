@@ -241,4 +241,12 @@ if has("autocmd")
 
 	autocmd BufRead,BufNewFile *.render_config setfiletype sjson
 	autocmd BufRead,BufNewFile *.shader_node setfiletype sjson
+	autocmd BufRead,BufNewFile *.shader_source setfiletype sjson
+	autocmd BufRead,BufNewFile *.shading_environment_template setfiletype sjson
+	autocmd BufRead,BufNewFile *.shading_environment setfiletype sjson
+	autocmd BufRead,BufNewFile *.material setfiletype sjson
+	autocmd BufRead,BufNewFile *.texture setfiletype sjson
+	autocmd BufRead,BufNewFile *.unit setfiletype sjson
+	autocmd BufRead,BufNewFile *.strings setfiletype sjson
+	autocmd BufRead,BufNewFile *.script_flow_nodes setfiletype sjson
 endif
