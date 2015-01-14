@@ -249,4 +249,5 @@ if has("autocmd")
 	autocmd BufRead,BufNewFile *.unit setfiletype sjson
 	autocmd BufRead,BufNewFile *.strings setfiletype sjson
 	autocmd BufRead,BufNewFile *.script_flow_nodes setfiletype sjson
+	autocmd BufRead,BufNewFile *.package setfiletype sjson
 endif
