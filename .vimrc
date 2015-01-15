@@ -7,10 +7,10 @@ let mapleader = ","
 " \\\ EASY VIMRC \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
 " opens vimrc
-nmap <silent> <leader>ev :e $MYVIMRC<cr>
+nnoremap <silent> <leader>ev :e $MYVIMRC<cr>
 
 " sources vimrc for short interactions ;)
-nmap <silent> <leader>sv :so $MYVIMRC<cr>
+nnoremap <silent> <leader>sv :so $MYVIMRC<cr>
 
 " \\\ NEOBUNDLE \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
@@ -95,7 +95,7 @@ set list
 set listchars=tab:›\ ,trail:•,extends:»,precedes:«
 
 " i dont want to see the whitespace, sometimes
-nmap <leader>l :set list!<cr>
+nnoremap <leader>w :set list!<cr>
 
 " centralize backups, swapfiles and undo history
 set backupdir=~/.vim/backups
@@ -137,10 +137,10 @@ nnoremap <up> :tabnext<cr>
 nnoremap <down> :tabprev<cr>
 
 " use ctrl-[hjkl] to select the active split
-nmap <silent> <C-k> :wincmd k<cr>
-nmap <silent> <C-j> :wincmd j<cr>
-nmap <silent> <C-h> :wincmd h<cr>
-nmap <silent> <C-l> :wincmd l<cr>
+nnoremap <silent> <C-k> :wincmd k<cr>
+nnoremap <silent> <C-j> :wincmd j<cr>
+nnoremap <silent> <C-h> :wincmd h<cr>
+nnoremap <silent> <C-l> :wincmd l<cr>
 
 " TODO: make it a function that can handle different states correctly or
 " replace with some already-done plugin.
@@ -220,10 +220,10 @@ nnoremap <leader>l :Unite -start-insert -no-split line_fuzzy<cr>
 " custom mapping for unite buffers
 function! s:unite_settings()
 	" close unite buffer
-	imap <buffer> jj <Plug>(unite_exit)
+	inoremap <buffer> jj <Plug>(unite_exit)
 	" enable navigation with C-j and C-k in insert mode
-	imap <buffer> <C-j> <Plug>(unite_select_next_line)
-	imap <buffer> <C-k> <Plug>(unite_select_previous_line)
+	inoremap <buffer> <C-j> <Plug>(unite_select_next_line)
+	inoremap <buffer> <C-k> <Plug>(unite_select_previous_line)
 endfunction
 
 " \\\ EASYMOTION \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
@@ -245,19 +245,32 @@ let g:user_emmet_leader_key='<C-y>'
 " \\\ AUTOCMD \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
 if has("autocmd")
-	autocmd FileType unite call s:unite_settings()
+	augroup unite
 
-	autocmd BufRead,BufNewFile *.render_config setfiletype sjson
-	autocmd BufRead,BufNewFile *.shader_node setfiletype sjson
-	autocmd BufRead,BufNewFile *.shader_source setfiletype sjson
-	autocmd BufRead,BufNewFile *.shading_environment_template setfiletype sjson
-	autocmd BufRead,BufNewFile *.shading_environment setfiletype sjson
-	autocmd BufRead,BufNewFile *.material setfiletype sjson
-	autocmd BufRead,BufNewFile *.texture setfiletype sjson
-	autocmd BufRead,BufNewFile *.unit setfiletype sjson
-	autocmd BufRead,BufNewFile *.strings setfiletype sjson
-	autocmd BufRead,BufNewFile *.script_flow_nodes setfiletype sjson
-	autocmd BufRead,BufNewFile *.package setfiletype sjson
+		autocmd!
 
-	autocmd FileType html,css EmmetInstall
+		autocmd FileType unite call s:unite_settings()
+	augroup end
+
+	augroup sjson
+		autocmd!
+
+		autocmd BufRead,BufNewFile *.render_config setfiletype sjson
+		autocmd BufRead,BufNewFile *.shader_node setfiletype sjson
+		autocmd BufRead,BufNewFile *.shader_source setfiletype sjson
+		autocmd BufRead,BufNewFile *.shading_environment_template setfiletype sjson
+		autocmd BufRead,BufNewFile *.shading_environment setfiletype sjson
+		autocmd BufRead,BufNewFile *.material setfiletype sjson
+		autocmd BufRead,BufNewFile *.texture setfiletype sjson
+		autocmd BufRead,BufNewFile *.unit setfiletype sjson
+		autocmd BufRead,BufNewFile *.strings setfiletype sjson
+		autocmd BufRead,BufNewFile *.script_flow_nodes setfiletype sjson
+		autocmd BufRead,BufNewFile *.package setfiletype sjson
+	augroup end
+
+	augroup emmet
+		autocmd!
+
+		autocmd FileType html,css EmmetInstall
+	augroup end
 endif
