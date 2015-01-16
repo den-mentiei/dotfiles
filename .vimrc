@@ -150,6 +150,9 @@ nnoremap <leader>d :bp<bar>bd #<cr><cr>
 " for pasting in a lot of text
 nnoremap <leader>p :set paste!<cr>
 
+" too lazy to enter-leave insert mode, but i love inner and outer space :o
+nnoremap <leader><space> i<space><esc>
+
 " \\\ GUI \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
 if has("gui_running")
