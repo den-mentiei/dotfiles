@@ -1,0 +1,7 @@
+[user]
+	name = Den Mentiei
+	email = denis@goortom.com
+[core]
+	editor = vim
+[push]
+	default = simple
