@@ -153,6 +153,9 @@ nnoremap <leader>p :set paste!<cr>
 " too lazy to enter-leave insert mode, but i love inner and outer space :o
 nnoremap <leader><space> i<space><esc>
 
+" reselects a just-pasted text
+nnoremap <leader>v V`]
+
 " \\\ GUI \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
 if has("gui_running")
