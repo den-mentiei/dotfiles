@@ -226,10 +226,10 @@ nnoremap <leader>l :Unite -start-insert -no-split line_fuzzy<cr>
 " custom mapping for unite buffers
 function! s:unite_settings()
 	" close unite buffer
-	inoremap <buffer> jj <Plug>(unite_exit)
+	imap <buffer> jj <Plug>(unite_exit)
 	" enable navigation with C-j and C-k in insert mode
-	inoremap <buffer> <C-j> <Plug>(unite_select_next_line)
-	inoremap <buffer> <C-k> <Plug>(unite_select_previous_line)
+	imap <buffer> <C-j> <Plug>(unite_select_next_line)
+	imap <buffer> <C-k> <Plug>(unite_select_previous_line)
 endfunction
 
 " \\\ EASYMOTION \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
