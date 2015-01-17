@@ -44,7 +44,9 @@ NeoBundle 'scrooloose/nerdcommenter'
 NeoBundle 'vim-scripts/vim-sjson'
 NeoBundle 'vim-ruby/vim-ruby'
 NeoBundle 'mattn/emmet-vim'
-NeoBundle 'SirVer/ultisnips'
+if has("python") || has("python3")
+	NeoBundle 'SirVer/ultisnips'
+endif
 
 call neobundle#end()
 
@@ -152,7 +154,7 @@ nnoremap <leader>d :bp<bar>bd #<cr><cr>
 nnoremap <leader>p :set paste!<cr>
 
 " too lazy to enter-leave insert mode, but i love inner and outer space :o
-nnoremap <leader><space> i<space><esc>
+nnoremap <leader><space> a<space><esc>
 
 " reselects a just-pasted text
 nnoremap <leader>v V`]
@@ -247,13 +249,14 @@ map <Leader>k <Plug>(easymotion-k)
 
 " i'll manually install it for some file types
 let g:user_emmet_install_global = 0
-let g:user_emmet_leader_key='<C-y>'
+let g:user_emmet_leader_key = '<C-y>'
 
 " \\\ ULTISNIPS \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
-let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<C-j>"
-let g:UltiSnipsJumpBackwardTrigger="<C-k>"
+let g:UltiSnipsExpandTrigger ="<tab>"
+let g:UltiSnipsListSnippets = "<C-tab>"
+let g:UltiSnipsJumpForwardTrigger = "<C-j>"
+let g:UltiSnipsJumpBackwardTrigger = "<C-k>"
 
 " \\\ AUTOCMD \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
