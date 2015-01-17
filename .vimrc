@@ -44,6 +44,7 @@ NeoBundle 'scrooloose/nerdcommenter'
 NeoBundle 'vim-scripts/vim-sjson'
 NeoBundle 'vim-ruby/vim-ruby'
 NeoBundle 'mattn/emmet-vim'
+NeoBundle 'SirVer/ultisnips'
 
 call neobundle#end()
 
@@ -247,6 +248,12 @@ map <Leader>k <Plug>(easymotion-k)
 " i'll manually install it for some file types
 let g:user_emmet_install_global = 0
 let g:user_emmet_leader_key='<C-y>'
+
+" \\\ ULTISNIPS \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<C-j>"
+let g:UltiSnipsJumpBackwardTrigger="<C-k>"
 
 " \\\ AUTOCMD \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
