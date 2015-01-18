@@ -43,7 +43,6 @@ NeoBundle 'terryma/vim-multiple-cursors'
 NeoBundle 'scrooloose/nerdcommenter'
 NeoBundle 'vim-scripts/vim-sjson'
 NeoBundle 'vim-ruby/vim-ruby'
-NeoBundle 'mattn/emmet-vim'
 if has("python") || has("python3")
 	NeoBundle 'SirVer/ultisnips'
 endif
@@ -257,6 +256,7 @@ let g:UltiSnipsExpandTrigger ="<tab>"
 let g:UltiSnipsListSnippets = "<C-tab>"
 let g:UltiSnipsJumpForwardTrigger = "<C-j>"
 let g:UltiSnipsJumpBackwardTrigger = "<C-k>"
+let g:UltiSnipsSnippetDirectories = ["my_snippets"]
 
 " \\\ AUTOCMD \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 

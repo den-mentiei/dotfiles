@@ -1,0 +1,25 @@
+snippet forp "for in pairs" b
+for ${1:k}, ${2:v} in pairs(${3:table}) do
+	$0
+end
+endsnippet
+
+snippet fori "for in ipairs" b
+for ${1:i}, ${2:v} in ipairs(${3:table}) do
+	$0
+end
+endsnippet
+
+snippet !fun(ction)?! "function" br
+function ${1:name}(${2:args})
+	${VISUAL}$0
+end
+endsnippet
+
+snippet !lfun(ction)?! "local function" br
+local function ${1:name}(${2:args})
+	${VISUAL}$0
+end
+endsnippet
+
+# vim:ft=snippets:
