@@ -43,9 +43,7 @@ NeoBundle 'terryma/vim-multiple-cursors'
 NeoBundle 'scrooloose/nerdcommenter'
 NeoBundle 'vim-scripts/vim-sjson'
 NeoBundle 'vim-ruby/vim-ruby'
-if has("python") || has("python3")
-	NeoBundle 'SirVer/ultisnips'
-endif
+NeoBundle 'SirVer/ultisnips'
 
 call neobundle#end()
 
