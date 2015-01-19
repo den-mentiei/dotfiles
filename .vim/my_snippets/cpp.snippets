@@ -48,6 +48,14 @@ do {
 } while (${1:/* condition */});
 endsnippet
 
+snippet try "try-catch block" b
+try {
+	${VISUAL}$0
+} catch (${1:std::exception& ex}) {
+	$2
+}
+endsnippet
+
 snippet ns "namespace" b
 namespace $1 {
 

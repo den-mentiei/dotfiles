@@ -252,8 +252,8 @@ let g:user_emmet_leader_key = '<C-y>'
 
 let g:UltiSnipsExpandTrigger ="<tab>"
 let g:UltiSnipsListSnippets = "<C-tab>"
-let g:UltiSnipsJumpForwardTrigger = "<C-j>"
-let g:UltiSnipsJumpBackwardTrigger = "<C-k>"
+let g:UltiSnipsJumpForwardTrigger = "<tab>"
+let g:UltiSnipsJumpBackwardTrigger = "<S-tab>"
 let g:UltiSnipsSnippetDirectories = ["my_snippets"]
 
 " \\\ AUTOCMD \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
