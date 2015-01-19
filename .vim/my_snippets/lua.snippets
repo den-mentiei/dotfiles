@@ -10,6 +10,39 @@ for ${1:i}, ${2:v} in ipairs(${3:table}) do
 end
 endsnippet
 
+snippet forc "for with count" b
+local ${1:count} = #${2:table}
+for i = 1, count do
+	${VISUAL}$0
+end
+endsnippet
+
+snippet if "if block" b
+if ${1:condition} then
+	${VISUAL}$0
+end
+endsnippet
+
+snippet ife "if-else block" b
+if ${1:condition} then
+	$2
+else
+	$3
+end$0
+endsnippet
+
+snippet while "while block" b
+while ${1:condition} do
+	${VISUAL}$0
+end
+endsnippet
+
+snippet repeat "repeat block" b
+repeat
+	${VISUAL}$0
+until ${1:condition}
+endsnippet
+
 snippet !fun(ction)?! "function" br
 function ${1:name}(${2:args})
 	${VISUAL}$0
@@ -20,6 +53,12 @@ snippet !lfun(ction)?! "local function" br
 local function ${1:name}(${2:args})
 	${VISUAL}$0
 end
+endsnippet
+
+snippet class "class table" b
+${1:Class} = class($1)
+
+$0
 endsnippet
 
 # vim:ft=snippets:
