@@ -44,6 +44,7 @@ NeoBundle 'scrooloose/nerdcommenter'
 NeoBundle 'vim-scripts/vim-sjson'
 NeoBundle 'vim-ruby/vim-ruby'
 NeoBundle 'SirVer/ultisnips'
+NeoBundle 'rking/ag.vim'
 
 call neobundle#end()
 
@@ -211,6 +212,8 @@ endif
 
 " \\\ UNITE \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
+let g:unite_source_grep_max_candidates = 1000
+
 " setups a line source alias
 let g:unite_source_alias_aliases = {}
 let g:unite_source_alias_aliases.line_fuzzy = 'line'
@@ -220,8 +223,16 @@ call unite#custom#source('line_fuzzy', 'matchers', 'matcher_fuzzy')
 call unite#filters#matcher_default#use(['matcher_fuzzy'])
 call unite#custom#source('line,line_fuzzy,buffer,file,file_rec', 'sorters', 'sorter_rank')
 
+" use ag for search
+if executable('ag')
+  let g:unite_source_grep_command = 'ag'
+  let g:unite_source_grep_default_opts = '--nogroup --nocolor --column'
+  let g:unite_source_grep_recursive_opt = ''
+endif
+
 nnoremap <C-p> :Unite -start-insert -no-split -auto-preview buffer file_rec/async<cr>
 nnoremap <leader>l :Unite -start-insert -no-split line_fuzzy<cr>
+nnoremap <silent> <leader>g :Unite -buffer-name=search -auto-preview -no-quit -no-empty grep:.::<CR>
 
 " custom mapping for unite buffers
 function! s:unite_settings()
