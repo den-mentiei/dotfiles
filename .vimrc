@@ -242,12 +242,6 @@ map <Leader>e <Plug>(easymotion-prefix)
 map <Leader>j <Plug>(easymotion-j)
 map <Leader>k <Plug>(easymotion-k)
 
-" \\\ EMMET \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
-
-" i'll manually install it for some file types
-let g:user_emmet_install_global = 0
-let g:user_emmet_leader_key = '<C-y>'
-
 " \\\ ULTISNIPS \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
 let g:UltiSnipsExpandTrigger ="<tab>"
@@ -280,11 +274,5 @@ if has("autocmd")
 		autocmd BufRead,BufNewFile *.strings setfiletype sjson
 		autocmd BufRead,BufNewFile *.script_flow_nodes setfiletype sjson
 		autocmd BufRead,BufNewFile *.package setfiletype sjson
-	augroup end
-
-	augroup emmet
-		autocmd!
-
-		autocmd FileType html,css EmmetInstall
 	augroup end
 endif
