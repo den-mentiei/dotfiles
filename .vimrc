@@ -45,6 +45,7 @@ NeoBundle 'vim-scripts/vim-sjson'
 NeoBundle 'vim-ruby/vim-ruby'
 NeoBundle 'SirVer/ultisnips'
 NeoBundle 'rking/ag.vim'
+NeoBundle 'a.vim'
 
 call neobundle#end()
 
@@ -260,10 +261,10 @@ endfunction
 " disable default mappings
 "let g:EasyMotion_do_mapping
 
-map <Leader>e <Plug>(easymotion-prefix)
+map <leader>e <Plug>(easymotion-prefix)
 
-map <Leader>j <Plug>(easymotion-j)
-map <Leader>k <Plug>(easymotion-k)
+map <leader>j <Plug>(easymotion-j)
+map <leader>k <Plug>(easymotion-k)
 
 " \\\ ULTISNIPS \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
@@ -272,6 +273,12 @@ let g:UltiSnipsListSnippets = "<C-tab>"
 let g:UltiSnipsJumpForwardTrigger = "<tab>"
 let g:UltiSnipsJumpBackwardTrigger = "<S-tab>"
 let g:UltiSnipsSnippetDirectories = ["my_snippets"]
+
+" \\\ A \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+" switch to the alternate file
+nnoremap <leader>o :A<cr>
+nnoremap <leader>vo :AV<cr>
 
 " \\\ AUTOCMD \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
