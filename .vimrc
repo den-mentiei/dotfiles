@@ -157,6 +157,9 @@ nnoremap <leader><space> a<space><esc>
 " reselects a just-pasted text
 nnoremap <leader>v V`]
 
+" allows to save quickly
+nnoremap <leader>w :w<cr>
+
 " \\\ GUI \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
 if has("gui_running")
