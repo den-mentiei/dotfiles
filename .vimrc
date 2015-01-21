@@ -160,6 +160,13 @@ nnoremap <leader>v V`]
 " allows to save quickly
 nnoremap <leader>w :w<cr>
 
+" i want this things to center
+nnoremap G Gzz
+nnoremap n nzz
+nnoremap N Nzz
+nnoremap } }zz
+nnoremap { {zz
+
 " \\\ GUI \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
 if has("gui_running")
