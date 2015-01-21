@@ -130,6 +130,8 @@ set autoread
 set nowrap
 set textwidth=0 wrapmargin=0
 
+set clipboard+=unnamed,unnamedplus
+
 " \\\ KEYMAPS \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
 nnoremap <left> :bprev<cr>
