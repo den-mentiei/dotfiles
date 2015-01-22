@@ -46,6 +46,7 @@ NeoBundle 'vim-ruby/vim-ruby'
 NeoBundle 'SirVer/ultisnips'
 NeoBundle 'rking/ag.vim'
 NeoBundle 'a.vim'
+NeoBundle 'Shougo/unite-outline'
 
 call neobundle#end()
 
@@ -226,6 +227,7 @@ endif
 " \\\ UNITE \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
 let g:unite_source_grep_max_candidates = 1000
+let g:unite_winheight = 30
 
 " setups a line source alias
 let g:unite_source_alias_aliases = {}
@@ -245,7 +247,9 @@ endif
 
 nnoremap <C-p> :Unite -start-insert -no-split -auto-preview buffer file_rec/async<cr>
 nnoremap <leader>l :Unite -start-insert -no-split line_fuzzy<cr>
-nnoremap <silent> <leader>g :Unite -buffer-name=search -auto-preview -no-quit -no-empty grep:.::<CR>
+nnoremap <silent> <leader>g :Unite -buffer-name=search -auto-preview -no-quit -no-empty grep:.::<cr>
+
+nnoremap <leader>n :Unite -vertical -winwidth=40 outline<cr>
 
 " custom mapping for unite buffers
 function! s:unite_settings()
