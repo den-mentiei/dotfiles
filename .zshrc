@@ -27,4 +27,5 @@ unsetopt nomatch
 # aliases
 alias servethis="python -c 'import SimpleHTTPServer; SimpleHTTPServer.test()'"
 
-
+# directory alises
+hash -d d=~/dotfiles.git
