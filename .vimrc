@@ -47,6 +47,8 @@ NeoBundle 'SirVer/ultisnips'
 NeoBundle 'rking/ag.vim'
 NeoBundle 'a.vim'
 NeoBundle 'Shougo/unite-outline'
+NeoBundle 'beyondmarc/hlsl.vim'
+NeoBundle 'tikhomirov/vim-glsl'
 
 call neobundle#end()
 
@@ -288,7 +290,6 @@ nnoremap <leader>vo :AV<cr>
 
 if has("autocmd")
 	augroup unite
-
 		autocmd!
 
 		autocmd FileType unite call s:unite_settings()
@@ -308,5 +309,12 @@ if has("autocmd")
 		autocmd BufRead,BufNewFile *.strings setfiletype sjson
 		autocmd BufRead,BufNewFile *.script_flow_nodes setfiletype sjson
 		autocmd BufRead,BufNewFile *.package setfiletype sjson
+	augroup end
+	
+	augroup shaders
+		autocmd!
+
+		autocmd BufNewFile,BufRead *.fx,*.fxc,*.fxh,*.hlsl setfiletype hlsl
+		autocmd BufNewFile,BufRead *.frag,*.vert,*.fp,*.vp,*.glsl setfiletype glsl
 	augroup end
 endif
