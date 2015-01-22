@@ -23,3 +23,8 @@ export VISUAL='vim'
 
 # causes globs which do not match a file to result in an error without running the command
 unsetopt nomatch
+
+# aliases
+alias servethis="python -c 'import SimpleHTTPServer; SimpleHTTPServer.test()'"
+
+
