@@ -284,6 +284,7 @@ let g:UltiSnipsSnippetDirectories = ["my_snippets"]
 
 " switch to the alternate file
 nnoremap <leader>o :A<cr>
+" opens alternate file in a split
 nnoremap <leader>vo :AV<cr>
 
 " \\\ AUTOCMD \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
