@@ -137,6 +137,9 @@ set textwidth=0 wrapmargin=0
 
 set clipboard+=unnamed,unnamedplus
 
+" visual autocomplete for commands
+set wildmenu
+
 " \\\ KEYMAPS \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
 nnoremap <left> :bprev<cr>
