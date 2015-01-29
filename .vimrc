@@ -291,6 +291,10 @@ nnoremap <leader>o :A<cr>
 " opens alternate file in a split
 nnoremap <leader>vo :AV<cr>
 
+" \\\ NERDTREE \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+map <leader>t :NERDTreeToggle<cr>
+
 " \\\ AUTOCMD \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
 if has("autocmd")
