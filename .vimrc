@@ -178,6 +178,9 @@ nnoremap N Nzz
 nnoremap } }zz
 nnoremap { {zz
 
+" maybe use <F5>?
+nnoremap <leader>m :make<cr>
+
 " \\\ GUI \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
 if has("gui_running")
