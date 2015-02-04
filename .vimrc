@@ -179,7 +179,9 @@ nnoremap } }zz
 nnoremap { {zz
 
 " maybe use <F5>?
-nnoremap <leader>m :make<cr>
+nnoremap <leader>b :make<cr>
+
+nnoremap <leader>m :marks<cr>
 
 " \\\ GUI \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
@@ -189,7 +191,7 @@ if has("gui_running")
 	if has("gui_win32") || has("gui_win64")
 		set guifont=Ubuntu_mono_derivative_Powerlin:h10:cRUSSIAN
 		" start maximized on windows
-		au GUIEnter * simalt ~x
+		autocmd GUIEnter * simalt ~x
 	endif
 else
 	if $COLORTERM == 'gnome-terminal'
