@@ -52,6 +52,7 @@ NeoBundle 'beyondmarc/hlsl.vim'
 NeoBundle 'tikhomirov/vim-glsl'
 NeoBundle 'scrooloose/nerdtree'
 NeoBundle 'tmhedberg/matchit'
+NeoBundle 'sjl/gundo.vim'
 
 call neobundle#end()
 
@@ -301,6 +302,10 @@ nnoremap <leader>vo :AV<cr>
 " \\\ NERDTREE \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
 map <leader>t :NERDTreeToggle<cr>
+
+" \\\ GUNDO \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+nnoremap <leader>u :GundoToggle<CR>
 
 " \\\ AUTOCMD \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
