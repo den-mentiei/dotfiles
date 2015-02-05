@@ -51,6 +51,7 @@ NeoBundle 'Shougo/unite-outline'
 NeoBundle 'beyondmarc/hlsl.vim'
 NeoBundle 'tikhomirov/vim-glsl'
 NeoBundle 'scrooloose/nerdtree'
+NeoBundle 'tmhedberg/matchit'
 
 call neobundle#end()
 
