@@ -14,7 +14,6 @@ nnoremap <silent> <leader>sv :so $MYVIMRC<cr>
 
 " \\\ NEOBUNDLE \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
-set runtimepath+=~/.vim
 set runtimepath+=~/.vim/bundle/neobundle.vim/
 
 " Required:
