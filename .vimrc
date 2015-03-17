@@ -338,4 +338,10 @@ if has("autocmd")
 		autocmd BufNewFile,BufRead *.fx,*.fxc,*.fxh,*.hlsl setfiletype hlsl
 		autocmd BufNewFile,BufRead *.frag,*.vert,*.fp,*.vp,*.glsl,*.sc setfiletype glsl
 	augroup end
+
+	augroup scheme
+		autocmd!
+
+		autocmd BufNewFile,BufRead *.emb setfiletype scheme
+	augroup end
 endif
