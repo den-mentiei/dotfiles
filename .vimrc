@@ -226,10 +226,10 @@ let g:gitgutter_map_keys = 0
 " \\\ AIRLINE \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
 let g:airline_enabled = 1
-let g:airline_enable_fugitive = 1
 let g:airline_powerline_fonts = 1
-let g:airline#extensions#tabline#enabled = 1
 let g:airline_theme = 'solarized'
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#branch#enabled = 1
 
 " to be always shown
 set laststatus=2
