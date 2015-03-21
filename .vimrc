@@ -54,6 +54,7 @@ NeoBundle 'tmhedberg/matchit'
 NeoBundle 'sjl/gundo.vim'
 NeoBundle 'wlangstroth/vim-racket'
 NeoBundle 'amdt/vim-niji'
+NeoBundle 'vim-scripts/paredit.vim'
 
 call neobundle#end()
 
