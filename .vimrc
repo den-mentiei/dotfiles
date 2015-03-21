@@ -52,6 +52,8 @@ NeoBundle 'tikhomirov/vim-glsl'
 NeoBundle 'scrooloose/nerdtree'
 NeoBundle 'tmhedberg/matchit'
 NeoBundle 'sjl/gundo.vim'
+NeoBundle 'wlangstroth/vim-racket'
+NeoBundle 'amdt/vim-niji'
 
 call neobundle#end()
 
@@ -307,6 +309,10 @@ map <leader>t :NERDTreeToggle<cr>
 
 nnoremap <leader>u :GundoToggle<CR>
 
+" \\\ NIJI \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+let g:niji_matching_filetypes = ['lisp', 'scheme', 'racket']
+
 " \\\ AUTOCMD \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
 if has("autocmd")
@@ -343,5 +349,7 @@ if has("autocmd")
 		autocmd!
 
 		autocmd BufNewFile,BufRead *.emb setfiletype scheme
+		" i love tabs -_-
+		autocmd FileType scheme set tabstop=4 softtabstop=4 shiftwidth=4 noexpandtab
 	augroup end
 endif
