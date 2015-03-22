@@ -356,5 +356,6 @@ if has("autocmd")
 		autocmd BufNewFile,BufRead *.emb setfiletype scheme
 		" i love tabs -_-
 		autocmd FileType scheme set tabstop=4 softtabstop=4 shiftwidth=4 noexpandtab
+		autocmd FileType racket set tabstop=4 softtabstop=4 shiftwidth=4 noexpandtab
 	augroup end
 endif
