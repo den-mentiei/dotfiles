@@ -346,16 +346,22 @@ if has("autocmd")
 	augroup shaders
 		autocmd!
 
-		autocmd BufNewFile,BufRead *.fx,*.fxc,*.fxh,*.hlsl setfiletype hlsl
-		autocmd BufNewFile,BufRead *.frag,*.vert,*.fp,*.vp,*.glsl,*.sc setfiletype glsl
+		autocmd BufRead,BufNewFile *.fx,*.fxc,*.fxh,*.hlsl setfiletype hlsl
+		autocmd BufRead,BufNewFile *.frag,*.vert,*.fp,*.vp,*.glsl,*.sc setfiletype glsl
 	augroup end
 
 	augroup scheme
 		autocmd!
 
-		autocmd BufNewFile,BufRead *.emb setfiletype scheme
+		autocmd BufRead,BufNewFile *.emb setfiletype scheme
 		" i love tabs -_-
 		autocmd FileType scheme set tabstop=4 softtabstop=4 shiftwidth=4 noexpandtab
 		autocmd FileType racket set tabstop=4 softtabstop=4 shiftwidth=4 noexpandtab
+	augroup end
+
+	augroup filetypes
+		autocmd!
+
+		autocmd BufRead,BufNewFile *.md setfiletype markdown
 	augroup end
 endif
