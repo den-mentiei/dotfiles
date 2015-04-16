@@ -55,6 +55,7 @@ NeoBundle 'sjl/gundo.vim'
 NeoBundle 'wlangstroth/vim-racket'
 NeoBundle 'amdt/vim-niji'
 NeoBundle 'vim-scripts/paredit.vim'
+NeoBundle 'Shougo/neomru.vim'
 
 call neobundle#end()
 
@@ -263,6 +264,7 @@ if executable('ag')
 endif
 
 nnoremap <C-p> :Unite -start-insert -no-split -auto-preview buffer file_rec/async<cr>
+nnoremap <leader>r :Unite -start-insert -no-split -auto-preview buffer file_mru<cr>
 nnoremap <leader>l :Unite -start-insert -no-split line_fuzzy<cr>
 nnoremap <silent> <leader>g :Unite -buffer-name=search -auto-preview -no-quit -no-empty grep:.::<cr>
 
