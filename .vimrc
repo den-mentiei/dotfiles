@@ -193,6 +193,7 @@ nnoremap <leader>m :marks<cr>
 if has("gui_running")
 	" hides menus, toolbars, widgets and use console dialog promts
 	set guioptions=c
+	set lines=999 columns=999
 	if has("gui_win32") || has("gui_win64")
 		set guifont=Ubuntu_mono_derivative_Powerlin:h10:cRUSSIAN
 		" start maximized on windows
