@@ -7,7 +7,7 @@ export ZSH=$HOME/.oh-my-zsh
 
 ZSH_THEME="robbyrussell"
 
-plugins=(git command-not-found colored-man apt)
+plugins=(git command-not-found colored-man apt npm)
 
 # User configuration
 
@@ -26,6 +26,7 @@ unsetopt nomatch
 
 # aliases
 alias servethis="python -c 'import SimpleHTTPServer; SimpleHTTPServer.test()'"
+alias please="sudo $(fc -ln -1)"
 
 # directory alises
 hash -d d=~/dotfiles.git
