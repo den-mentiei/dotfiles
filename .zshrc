@@ -7,7 +7,7 @@ export ZSH=$HOME/.oh-my-zsh
 
 ZSH_THEME="robbyrussell"
 
-plugins=(git command-not-found colored-man apt npm)
+plugins=(git command-not-found colored-man apt npm bower)
 
 # User configuration
 
