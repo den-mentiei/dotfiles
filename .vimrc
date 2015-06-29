@@ -368,3 +368,8 @@ if has("autocmd")
 		autocmd BufRead,BufNewFile *.md setfiletype markdown
 	augroup end
 endif
+
+" for some secret non-committable stuff
+if filereadable("~/.vimrc_local")
+	source ~/.vimrc_local
+endif
