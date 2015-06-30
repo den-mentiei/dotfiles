@@ -59,6 +59,7 @@ NeoBundle 'Shougo/neomru.vim'
 NeoBundleLazy 'jelera/vim-javascript-syntax', {'autoload': {'filetypes': ['javascript']}}
 NeoBundleLazy 'pangloss/vim-javascript', {'autoload': {'filetypes': ['javascript']}}
 NeoBundleLazy 'othree/javascript-libraries-syntax.vim', {'autoload': {'filetypes': ['javascript']}}
+NeoBundle 'digitaltoad/vim-jade'
 
 call neobundle#end()
 
