@@ -56,6 +56,9 @@ NeoBundle 'wlangstroth/vim-racket'
 NeoBundle 'vim-scripts/vim-niji'
 NeoBundle 'vim-scripts/paredit.vim'
 NeoBundle 'Shougo/neomru.vim'
+NeoBundleLazy 'jelera/vim-javascript-syntax', {'autoload': {'filetypes': ['javascript']}}
+NeoBundleLazy 'pangloss/vim-javascript', {'autoload': {'filetypes': ['javascript']}}
+NeoBundleLazy 'othree/javascript-libraries-syntax.vim', {'autoload': {'filetypes': ['javascript']}}
 
 call neobundle#end()
 
@@ -320,6 +323,10 @@ let g:niji_matching_filetypes = ['lisp', 'scheme', 'racket']
 " \\\ PAREDIT \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
 map <leader>) :call PareditToggle()<cr>
+
+" \\\ JAVASCRIPT LIBRARIES \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+let g:used_javascript_libs = 'underscore,react,requirejs,jquery'
 
 " \\\ AUTOCMD \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
