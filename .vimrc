@@ -58,6 +58,7 @@ NeoBundle 'vim-scripts/paredit.vim'
 NeoBundle 'Shougo/neomru.vim'
 NeoBundleLazy 'jelera/vim-javascript-syntax', {'autoload': {'filetypes': ['javascript']}}
 NeoBundleLazy 'pangloss/vim-javascript', {'autoload': {'filetypes': ['javascript']}}
+NeoBundleLazy 'mxw/vim-jsx'
 NeoBundleLazy 'othree/javascript-libraries-syntax.vim', {'autoload': {'filetypes': ['javascript']}}
 NeoBundle 'digitaltoad/vim-jade'
 
@@ -328,6 +329,10 @@ map <leader>) :call PareditToggle()<cr>
 " \\\ JAVASCRIPT LIBRARIES \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
 let g:used_javascript_libs = 'underscore,react,requirejs,jquery'
+
+" \\\ JSX \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+let g:jsx_ext_required = 0
 
 " \\\ AUTOCMD \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
