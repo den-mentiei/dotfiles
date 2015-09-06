@@ -32,4 +32,4 @@ alias please='sudo $(fc -ln -1)'
 hash -d d=~/dotfiles.git
 
 # OPAM configuration
-. /home/den/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
+. ~/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
