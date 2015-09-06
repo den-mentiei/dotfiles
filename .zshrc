@@ -30,3 +30,6 @@ alias please='sudo $(fc -ln -1)'
 
 # directory alises
 hash -d d=~/dotfiles.git
+
+# OPAM configuration
+. /home/den/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true

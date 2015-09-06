@@ -9,9 +9,6 @@ let mapleader = ","
 " opens vimrc
 nnoremap <silent> <leader>ev :e $MYVIMRC<cr>
 
-" sources vimrc for short interactions ;)
-nnoremap <silent> <leader>sv :so $MYVIMRC<cr>
-
 " \\\ NEOBUNDLE \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
 set runtimepath+=~/.vim/bundle/neobundle.vim/
@@ -49,7 +46,6 @@ NeoBundle 'a.vim'
 NeoBundle 'Shougo/unite-outline'
 NeoBundle 'beyondmarc/hlsl.vim'
 NeoBundle 'tikhomirov/vim-glsl'
-NeoBundle 'scrooloose/nerdtree'
 NeoBundle 'tmhedberg/matchit'
 NeoBundle 'sjl/gundo.vim'
 NeoBundle 'wlangstroth/vim-racket'
@@ -61,6 +57,19 @@ NeoBundleLazy 'pangloss/vim-javascript', {'autoload': {'filetypes': ['javascript
 NeoBundleLazy 'mxw/vim-jsx'
 NeoBundleLazy 'othree/javascript-libraries-syntax.vim', {'autoload': {'filetypes': ['javascript']}}
 NeoBundle 'digitaltoad/vim-jade'
+
+if executable('opam')
+	"" remove the default ftplugin
+	let g:opamshare = substitute(system('opam config var share'),'\n$','','''')
+
+	if !empty(glob(g:opamshare."/merlin/vim"))
+		NeoBundleLazy g:opamshare . "/merlin/vim",
+			\ {
+				\ 'autoload': {'filetypes': ['ocaml']},
+				\ 'disabled' : (!executable('ocamlmerlin'))
+			\ }
+	endif
+endif
 
 call neobundle#end()
 
@@ -107,11 +116,9 @@ set cursorline
 " use tabs instead of spaces
 set tabstop=4 softtabstop=4 shiftwidth=4 noexpandtab
 
-" i want to see the whitespace
-set list
 set listchars=tab:›\ ,trail:•,extends:»,precedes:«
 
-" i dont want to see the whitespace, sometimes
+" i want to see the whitespace, sometimes
 nnoremap <leader>w :set list!<cr>
 
 " centralize backups, swapfiles and undo history
@@ -164,11 +171,6 @@ nnoremap <silent> <C-j> :wincmd j<cr>
 nnoremap <silent> <C-h> :wincmd h<cr>
 nnoremap <silent> <C-l> :wincmd l<cr>
 
-" TODO: make it a function that can handle different states correctly or
-" replace with some already-done plugin.
-" closes a buffer without breaking a split, if more than one left
-nnoremap <leader>d :bp<bar>bd #<cr><cr>
-
 " for pasting in a lot of text
 nnoremap <leader>p :set paste!<cr>
 
@@ -179,7 +181,7 @@ nnoremap <leader><space> a<space><esc>
 nnoremap <leader>v V`]
 
 " allows to save quickly
-nnoremap <leader>w :w<cr>
+nnoremap <leader>s :w<cr>
 
 " i want this things to center
 nnoremap G Gzz
@@ -193,16 +195,23 @@ nnoremap <leader>b :make<cr>
 
 nnoremap <leader>m :marks<cr>
 
+" Fugitive bindings
+" TODO: Revise and uncomment this.
+"nnoremap <leader>gs :Gstatus<CR>
+"nnoremap <leader>gd :Gdiff<CR>
+"nnoremap <leader>gc :Gcommit -v -q<CR>
+"nnoremap <leader>gC :Gcommit -v -q --all<CR>
+"nnoremap <leader>gr :Gread<CR>
+"nnoremap <leader>gw :Gwrite<CR>
+"nnoremap <leader>gb :Gblame<CR>
+
 " \\\ GUI \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
 if has("gui_running")
 	" hides menus, toolbars, widgets and use console dialog promts
 	set guioptions=c
-	set lines=999 columns=999
 	if has("gui_win32") || has("gui_win64")
 		set guifont=Ubuntu_mono_derivative_Powerlin:h10:cRUSSIAN
-		" start maximized on windows
-		autocmd GUIEnter * simalt ~x
 	endif
 else
 	if $COLORTERM == 'gnome-terminal'
@@ -210,21 +219,6 @@ else
 		set t_Co=256
 	endif
 endif
-
-" \\\ THEME \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
-
-if &t_Co >= 256 || has("gui_running")
-	let g:solarized_termcolors = 256
-endif
-
-" temporary - as dark theme is broken in gnome terminal
-" (https://github.com/altercation/vim-colors-solarized/issues/72#issuecomment-66922017)
-let g:solarized_termcolors = 16
-set background=dark
-colorscheme solarized
-
-" solarized bg of special chars is not ok
-highlight clear SpecialKey
 
 " \\\ GITGUTTER \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
@@ -310,10 +304,6 @@ nnoremap <leader>o :A<cr>
 " opens alternate file in a split
 nnoremap <leader>vo :AV<cr>
 
-" \\\ NERDTREE \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
-
-map <leader>t :NERDTreeToggle<cr>
-
 " \\\ GUNDO \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
 nnoremap <leader>u :GundoToggle<cr>
@@ -333,6 +323,18 @@ let g:used_javascript_libs = 'underscore,react,requirejs,jquery'
 " \\\ JSX \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
 let g:jsx_ext_required = 0
+
+" \\\ MERLIN \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+" custom key mappings for the ocaml files
+function! s:merlin_mappings()
+	" shows the expression type
+	nnoremap <leader>t :MerlinTypeOf<cr>
+	vnoremap <leader>t :MerlinTypeOfSel<cr>
+
+	" goes to the definition
+	nnoremap <leader>gd :MerlinLocate<cr>
+endfunction
 
 " \\\ AUTOCMD \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
@@ -380,7 +382,45 @@ if has("autocmd")
 
 		autocmd BufRead,BufNewFile *.md setfiletype markdown
 	augroup end
+
+	augroup plugins
+		autocmd!
+
+		autocmd BufReadPre,BufNewFile *.ml4,*.ml,*.mli let b:did_ftplugin = 1
+	augroup end
+
+	augroup vimrc
+		autocmd!
+
+		" sources vimrc for short interactions ;)
+		autocmd BufWritePost .vimrc,.gvimrc so $MYVIMRC
+	augroup end
+
+	augroup context_mappings
+		autocmd!
+
+		autocmd FileType ocaml call s:merlin_mappings()
+	augroup end
 endif
+
+" \\\ THEME \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+if &t_Co >= 256 || has("gui_running")
+	let g:solarized_termcolors = 256
+endif
+
+" temporary - as dark theme is broken in gnome terminal
+" (https://github.com/altercation/vim-colors-solarized/issues/72#issuecomment-66922017)
+let g:solarized_termcolors = 16
+set background=dark
+colorscheme solarized
+
+" solarized bg of special chars is not ok
+highlight clear SpecialKey
+" gutter column to match the whole bg
+highlight clear SignColumn
+" line numbers column to match the whole bg
+highlight clear LineNr
 
 " for some secret non-committable stuff
 if filereadable("~/.vimrc_local")
