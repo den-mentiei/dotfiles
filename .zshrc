@@ -3,7 +3,7 @@ if [[ $COLORTERM == "gnome-terminal" ]] then
 fi
 
 # Path to your oh-my-zsh installation.
-export ZSH=$HOME/.oh-my-zsh
+export ZSH=~/.oh-my-zsh
 
 ZSH_THEME="robbyrussell"
 
@@ -28,7 +28,7 @@ unsetopt nomatch
 alias servethis="python -c 'import SimpleHTTPServer; SimpleHTTPServer.test()'"
 alias please='sudo $(fc -ln -1)'
 
-# directory alises
+# directory aliases
 hash -d d=~/dotfiles.git
 
 # OPAM configuration
