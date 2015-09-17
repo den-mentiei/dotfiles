@@ -412,6 +412,7 @@ endif
 " temporary - as dark theme is broken in gnome terminal
 " (https://github.com/altercation/vim-colors-solarized/issues/72#issuecomment-66922017)
 let g:solarized_termcolors = 16
+let g:solarized_termtrans = 1
 set background=dark
 colorscheme solarized
 

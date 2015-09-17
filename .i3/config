@@ -119,3 +119,4 @@ bar {
 
 exec --no-startup-id gnome-settings-daemon
 exec nm-applet
+exec --no-startup-id compton -CGb
