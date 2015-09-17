@@ -30,7 +30,6 @@ NeoBundle 'Shougo/vimproc.vim', {
 NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'airblade/vim-gitgutter'
 NeoBundle 'bling/vim-airline'
-NeoBundle 'altercation/vim-colors-solarized'
 NeoBundle 'Shougo/unite.vim'
 NeoBundle 'tpope/vim-surround'
 NeoBundle 'tpope/vim-repeat'
@@ -57,6 +56,7 @@ NeoBundleLazy 'pangloss/vim-javascript', {'autoload': {'filetypes': ['javascript
 NeoBundleLazy 'mxw/vim-jsx'
 NeoBundleLazy 'othree/javascript-libraries-syntax.vim', {'autoload': {'filetypes': ['javascript']}}
 NeoBundle 'digitaltoad/vim-jade'
+NeoBundle 'morhetz/gruvbox'
 
 if executable('opam')
 	" remove the default ftplugin
@@ -229,7 +229,7 @@ let g:gitgutter_map_keys = 0
 
 let g:airline_enabled = 1
 let g:airline_powerline_fonts = 1
-let g:airline_theme = 'solarized'
+let g:airline_theme = 'gruvbox'
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#branch#enabled = 1
 
@@ -405,18 +405,10 @@ endif
 
 " \\\ THEME \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
-if &t_Co >= 256 || has("gui_running")
-	let g:solarized_termcolors = 256
-endif
-
-" temporary - as dark theme is broken in gnome terminal
-" (https://github.com/altercation/vim-colors-solarized/issues/72#issuecomment-66922017)
-let g:solarized_termcolors = 16
-let g:solarized_termtrans = 1
 set background=dark
-colorscheme solarized
+colorscheme gruvbox
 
-" solarized bg of special chars is not ok
+" bg of special chars is not ok
 highlight clear SpecialKey
 " gutter column to match the whole bg
 highlight clear SignColumn
