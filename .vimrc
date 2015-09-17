@@ -403,17 +403,14 @@ if has("autocmd")
 	augroup end
 endif
 
+
 " \\\ THEME \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
 set background=dark
-colorscheme gruvbox
 
-" bg of special chars is not ok
-highlight clear SpecialKey
-" gutter column to match the whole bg
-highlight clear SignColumn
-" line numbers column to match the whole bg
-highlight clear LineNr
+let g:gruvbox_termcolors = 256
+let g:gruvbox_sign_column = "dark0"
+colorscheme gruvbox
 
 " for some secret non-committable stuff
 if filereadable("~/.vimrc_local")
