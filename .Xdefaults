@@ -24,9 +24,8 @@ URxvt.transparent: true
 URxvt.shading: 30
 
 ! Fonts
-URxvt.allow_bold: false
+URxvt.allow_bold: true
 URxvt*font: xft:Ubuntu Mono derivative Powerline:pixelsize=15
-URxvt*boldFont: xft:Ubuntu Mono derivative Powerline Bold:pixelsize=15
 
 ! Fix font space
 URxvt*letterSpace: -1
