@@ -21,7 +21,8 @@ URxvt.saveLines: 50
 URxvt.internalBorder: 3
 URxvt.lineSpace: 0
 URxvt.transparent: true
-URxvt.shading: 40
+URxvt.shading: 10
+URxvt.fading: 30
 
 ! Fonts
 URxvt.allow_bold: false
