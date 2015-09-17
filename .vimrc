@@ -59,7 +59,7 @@ NeoBundleLazy 'othree/javascript-libraries-syntax.vim', {'autoload': {'filetypes
 NeoBundle 'digitaltoad/vim-jade'
 
 if executable('opam')
-	"" remove the default ftplugin
+	" remove the default ftplugin
 	let g:opamshare = substitute(system('opam config var share'),'\n$','','''')
 
 	if !empty(glob(g:opamshare."/merlin/vim"))

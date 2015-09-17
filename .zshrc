@@ -7,7 +7,7 @@ export ZSH=~/.oh-my-zsh
 
 ZSH_THEME="robbyrussell"
 
-plugins=(git command-not-found colored-man apt npm bower encode64 gem urltools)
+plugins=(git command-not-found colored-man apt node npm bower encode64 gem urltools nyan)
 
 # User configuration
 
@@ -19,7 +19,7 @@ source $ZSH/oh-my-zsh.sh
 export LANG=en_US.UTF-8
 
 export EDITOR='vim'
-export VISUAL='vim'
+export VISUAL='gvim'
 
 # causes globs which do not match a file to result in an error without running the command
 unsetopt nomatch
