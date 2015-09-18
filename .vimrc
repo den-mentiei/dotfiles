@@ -2,6 +2,7 @@ set nocompatible
 
 filetype off
 
+" TODO: Think about <space>, really.
 let mapleader = ","
 
 " \\\ EASY VIMRC \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
@@ -27,8 +28,10 @@ NeoBundle 'Shougo/vimproc.vim', {
 \		'unix' : 'gmake',
 \	},
 \}
+" git
 NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'airblade/vim-gitgutter'
+" interface & ux
 NeoBundle 'bling/vim-airline'
 NeoBundle 'Shougo/unite.vim'
 NeoBundle 'tpope/vim-surround'
@@ -37,26 +40,34 @@ NeoBundle 'tpope/vim-unimpaired'
 NeoBundle 'Lokaltog/vim-easymotion'
 NeoBundle 'terryma/vim-multiple-cursors'
 NeoBundle 'ddollar/nerdcommenter'
-NeoBundle 'vim-scripts/vim-sjson'
-NeoBundle 'vim-ruby/vim-ruby'
 NeoBundle 'SirVer/ultisnips'
 NeoBundle 'rking/ag.vim'
 NeoBundle 'a.vim'
 NeoBundle 'Shougo/unite-outline'
-NeoBundle 'beyondmarc/hlsl.vim'
-NeoBundle 'tikhomirov/vim-glsl'
 NeoBundle 'tmhedberg/matchit'
 NeoBundle 'sjl/gundo.vim'
+NeoBundle 'Shougo/neomru.vim'
+NeoBundle 'vim-scripts/vim-sjson'
+" colorschemes
+NeoBundle 'morhetz/gruvbox'
+" languages
+"" shaders
+NeoBundle 'beyondmarc/hlsl.vim'
+NeoBundle 'tikhomirov/vim-glsl'
+"" lispy
 NeoBundle 'wlangstroth/vim-racket'
 NeoBundle 'vim-scripts/vim-niji'
 NeoBundle 'vim-scripts/paredit.vim'
-NeoBundle 'Shougo/neomru.vim'
+"" ruby
+NeoBundle 'vim-ruby/vim-ruby'
+"" javascript
 NeoBundleLazy 'jelera/vim-javascript-syntax', {'autoload': {'filetypes': ['javascript']}}
 NeoBundleLazy 'pangloss/vim-javascript', {'autoload': {'filetypes': ['javascript']}}
 NeoBundleLazy 'mxw/vim-jsx'
 NeoBundleLazy 'othree/javascript-libraries-syntax.vim', {'autoload': {'filetypes': ['javascript']}}
 NeoBundle 'digitaltoad/vim-jade'
-NeoBundle 'morhetz/gruvbox'
+"" c#
+NeoBundle 'OmniSharp/omnisharp-vim'
 
 if executable('opam')
 	" remove the default ftplugin
