@@ -362,7 +362,7 @@ if has("autocmd")
 		autocmd BufRead,BufNewFile *.script_flow_nodes setfiletype sjson
 		autocmd BufRead,BufNewFile *.package setfiletype sjson
 	augroup end
-	
+
 	augroup shaders
 		autocmd!
 
