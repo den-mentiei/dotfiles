@@ -210,7 +210,11 @@ nnoremap <leader>m :marks<cr>
 if has("gui_running")
 	" hides menus, toolbars, widgets and use console dialog promts
 	set guioptions=c
-	set guifont=Fira\ Mono\ Medium\ for\ Powerline\ Medium\ 10
+	if has("gui_win32") || has("gui_win64")
+		set guifont=Fira_Mono_for_Powerline:h10:cRUSSIAN
+	else
+		set guifont=Fira\ Mono\ Medium\ for\ Powerline\ Medium\ 10
+	endif
 else
 	if $COLORTERM == 'gnome-terminal'
 		" gnome-terminal doesn't tell the correct number of colors
