@@ -1,0 +1,3 @@
+gtk-theme-name = "arc"
+gtk-icon-theme-name = "arc"
+gtk-fallback-icon-theme = "gnome"
