@@ -119,7 +119,7 @@ bar {
 
 # Autostart.
 
-exec --no-startup-id feh --bg-fill wallpaper1.jpg
+exec --no-startup-id feh --bg-fill ~/.i3/wallpaper1.jpg
 exec --no-startup-id nm-applet
 exec --no-startup-id gnome-settings-daemon
 exec --no-startup-id compton -CGb
