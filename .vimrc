@@ -279,7 +279,7 @@ endif
 nnoremap <C-p> :Unite -start-insert -no-split -auto-preview buffer file_rec/async<cr>
 nnoremap <leader>r :Unite -start-insert -no-split -auto-preview buffer file_mru<cr>
 nnoremap <leader>l :Unite -start-insert -no-split line_fuzzy<cr>
-nnoremap <silent> <leader>g :Unite -buffer-name=search -auto-preview -no-quit -no-empty grep:.::<cr>
+"nnoremap <silent> <leader>g :Unite -buffer-name=search -auto-preview -no-quit -no-empty grep:.::<cr>
 
 nnoremap <leader>n :Unite -vertical -winwidth=40 outline<cr>
 
@@ -341,12 +341,21 @@ let g:jsx_ext_required = 0
 
 " custom key mappings for the ocaml files
 function! s:merlin_mappings()
-	" shows the expression type
 	nnoremap <leader>t :MerlinTypeOf<cr>
 	vnoremap <leader>t :MerlinTypeOfSel<cr>
 
-	" goes to the definition
 	nnoremap <leader>gd :MerlinLocate<cr>
+endfunction
+
+" \\\ OMNISHARP \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+let g:OmniSharp_timeout = 1
+
+" custom key mappings for the csharp files
+function! s:csharp_mappings()
+	nnoremap gd :OmniSharpGotoDefinition<cr>
+
+	nnoremap <leader>fi :OmniSharpFindImplementations<cr>
 endfunction
 
 " \\\ AUTOCMD \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
@@ -409,10 +418,22 @@ if has("autocmd")
 		autocmd BufWritePost .vimrc,.gvimrc so $MYVIMRC
 	augroup end
 
-	augroup context_mappings
+	augroup ocaml
 		autocmd!
 
 		autocmd FileType ocaml call s:merlin_mappings()
+	augroup end
+
+	augroup csharp
+		autocmd!
+
+		autocmd FileType cs call s:csharp_mappings()
+
+		autocmd FileType cs setlocal omnifunc=OmniSharp#Complete
+
+		" automatically add new files to the neares project on save
+		autocmd BufWritePost *.cs call OmniSharp#AddToProject()
+		autocmd BufWritePost *.xaml call OmniSharp#AddToProject()
 	augroup end
 endif
 
