@@ -24,6 +24,9 @@ bindsym $mod+d exec --no-startup-id rofi -fuzzy -show run
 # installed.
 # bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
 
+# Screenshotting
+bindsym Print exec "scrot '%Y-%m-%d-%T.png' -e 'mv $f ~/screenshots/ ; feh ~/screenshots/%Y-%m-%d-%T.png'"
+
 # Change focus.
 bindsym $mod+h focus left
 bindsym $mod+j focus down
