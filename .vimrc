@@ -129,7 +129,7 @@ set cursorline
 " use tabs instead of spaces
 set tabstop=4 softtabstop=4 shiftwidth=4 noexpandtab
 
-set listchars=tab:›\ ,trail:•,extends:»,precedes:«
+set listchars=tab:\|\ ,trail:•,extends:»,precedes:«
 
 " i want to see the whitespace, sometimes
 nnoremap <leader>w :set list!<cr>
@@ -418,7 +418,7 @@ if has("autocmd")
 		autocmd!
 
 		" sources vimrc for short interactions ;)
-		autocmd BufWritePost .vimrc,.gvimrc so $MYVIMRC
+		autocmd BufWritePost _vimrc,.vimrc,.gvimrc so $MYVIMRC
 	augroup end
 
 	augroup ocaml
