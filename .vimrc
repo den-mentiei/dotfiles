@@ -60,12 +60,14 @@ NeoBundle 'vim-scripts/vim-niji'
 NeoBundle 'vim-scripts/paredit.vim'
 "" ruby
 NeoBundle 'vim-ruby/vim-ruby'
-"" javascript
+"" web
+NeoBundleLazy 'othree/html5.vim', {'autoload': {'filetypes': ['html']}}
+NeoBundleLazy 'ap/vim-css-color', {'autoload': {'filetypes': ['css', 'scss', 'sass', 'less', 'styl']}}
 NeoBundleLazy 'jelera/vim-javascript-syntax', {'autoload': {'filetypes': ['javascript']}}
 NeoBundleLazy 'pangloss/vim-javascript', {'autoload': {'filetypes': ['javascript']}}
-NeoBundleLazy 'mxw/vim-jsx'
+NeoBundle 'mxw/vim-jsx'
 NeoBundleLazy 'othree/javascript-libraries-syntax.vim', {'autoload': {'filetypes': ['javascript']}}
-NeoBundle 'digitaltoad/vim-jade'
+NeoBundleLazy 'digitaltoad/vim-jade', {'autoload': {'filetypes': ['jade']}}
 "" c#
 NeoBundle 'OmniSharp/omnisharp-vim'
 
@@ -127,7 +129,7 @@ set cursorline
 " use tabs instead of spaces
 set tabstop=4 softtabstop=4 shiftwidth=4 noexpandtab
 
-set listchars=tab:|\ ,trail:•,extends:»,precedes:«
+set listchars=tab:›\ ,trail:•,extends:»,precedes:«
 
 " i want to see the whitespace, sometimes
 nnoremap <leader>w :set list!<cr>
