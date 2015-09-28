@@ -127,7 +127,7 @@ set cursorline
 " use tabs instead of spaces
 set tabstop=4 softtabstop=4 shiftwidth=4 noexpandtab
 
-set listchars=tab:›\ ,trail:•,extends:»,precedes:«
+set listchars=tab:|\ ,trail:•,extends:»,precedes:«
 
 " i want to see the whitespace, sometimes
 nnoremap <leader>w :set list!<cr>
