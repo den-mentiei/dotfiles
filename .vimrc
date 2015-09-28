@@ -69,7 +69,7 @@ NeoBundle 'mxw/vim-jsx'
 NeoBundleLazy 'othree/javascript-libraries-syntax.vim', {'autoload': {'filetypes': ['javascript']}}
 NeoBundleLazy 'digitaltoad/vim-jade', {'autoload': {'filetypes': ['jade']}}
 "" c#
-NeoBundle 'OmniSharp/omnisharp-vim'
+NeoBundleLazy 'OmniSharp/omnisharp-vim', {'autoload': {'filetypes': ['cs']}}
 
 if executable('opam')
 	" remove the default ftplugin
@@ -202,6 +202,7 @@ nnoremap n nzz
 nnoremap N Nzz
 nnoremap } }zz
 nnoremap { {zz
+nnoremap * *zz
 
 " maybe use <F5>?
 nnoremap <leader>b :make<cr>
