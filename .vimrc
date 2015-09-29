@@ -2,8 +2,7 @@ set nocompatible
 
 filetype off
 
-" TODO: Think about <space>, really.
-let mapleader = ","
+let mapleader = "\<Space>"
 
 " \\\ EASY VIMRC \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
@@ -48,6 +47,7 @@ NeoBundle 'tmhedberg/matchit'
 NeoBundle 'sjl/gundo.vim'
 NeoBundle 'Shougo/neomru.vim'
 NeoBundle 'vim-scripts/vim-sjson'
+NeoBundle 'Yggdroot/indentLine'
 " colorschemes
 NeoBundle 'morhetz/gruvbox'
 " languages
@@ -129,9 +129,10 @@ set cursorline
 " use tabs instead of spaces
 set tabstop=4 softtabstop=4 shiftwidth=4 noexpandtab
 
-set listchars=tab:\|\ ,trail:•,extends:»,precedes:«
+set listchars=tab:¦\ ,trail:•,extends:»,precedes:«
 
 " i want to see the whitespace, sometimes
+" TODO: Use :IndentLinesToggle to toggle plugin space indentation too.
 nnoremap <leader>w :set list!<cr>
 
 " centralize backups, swapfiles and undo history
@@ -361,6 +362,11 @@ function! s:csharp_mappings()
 	nnoremap <leader>fi :OmniSharpFindImplementations<cr>
 endfunction
 
+" \\\ INDENTLINES \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+" TODO: Toggle if list is set.
+let g:indentLine_enabled = 1
+
 " \\\ AUTOCMD \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
 if has("autocmd")
@@ -439,7 +445,6 @@ if has("autocmd")
 		autocmd BufWritePost *.xaml call OmniSharp#AddToProject()
 	augroup end
 endif
-
 
 " \\\ THEME \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
