@@ -350,6 +350,8 @@ function! s:merlin_mappings()
 
 	nnoremap <buffer> <leader>gd :MerlinLocate<cr>
 	nnoremap <buffer> <cr> :MerlinClearEnclosing<cr>
+
+	nnoremap <buffer> <leader>c :MerlinErrorCheck<cr>
 endfunction
 
 " \\\ OMNISHARP \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
