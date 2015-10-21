@@ -345,10 +345,11 @@ let g:jsx_ext_required = 0
 
 " custom key mappings for the ocaml files
 function! s:merlin_mappings()
-	nnoremap <leader>t :MerlinTypeOf<cr>
-	vnoremap <leader>t :MerlinTypeOfSel<cr>
+	nnoremap <buffer> <leader>t :MerlinTypeOf<cr>
+	vnoremap <buffer> <leader>t :MerlinTypeOfSel<cr>
 
-	nnoremap <leader>gd :MerlinLocate<cr>
+	nnoremap <buffer> <leader>gd :MerlinLocate<cr>
+	nnoremap <buffer> <cr> :MerlinClearEnclosing<cr>
 endfunction
 
 " \\\ OMNISHARP \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
