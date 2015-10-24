@@ -41,6 +41,7 @@ NeoBundle 'terryma/vim-multiple-cursors'
 NeoBundle 'ddollar/nerdcommenter'
 NeoBundle 'SirVer/ultisnips'
 NeoBundle 'rking/ag.vim'
+NeoBundle 'qpkorr/vim-bufkill'
 "NeoBundle 'a.vim'
 NeoBundle 'Shougo/unite-outline'
 NeoBundle 'tmhedberg/matchit'
@@ -205,8 +206,7 @@ nnoremap } }zz
 nnoremap { {zz
 nnoremap * *zz
 
-" maybe use <F5>?
-nnoremap <leader>b :make<cr>
+nnoremap <F5> :silent make <bar> copen<cr>
 
 nnoremap <leader>m :marks<cr>
 
@@ -369,6 +369,10 @@ endfunction
 
 " TODO: Toggle if list is set.
 let g:indentLine_enabled = 1
+
+" \\\ BUFKILL \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+nnoremap <silent> <leader>d :BD<cr>
 
 " \\\ AUTOCMD \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
