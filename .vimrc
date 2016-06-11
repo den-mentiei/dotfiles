@@ -69,6 +69,7 @@ NeoBundleLazy 'pangloss/vim-javascript', {'autoload': {'filetypes': ['javascript
 NeoBundle 'mxw/vim-jsx'
 NeoBundleLazy 'othree/javascript-libraries-syntax.vim', {'autoload': {'filetypes': ['javascript']}}
 NeoBundleLazy 'digitaltoad/vim-jade', {'autoload': {'filetypes': ['jade']}}
+NeoBundleLazy 'digitaltoad/vim-pug', {'autoload': {'filetypes': ['pug']}}
 "" c#
 NeoBundleLazy 'OmniSharp/omnisharp-vim', {'autoload': {'filetypes': ['cs']}}
 
