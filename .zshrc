@@ -1,3 +1,5 @@
+ZSH_CUSTOM=$HOME/.zsh_customs
+
 if [[ $COLORTERM == "gnome-terminal" ]] then
   export TERM=xterm-256color
 fi
@@ -5,7 +7,7 @@ fi
 # Path to your oh-my-zsh installation.
 export ZSH=~/.oh-my-zsh
 
-ZSH_THEME="robbyrussell"
+ZSH_THEME="amuse-mod"
 
 plugins=(git command-not-found colored-man apt node npm bower encode64 gem urltools nyan)
 
@@ -27,9 +29,6 @@ unsetopt nomatch
 # aliases
 alias servethis="python -c 'import SimpleHTTPServer; SimpleHTTPServer.test()'"
 alias please='sudo $(fc -ln -1)'
-
-# directory aliases
-hash -d d=~/dotfiles.git
 
 # OPAM configuration
 . ~/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
