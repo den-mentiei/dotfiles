@@ -125,7 +125,7 @@ bar {
 
 exec --no-startup-id compton -CGb
 exec --no-startup-id redshift &
-exec --no-startup-id setxkbmap -layout 'us,ru' -variant 'winkeys' -option 'grp:caps_toggle,grp_led:caps'
+#exec --no-startup-id setxkbmap -layout 'us,ru' -variant 'winkeys' -option 'grp:caps_toggle,grp_led:caps'
 exec --no-startup-id feh --bg-fill ~/.i3/wallpaper1.jpg
 exec --no-startup-id nm-applet
 exec --no-startup-id gnome-settings-daemon
