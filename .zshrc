@@ -9,7 +9,7 @@ export ZSH=~/.oh-my-zsh
 
 ZSH_THEME="amuse-mod"
 
-plugins=(git command-not-found colored-man apt node npm bower encode64 gem urltools nyan)
+plugins=(git command-not-found colored-man apt node npm bower encode64 gem urltools nyan heroku)
 
 # User configuration
 
