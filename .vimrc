@@ -419,8 +419,8 @@ if has("autocmd")
 
 		autocmd BufRead,BufNewFile *.emb setfiletype scheme
 		" i love tabs -_-
-		autocmd FileType scheme set tabstop=4 softtabstop=4 shiftwidth=4 noexpandtab
-		autocmd FileType racket set tabstop=4 softtabstop=4 shiftwidth=4 noexpandtab
+		autocmd FileType scheme setlocal tabstop=4 softtabstop=4 shiftwidth=4 noexpandtab
+		autocmd FileType racket setlocal tabstop=4 softtabstop=4 shiftwidth=4 noexpandtab
 	augroup end
 
 	augroup filetypes
@@ -463,7 +463,7 @@ if has("autocmd")
 	augroup yaml
 		autocmd!
 
-		autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
+		autocmd FileType yaml setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab
 	augroup end
 endif
 
