@@ -49,6 +49,7 @@ NeoBundle 'sjl/gundo.vim'
 NeoBundle 'Shougo/neomru.vim'
 NeoBundle 'vim-scripts/vim-sjson'
 NeoBundle 'Yggdroot/indentLine'
+NeoBundle 'scrooloose/syntastic'
 " colorschemes
 NeoBundle 'morhetz/gruvbox'
 " languages
@@ -373,6 +374,14 @@ let g:indentLine_enabled = 1
 
 nnoremap <silent> <leader>d :BD<cr>
 
+" \\\ SYNTASTIC \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+let g:syntastic_yaml_checkers=['yamllint']
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+
 " \\\ AUTOCMD \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
 if has("autocmd")
@@ -449,6 +458,12 @@ if has("autocmd")
 		" automatically add new files to the neares project on save
 		autocmd BufWritePost *.cs call OmniSharp#AddToProject()
 		autocmd BufWritePost *.xaml call OmniSharp#AddToProject()
+	augroup end
+
+	augroup yaml
+		autocmd!
+
+		autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
 	augroup end
 endif
 
