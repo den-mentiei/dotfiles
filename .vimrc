@@ -69,7 +69,6 @@ NeoBundleLazy 'jelera/vim-javascript-syntax', {'autoload': {'filetypes': ['javas
 NeoBundleLazy 'pangloss/vim-javascript', {'autoload': {'filetypes': ['javascript']}}
 NeoBundle 'mxw/vim-jsx'
 NeoBundleLazy 'othree/javascript-libraries-syntax.vim', {'autoload': {'filetypes': ['javascript']}}
-NeoBundleLazy 'digitaltoad/vim-jade', {'autoload': {'filetypes': ['jade']}}
 NeoBundleLazy 'digitaltoad/vim-pug', {'autoload': {'filetypes': ['pug']}}
 
 if executable('opam')
@@ -207,6 +206,7 @@ nnoremap { {zz
 nnoremap * *zz
 
 nnoremap <F5> :silent make <bar> copen<cr>
+nnoremap <F6> :make<cr>
 
 nnoremap <leader>m :marks<cr>
 
