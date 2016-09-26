@@ -210,6 +210,8 @@ nnoremap <F6> :make<cr>
 
 nnoremap <leader>m :marks<cr>
 
+nnoremap <leader>z zA
+
 " Fugitive bindings
 " TODO: Revise and uncomment this.
 "nnoremap <leader>gs :Gstatus<CR>
