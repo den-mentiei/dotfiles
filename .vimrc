@@ -9,87 +9,80 @@ let mapleader = "\<Space>"
 " opens vimrc
 nnoremap <silent> <leader>ev :e $MYVIMRC<cr>
 
-" \\\ NEOBUNDLE \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+" \\\ DEIN \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
-set runtimepath+=~/.vim/bundle/neobundle.vim/
+set runtimepath+=~/.vim/bundle/repos/github.com/Shougo/dein.vim
 
-" Required:
-call neobundle#begin(expand('~/.vim/bundle/'))
+if dein#load_state('~/.vim/bundle')
+	call dein#begin('~/.vim/bundle')
 
-" let NeoBundle manage itself
-NeoBundleFetch 'Shougo/neobundle.vim'
+	" let dein manage itself
+	call dein#add('~/.vim/bundle/repos/github.com/Shougo/dein.vim')"
 
-NeoBundle 'Shougo/vimproc.vim', {
-\	'build' : {
-\		'cygwin' : 'make -f make_cygwin.mak',
-\		'mac' : 'make -f make_mac.mak',
-\		'linux' : 'make',
-\		'unix' : 'gmake',
-\	},
-\}
-" git
-NeoBundle 'tpope/vim-fugitive'
-NeoBundle 'airblade/vim-gitgutter'
-" interface & ux
-NeoBundle 'bling/vim-airline'
-NeoBundle 'Shougo/unite.vim'
-NeoBundle 'tpope/vim-surround'
-NeoBundle 'tpope/vim-repeat'
-NeoBundle 'tpope/vim-unimpaired'
-NeoBundle 'Lokaltog/vim-easymotion'
-NeoBundle 'terryma/vim-multiple-cursors'
-NeoBundle 'ddollar/nerdcommenter'
-NeoBundle 'SirVer/ultisnips'
-NeoBundle 'rking/ag.vim'
-NeoBundle 'qpkorr/vim-bufkill'
-"NeoBundle 'a.vim'
-NeoBundle 'Shougo/unite-outline'
-NeoBundle 'tmhedberg/matchit'
-NeoBundle 'sjl/gundo.vim'
-NeoBundle 'Shougo/neomru.vim'
-NeoBundle 'vim-scripts/vim-sjson'
-NeoBundle 'Yggdroot/indentLine'
-NeoBundle 'scrooloose/syntastic'
-" colorschemes
-NeoBundle 'morhetz/gruvbox'
-" languages
-"" shaders
-NeoBundle 'beyondmarc/hlsl.vim'
-NeoBundle 'tikhomirov/vim-glsl'
-"" lispy
-NeoBundle 'wlangstroth/vim-racket'
-NeoBundle 'vim-scripts/vim-niji'
-NeoBundle 'vim-scripts/paredit.vim'
-"" ruby
-NeoBundle 'vim-ruby/vim-ruby'
-"" web
-NeoBundleLazy 'othree/html5.vim', {'autoload': {'filetypes': ['html']}}
-NeoBundleLazy 'ap/vim-css-color', {'autoload': {'filetypes': ['css', 'scss', 'sass', 'less', 'styl']}}
-NeoBundleLazy 'jelera/vim-javascript-syntax', {'autoload': {'filetypes': ['javascript']}}
-NeoBundleLazy 'pangloss/vim-javascript', {'autoload': {'filetypes': ['javascript']}}
-NeoBundle 'mxw/vim-jsx'
-NeoBundleLazy 'othree/javascript-libraries-syntax.vim', {'autoload': {'filetypes': ['javascript']}}
-NeoBundleLazy 'digitaltoad/vim-pug', {'autoload': {'filetypes': ['pug']}}
+	call dein#add('Shougo/vimproc.vim', {'build' : 'make'})
 
-if executable('opam')
-	" remove the default ftplugin
-	let g:opamshare = substitute(system('opam config var share'),'\n$','','''')
+	"" colorschemes
+	call dein#add('morhetz/gruvbox')
 
-	if !empty(glob(g:opamshare."/merlin/vim"))
-		NeoBundleLazy g:opamshare . "/merlin/vim",
-			\ {
-				\ 'autoload': {'filetypes': ['ocaml']},
-				\ 'disabled' : (!executable('ocamlmerlin'))
-			\ }
-	endif
+	" git
+	call dein#add('tpope/vim-fugitive')
+	call dein#add('airblade/vim-gitgutter')
+
+	"" interface & ux
+	call dein#add('bling/vim-airline')
+	"call dein#add('tpope/vim-surround'
+	"call dein#add('tpope/vim-repeat'
+	"call dein#add('tpope/vim-unimpaired'
+	"call dein#add('Lokaltog/vim-easymotion'
+	call dein#add('terryma/vim-multiple-cursors')
+	call dein#add('ddollar/nerdcommenter')
+	call dein#add('SirVer/ultisnips')
+	"call dein#add('rking/ag.vim'
+	call dein#add('qpkorr/vim-bufkill')
+	""call dein#add('a.vim'
+	"call dein#add('tmhedberg/matchit'
+	"call dein#add('sjl/gundo.vim'
+	"call dein#add('Shougo/neomru.vim'
+	call dein#add('Yggdroot/indentLine')
+	""call dein#add('scrooloose/syntastic'
+	"" languages
+	call dein#add('davidhalter/jedi-vim')
+	"call dein#add('Valloric/YouCompleteMe')
+	""" shaders
+	call dein#add('beyondmarc/hlsl.vim')
+	call dein#add('tikhomirov/vim-glsl')
+	""" lispy
+	"call dein#add('wlangstroth/vim-racket'
+	"call dein#add('vim-scripts/vim-niji'
+	"call dein#add('vim-scripts/paredit.vim'
+	""" ruby
+	"call dein#add('vim-ruby/vim-ruby'
+	""" web
+	"NeoBundleLazy 'othree/html5.vim', {'autoload': {'filetypes': ['html']}}
+	"NeoBundleLazy 'ap/vim-css-color', {'autoload': {'filetypes': ['css', 'scss', 'sass', 'less', 'styl']}}
+	"NeoBundleLazy 'jelera/vim-javascript-syntax', {'autoload': {'filetypes': ['javascript']}}
+	"NeoBundleLazy 'pangloss/vim-javascript', {'autoload': {'filetypes': ['javascript']}}
+	"call dein#add('mxw/vim-jsx'
+	"NeoBundleLazy 'othree/javascript-libraries-syntax.vim', {'autoload': {'filetypes': ['javascript']}}
+	"NeoBundleLazy 'digitaltoad/vim-pug', {'autoload': {'filetypes': ['pug']}}
+
+	" TODO: Make it lazy and only loaded for a specific file type.
+	call dein#add('digitaltoad/vim-pug')
+
+	call dein#add('lambdatoast/elm.vim')
+
+	call dein#end()
+	call dein#save_state()
 endif
 
-call neobundle#end()
-
-" auto-detect file types
 filetype plugin indent on
 
-NeoBundleCheck
+syntax enable
+
+" installs not installed plugins on startup
+if dein#check_install()
+	call dein#install()
+endif
 
 " \\\ ETC \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
@@ -123,8 +116,8 @@ nnoremap <leader>h :set hlsearch!<cr>
 " i want my backspace back!
 set backspace=indent,eol,start
 
-" highlight current line
-set cursorline
+" highlight current line - currently disabled as it makes terminal vim deadly slow
+"set cursorline
 
 " use tabs instead of spaces
 set tabstop=4 softtabstop=4 shiftwidth=4 noexpandtab
@@ -260,44 +253,6 @@ if (g:airline_enabled == 1)
 	set noshowmode
 endif
 
-" \\\ UNITE \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
-
-let g:unite_source_grep_max_candidates = 1000
-let g:unite_winheight = 30
-
-" setups a line source alias
-let g:unite_source_alias_aliases = {}
-let g:unite_source_alias_aliases.line_fuzzy = 'line'
-" with a custom matcher for it
-call unite#custom#source('line_fuzzy', 'matchers', 'matcher_fuzzy')
-
-call unite#filters#matcher_default#use(['matcher_fuzzy'])
-call unite#custom#source('line,line_fuzzy,buffer,file,file_rec', 'sorters', 'sorter_rank')
-
-" use ag for search
-if executable('ag')
-  let g:unite_source_grep_command = 'ag'
-  let g:unite_source_grep_default_opts = '--nogroup --nocolor --column'
-  let g:unite_source_grep_recursive_opt = ''
-  let g:unite_source_rec_async_command = ['ag', '--follow', '--nocolor', '--nogroup', '--hidden', '-g', '']
-endif
-
-nnoremap <C-p> :Unite -start-insert -no-split buffer file_rec/async<cr>
-nnoremap <leader>r :Unite -start-insert -no-split buffer file_mru<cr>
-nnoremap <leader>l :Unite -start-insert -no-split line_fuzzy<cr>
-"nnoremap <silent> <leader>g :Unite -buffer-name=search -auto-preview -no-quit -no-empty grep:.::<cr>
-
-nnoremap <leader>n :Unite -vertical -winwidth=40 outline<cr>
-
-" custom mapping for unite buffers
-function! s:unite_settings()
-	" close unite buffer
-	imap <buffer> jj <Plug>(unite_exit)
-	" enable navigation with C-j and C-k in insert mode
-	imap <buffer> <C-j> <Plug>(unite_select_next_line)
-	imap <buffer> <C-k> <Plug>(unite_select_previous_line)
-endfunction
-
 " \\\ EASYMOTION \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
 " disable default mappings
@@ -315,13 +270,6 @@ let g:UltiSnipsListSnippets = "<C-tab>"
 let g:UltiSnipsJumpForwardTrigger = "<tab>"
 let g:UltiSnipsJumpBackwardTrigger = "<S-tab>"
 let g:UltiSnipsSnippetDirectories = ["my_snippets"]
-
-" \\\ A \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
-
-" switch to the alternate file
-nnoremap <leader>o :A<cr>
-" opens alternate file in a split
-nnoremap <leader>vo :AV<cr>
 
 " \\\ GUNDO \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
@@ -367,6 +315,12 @@ function! s:csharp_mappings()
 	nnoremap <leader>fi :OmniSharpFindImplementations<cr>
 endfunction
 
+" \\\ YCM \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+function! s:ycm_mappings()
+	nnoremap <leader>g :YcmCompleter GoTo<cr>
+endfunction
+
 " \\\ INDENTLINES \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
 " TODO: Toggle if list is set.
@@ -387,28 +341,6 @@ let g:syntastic_check_on_wq = 0
 " \\\ AUTOCMD \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
 if has("autocmd")
-	augroup unite
-		autocmd!
-
-		autocmd FileType unite call s:unite_settings()
-	augroup end
-
-	augroup sjson
-		autocmd!
-
-		autocmd BufRead,BufNewFile *.render_config setfiletype sjson
-		autocmd BufRead,BufNewFile *.shader_node setfiletype sjson
-		autocmd BufRead,BufNewFile *.shader_source setfiletype sjson
-		autocmd BufRead,BufNewFile *.shading_environment_template setfiletype sjson
-		autocmd BufRead,BufNewFile *.shading_environment setfiletype sjson
-		autocmd BufRead,BufNewFile *.material setfiletype sjson
-		autocmd BufRead,BufNewFile *.texture setfiletype sjson
-		autocmd BufRead,BufNewFile *.unit setfiletype sjson
-		autocmd BufRead,BufNewFile *.strings setfiletype sjson
-		autocmd BufRead,BufNewFile *.script_flow_nodes setfiletype sjson
-		autocmd BufRead,BufNewFile *.package setfiletype sjson
-	augroup end
-
 	augroup shaders
 		autocmd!
 
@@ -466,6 +398,14 @@ if has("autocmd")
 		autocmd!
 
 		autocmd FileType yaml setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab
+	augroup end
+
+	augroup python
+		autocmd!
+
+		"autocmd FileType python call s:ycm_mappings()
+		" use tabs instead of spaces
+		autocmd FileType python setlocal tabstop=4 softtabstop=4 shiftwidth=4 noexpandtab
 	augroup end
 endif
 

@@ -23,6 +23,8 @@ URxvt.lineSpace: 0
 URxvt.transparent: true
 URxvt.shading: 30
 
+URxvt*buffered: false
+
 ! Fonts
 URxvt.allow_bold: true
 URxvt*font: xft:Ubuntu Mono derivative Powerline:pixelsize=15
