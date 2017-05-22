@@ -10,6 +10,10 @@
 (setq make-backup-files nil)
 (setq auto-save-default nil)
 
+(set-terminal-coding-system 'utf-8)
+(set-keyboard-coding-system 'utf-8)
+(prefer-coding-system 'utf-8)
+
 ;; do not word wrap lines, want horizontal scrolling
 (setq-default truncate-lines t)
 
@@ -30,7 +34,7 @@
 (menu-bar-mode -1)
 (scroll-bar-mode -1)
 
-(setq visible-bell t)
+(setq ring-bell-function 'ignore)
 
 (setq use-dialog-box nil)
 
@@ -52,6 +56,11 @@
 (global-hl-line-mode t)
 (global-linum-mode t)
 (column-number-mode t)
+
+(global-subword-mode 1)
+
+;; Automatically update unmodified buffers whose files have changed.
+(global-auto-revert-mode 1)
 
 (require 'dired)
 (setq dired-recursive-deletes 'top)
@@ -84,27 +93,38 @@
   (require 'use-package))
 (setq use-package-always-ensure t)
 
-(use-package gruvbox-theme
-  :init (load-theme 'gruvbox t))
+(use-package solarized-theme
+  :init (load-theme 'solarized-light t))
 
-(use-package smart-mode-line
-  :init (sml/setup))
-(use-package smart-mode-line-powerline-theme)
+;; Highlights the current line number.
+(use-package hlinum
+  :config (hlinum-activate))
 
 (use-package evil
   :init (evil-mode 1)
   :config (setq evil-echo-state nil)
   :bind (:map evil-normal-state-map
-			  ("<right>" . evil-next-buffer)
-			  ("<left>" . evil-prev-buffer)
-			  ("SPC s" . save-buffer)
-			  ("SPC d" . my/kill-current-buffer)))
+	      ("<right>" . evil-next-buffer)
+	      ("<left>" . evil-prev-buffer)
+	      ("SPC s" . save-buffer)
+	      ("SPC d" . my/kill-current-buffer)))
 
 (use-package company)
 
 (use-package elm-mode)
 (add-to-list 'company-backends 'company-elm)
 
-;;; Local Variables:
-;;; -eval: (add-hook 'after-save-hook '(lambda () (byte-compile-file (buffer-file-name))) nil t)
-;;; End:
+(use-package counsel)
+(use-package ivy
+  :init (ivy-mode 1)
+  :config
+  (setq ivy-use-virtual-buffers t)
+  (setq ivy-count-format "(%d/%d) "))
+
+(use-package nyan-mode
+  :config
+  (nyan-mode 1)
+  (setq nyan-bar-length 16)
+  (setq nyan-wavy-trail t))
+
+(use-package avy)
