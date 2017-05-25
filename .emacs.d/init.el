@@ -65,7 +65,18 @@
 (require 'dired)
 (setq dired-recursive-deletes 'top)
 
+(defadvice align-regexp (around align-regexp-with-spaces)
+  "Use spaces for aligning as opposed to tabs for indentation."
+  (let ((indent-tabs-mode nil))
+    ad-do-it))
+(ad-activate 'align-regexp)
+
 ;;; Functions
+
+(defun my/find-user-init-file ()
+  "Edits the `user-init-file` in another window."
+  (interactive)
+  (find-file-other-window user-init-file))
 
 (defun my/kill-buffers ()
   "Kills all open buffers."
@@ -105,9 +116,10 @@
   :config (setq evil-echo-state nil)
   :bind (:map evil-normal-state-map
 	      ("<right>" . evil-next-buffer)
-	      ("<left>" . evil-prev-buffer)
-	      ("SPC s" . save-buffer)
-	      ("SPC d" . my/kill-current-buffer)))
+	      ("<left>"  . evil-prev-buffer)
+	      ("SPC e i" . my/find-user-init-file)
+	      ("SPC s"   . save-buffer)
+	      ("SPC d"   . my/kill-current-buffer)))
 
 (use-package company)
 
