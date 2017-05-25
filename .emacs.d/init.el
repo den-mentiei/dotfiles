@@ -121,7 +121,8 @@
 	      ("SPC s"   . save-buffer)
 	      ("SPC d"   . my/kill-current-buffer)))
 
-(use-package company)
+(use-package company
+  :init (global-company-mode))
 
 (use-package elm-mode)
 (add-to-list 'company-backends 'company-elm)
@@ -134,8 +135,9 @@
   (setq ivy-count-format "(%d/%d) "))
 
 (use-package nyan-mode
-  :config
+  :init
   (nyan-mode 1)
+  :config
   (setq nyan-bar-length 16)
   (setq nyan-wavy-trail t))
 
