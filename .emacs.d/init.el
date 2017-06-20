@@ -41,7 +41,6 @@
 (setq-default show-paren-delay 0)
 (show-paren-mode t)
 
-(electric-pair-mode 1)
 (electric-indent-mode -1)
 
 (setq search-highlight t)
@@ -105,7 +104,7 @@
 (setq use-package-always-ensure t)
 
 (use-package solarized-theme
-  :init (load-theme 'solarized-light t))
+  :init (load-theme 'solarized-dark t))
 
 ;; Highlights the current line number.
 (use-package hlinum
@@ -117,7 +116,8 @@
   :bind (:map evil-normal-state-map
 	      ("<right>" . evil-next-buffer)
 	      ("<left>"  . evil-prev-buffer)
-	      ("SPC e i" . my/find-user-init-file)
+          ("SPC a"   . align-regexp)
+          ("SPC e i" . my/find-user-init-file)
 	      ("SPC s"   . save-buffer)
 	      ("SPC d"   . my/kill-current-buffer)))
 
@@ -142,3 +142,5 @@
   (setq nyan-wavy-trail t))
 
 (use-package avy)
+
+(use-package web-mode)
