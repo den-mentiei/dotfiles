@@ -44,18 +44,18 @@
     ("#dc322f" "#cb4b16" "#b58900" "#546E00" "#B4C342" "#00629D" "#2aa198" "#d33682" "#6c71c4")))
  '(package-selected-packages
    (quote
-    (web-mode which-key solarized-theme avy nyan-mode hlinum counsel ivy org-plus-contrib gruvbox-theme elm-oracle elm-mode tabbar smart-mode-line-powerline-theme smart-mode-line zenburn-theme flycheck-irony flycheck company-irony evil company use-package)))
+    (company-anaconda anaconda-mode omnisharp omnisharp-emacs web-mode which-key solarized-theme avy nyan-mode hlinum counsel ivy org-plus-contrib gruvbox-theme elm-oracle elm-mode tabbar smart-mode-line-powerline-theme smart-mode-line zenburn-theme flycheck-irony flycheck company-irony evil company use-package)))
  '(pos-tip-background-color "#073642")
  '(pos-tip-foreground-color "#93a1a1")
  '(safe-local-variable-values
    (quote
     ((eval add-hook
-           (quote after-save-hook)
-           (quote
-            (lambda nil
-              (byte-compile-file
-               (buffer-file-name))))
-           nil t))))
+	   (quote after-save-hook)
+	   (quote
+	    (lambda nil
+	      (byte-compile-file
+	       (buffer-file-name))))
+	   nil t))))
  '(smartrep-mode-line-active-bg (solarized-color-blend "#859900" "#073642" 0.2))
  '(term-default-bg-color "#002b36")
  '(term-default-fg-color "#839496")

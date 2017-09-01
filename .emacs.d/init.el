@@ -116,8 +116,8 @@
   :bind (:map evil-normal-state-map
 	      ("<right>" . evil-next-buffer)
 	      ("<left>"  . evil-prev-buffer)
-          ("SPC a"   . align-regexp)
-          ("SPC e i" . my/find-user-init-file)
+	      ("SPC a"   . align-regexp)
+	      ("SPC e i" . my/find-user-init-file)
 	      ("SPC s"   . save-buffer)
 	      ("SPC d"   . my/kill-current-buffer)))
 
@@ -135,8 +135,7 @@
   (setq ivy-count-format "(%d/%d) "))
 
 (use-package nyan-mode
-  :init
-  (nyan-mode 1)
+  :init  (nyan-mode 1)
   :config
   (setq nyan-bar-length 16)
   (setq nyan-wavy-trail t))
@@ -144,3 +143,27 @@
 (use-package avy)
 
 (use-package web-mode)
+
+(defun my-csharp-mode ()
+  (setq tab-width 4)
+  (setq indent-tabs-mode t))
+
+(use-package omnisharp
+  :init
+  (add-hook 'csharp-mode-hook 'omnisharp-mode)
+  (add-hook 'csharp-mode-hook 'my-csharp-mode)
+  (add-to-list 'company-backends 'company-omnisharp)
+  :config (setq omnisharp-server-executable-path "~/.omnisharp-mono/omnisharp.sh"))
+
+(defun my-python-mode ()
+  (setq tab-width 4)
+  (setq indent-tabs-mode t))
+
+(use-package anaconda-mode
+  :init
+  (add-hook 'python-mode-hook 'anaconda-mode)
+  (add-hook 'python-mode-hook 'my-python-mode))
+
+(use-package company-anaconda
+  :init
+  (add-to-list 'company-backends 'company-anaconda))
