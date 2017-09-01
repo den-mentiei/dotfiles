@@ -13,7 +13,10 @@ plugins=(git command-not-found colored-man apt node npm bower encode64 gem urlto
 
 # User configuration
 
-export PATH="/home/den/.rvm/gems/ruby-2.1.5/bin:/home/den/.rvm/gems/ruby-2.1.5@global/bin:/home/den/.rvm/rubies/ruby-2.1.5/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/home/den/.rvm/bin:/home/den/.rvm/bin"
+export PATH="/home/den/.rvm/gems/ruby-2.1.5/bin:/home/den/.rvm/gems/ruby-2.1.5@global/bin:/home/den/.rvm/rubies/ruby-2.1.5/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/home/den/.rvm/bin:/home/den/.rvm/bin:/home/den/.pyenv/bin:$PATH"
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
+
 # export MANPATH="/usr/local/man:$MANPATH"
 
 source $ZSH/oh-my-zsh.sh
