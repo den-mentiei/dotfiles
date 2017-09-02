@@ -176,6 +176,11 @@
   (add-hook 'c++-mode-hook 'irony-mode)
   (add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options))
   (add-hook 'irony-mode-hook 'my-cc-mode)
+
+(use-package company-irony-c-headers
+  :init
+  (add-to-list 'company-backends 'company-irony-c-headers))
+
 (use-package company-irony
   :init
   (add-to-list 'company-backends 'company-irony))
