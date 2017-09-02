@@ -38,6 +38,8 @@
 
 (setq use-dialog-box nil)
 
+(setq help-window-select t)
+
 (setq-default show-paren-delay 0)
 (show-paren-mode t)
 
@@ -121,12 +123,6 @@
 	      ("SPC s"   . save-buffer)
 	      ("SPC d"   . my/kill-current-buffer)))
 
-(use-package company
-  :init (global-company-mode))
-
-(use-package elm-mode)
-(add-to-list 'company-backends 'company-elm)
-
 (use-package counsel)
 (use-package ivy
   :init (ivy-mode 1)
@@ -144,16 +140,15 @@
 
 (use-package web-mode)
 
-(defun my-csharp-mode ()
-  (setq tab-width 4)
-  (setq indent-tabs-mode t))
+(use-package company
+  :init (global-company-mode))
 
-(use-package omnisharp
-  :init
-  (add-hook 'csharp-mode-hook 'omnisharp-mode)
-  (add-hook 'csharp-mode-hook 'my-csharp-mode)
-  (add-to-list 'company-backends 'company-omnisharp)
-  :config (setq omnisharp-server-executable-path "~/.omnisharp-mono/omnisharp.sh"))
+;; Elm
+
+(use-package elm-mode)
+(add-to-list 'company-backends 'company-elm)
+
+;; Python
 
 (defun my-python-mode ()
   (setq tab-width 4)
@@ -167,3 +162,45 @@
 (use-package company-anaconda
   :init
   (add-to-list 'company-backends 'company-anaconda))
+
+;; C/C++
+
+(defun my-cc-mode ()
+  (setq tab-width 4)
+  (setq c-basic-offset 4)
+  (setq indent-tabs-mode t))
+
+(use-package irony
+  :init
+  (add-hook 'c-mode-hook 'irony-mode)
+  (add-hook 'c++-mode-hook 'irony-mode)
+  (add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options))
+  (add-hook 'irony-mode-hook 'my-cc-mode)
+(use-package company-irony
+  :init
+  (add-to-list 'company-backends 'company-irony))
+
+;; C#
+
+(defun my-csharp-mode ()
+  (setq tab-width 4)
+  (setq indent-tabs-mode t))
+
+(use-package omnisharp
+  :init
+  (add-hook 'csharp-mode-hook 'omnisharp-mode)
+  (add-hook 'csharp-mode-hook 'my-csharp-mode)
+  (add-to-list 'company-backends 'company-omnisharp)
+  :config (setq omnisharp-server-executable-path "~/.omnisharp-mono/omnisharp.sh"))
+
+;; Lua
+
+(defun my-lua-mode ()
+  (setq tab-width 4)
+  (setq indent-tabs-mode t)
+  (setq indent-line-function 'insert-tab)
+  (setq lua-indent-level 4))
+
+(use-package lua-mode
+  :init
+  (add-hook 'lua-mode-hook 'my-lua-mode))
