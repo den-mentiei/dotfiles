@@ -55,7 +55,6 @@
 (setq scroll-margin 10)
 
 (global-hl-line-mode t)
-(global-linum-mode t)
 (column-number-mode t)
 
 (global-subword-mode 1)
