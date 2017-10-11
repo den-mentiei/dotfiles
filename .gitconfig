@@ -3,5 +3,6 @@
 	email = denis@goortom.com
 [core]
 	editor = vim
+	excludesfile = ~/.gitignore
 [push]
 	default = simple
