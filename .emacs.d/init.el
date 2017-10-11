@@ -60,6 +60,10 @@
 ;; Automatically update unmodified buffers whose files have changed.
 (global-auto-revert-mode 1)
 
+;; Enables window configuration undo/redo by C-c left/right.
+(when (fboundp 'winner-mode)
+  (winner-mode))
+
 (require 'dired)
 (setq dired-recursive-deletes 'top)
 
@@ -173,6 +177,7 @@
   :init
   (add-hook 'c-mode-hook 'irony-mode)
   (add-hook 'c++-mode-hook 'irony-mode)
+  (add-hook 'objc-mode-hook 'irony-mode)
   (add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options))
   (add-hook 'irony-mode-hook 'my-cc-mode)
 
@@ -183,6 +188,15 @@
 (use-package company-irony
   :init
   (add-to-list 'company-backends 'company-irony))
+
+;; ObjC/C++
+
+(defun my-objc-mode ()
+  (setq tab-width 4)
+  (setq indent-tabs-mode t)
+  (setq indent-line-function 'insert-tab))
+
+(add-hook 'objc-mode-hook 'my-objc-mode)
 
 ;; C#
 
