@@ -123,6 +123,7 @@
 	      ("SPC e i" . my/find-user-init-file)
 	      ("SPC s"   . save-buffer)
 	      ("SPC d"   . my/kill-current-buffer)
+	      ("SPC p"   . counsel-file-jump)
 		 :map evil-visual-state-map
 	      ("SPC c"   . comment-or-uncomment-region)))
 
@@ -222,3 +223,5 @@
 (use-package lua-mode
   :init
   (add-hook 'lua-mode-hook 'my-lua-mode))
+
+(use-package fzf)
