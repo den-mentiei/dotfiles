@@ -55,7 +55,7 @@
 (global-hl-line-mode t)
 (column-number-mode t)
 
-(global-subword-mode 1)
+(global-superword-mode 1)
 
 ;; Automatically update unmodified buffers whose files have changed.
 (global-auto-revert-mode 1)
@@ -115,7 +115,10 @@
 
 (use-package evil
   :init (evil-mode 1)
-  :config (setq evil-echo-state nil)
+  :config
+  (setq evil-echo-state nil)
+  (setq-default evil-symbol-word-search t)
+  (defalias 'forward-evil-word 'forward-evil-symbol)
   :bind (:map evil-normal-state-map
 	      ("<right>" . evil-next-buffer)
 	      ("<left>"  . evil-prev-buffer)
@@ -149,14 +152,16 @@
 
 ;; Elm
 
-(use-package elm-mode)
-(add-to-list 'company-backends 'company-elm)
+(use-package elm-mode
+  :init
+  (add-to-list 'company-backends 'company-elm))
 
 ;; Python
 
 (defun my-python-mode ()
   (setq tab-width 4)
-  (setq indent-tabs-mode t))
+  (setq indent-tabs-mode t)
+  (setq indent-line-function 'insert-tab))
 
 (use-package anaconda-mode
   :init
@@ -224,4 +229,4 @@
   :init
   (add-hook 'lua-mode-hook 'my-lua-mode))
 
-(use-package fzf)
+;; (use-package fzf)
