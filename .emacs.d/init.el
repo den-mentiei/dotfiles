@@ -127,6 +127,8 @@
 	      ("SPC s"   . save-buffer)
 	      ("SPC d"   . my/kill-current-buffer)
 	      ("SPC p"   . counsel-file-jump)
+	      ("SPC n"   . counsel-imenu)
+	      ("SPC g"   . magit-status)
 		 :map evil-visual-state-map
 	      ("SPC c"   . comment-or-uncomment-region)))
 
