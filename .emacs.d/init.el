@@ -106,6 +106,8 @@
   (require 'use-package))
 (setq use-package-always-ensure t)
 
+(use-package diminish)
+
 (use-package solarized-theme
   :init (load-theme 'solarized-dark t))
 
@@ -134,7 +136,11 @@
 
 (use-package counsel)
 (use-package ivy
-  :init (ivy-mode 1)
+  :diminish (counsel-mode . "")
+  :diminish (ivy-mode . "")
+  :init
+  (ivy-mode 1)
+  (counsel-mode 1)
   :config
   (setq ivy-use-virtual-buffers t)
   (setq ivy-count-format "(%d/%d) "))
@@ -150,6 +156,7 @@
 (use-package web-mode)
 
 (use-package company
+  :diminish ""
   :init (global-company-mode))
 
 ;; Elm
@@ -235,6 +242,6 @@
 (use-package magit)
 
 (use-package exec-path-from-shell
-  :init
-  (when (memq window-system '(mac ns x))
-    (exec-path-from-shell-initialize)))
+  :if (memq window-system '(mac ns x))
+  :config
+  (exec-path-from-shell-initialize))
