@@ -230,6 +230,6 @@
   :init
   (add-hook 'lua-mode-hook 'my-lua-mode))
 
-;; (use-package fzf)
+(use-package fzf)
 
 (use-package magit)
