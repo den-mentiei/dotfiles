@@ -216,8 +216,7 @@
   :init
   (add-hook 'csharp-mode-hook 'omnisharp-mode)
   (add-hook 'csharp-mode-hook 'my-csharp-mode)
-  (add-to-list 'company-backends 'company-omnisharp)
-  :config (setq omnisharp-server-executable-path "~/.omnisharp-mono/omnisharp.sh"))
+  (add-to-list 'company-backends 'company-omnisharp))
 
 ;; Lua
 
