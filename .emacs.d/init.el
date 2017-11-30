@@ -90,6 +90,10 @@
   (interactive)
   (kill-buffer (buffer-name)))
 
+;;; Org-mode
+
+(setq org-startup-indented 1)
+
 ;;; Packages
 
 (require 'package)
