@@ -1,6 +1,8 @@
-/auto-save-list
+/.cache
 /elpa
 /eshell
+/server
+/auto-save-list
 /anaconda-mode
 /irony
 recentf
