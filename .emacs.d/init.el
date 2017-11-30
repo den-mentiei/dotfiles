@@ -93,6 +93,7 @@
 ;;; Org-mode
 
 (setq org-startup-indented 1)
+(setq org-M-RET-may-split-line '((item . nil)))
 
 ;;; Packages
 
