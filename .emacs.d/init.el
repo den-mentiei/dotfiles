@@ -106,7 +106,8 @@
   (require 'use-package))
 (setq use-package-always-ensure t)
 
-(use-package diminish)
+(use-package diminish
+  :init (diminish 'abbrev-mode ""))
 
 (use-package solarized-theme
   :init (load-theme 'solarized-dark t))
