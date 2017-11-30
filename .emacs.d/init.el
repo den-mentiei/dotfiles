@@ -125,14 +125,13 @@
   :bind (:map evil-normal-state-map
 	      ("<right>" . evil-next-buffer)
 	      ("<left>"  . evil-prev-buffer)
-	      ("SPC a"   . align-regexp)
 	      ("SPC e i" . my/find-user-init-file)
+	      ("SPC b"   . recompile)
 	      ("SPC s"   . save-buffer)
-	      ("SPC d"   . my/kill-current-buffer)
 	      ("SPC p"   . counsel-file-jump)
 	      ("SPC n"   . counsel-imenu)
 	      ("SPC g"   . magit-status)
-		 :map evil-visual-state-map
+	 :map evil-visual-state-map
 	      ("SPC c"   . comment-or-uncomment-region)))
 
 (use-package counsel)
