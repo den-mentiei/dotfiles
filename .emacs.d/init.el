@@ -172,7 +172,7 @@
 
 ;; Python
 
-(defun my-python-mode ()
+(defun my/python-mode ()
   (setq tab-width 4)
   (setq indent-tabs-mode t)
   (setq indent-line-function 'insert-tab))
@@ -180,7 +180,7 @@
 (use-package anaconda-mode
   :init
   (add-hook 'python-mode-hook 'anaconda-mode)
-  (add-hook 'python-mode-hook 'my-python-mode))
+  (add-hook 'python-mode-hook 'my/python-mode))
 
 (use-package company-anaconda
   :init
@@ -188,7 +188,7 @@
 
 ;; C/C++
 
-(defun my-cc-mode ()
+(defun my/cc-mode ()
   (setq tab-width 4)
   (setq c-basic-offset 4)
   (setq indent-tabs-mode t))
@@ -199,7 +199,7 @@
   (add-hook 'c++-mode-hook 'irony-mode)
   (add-hook 'objc-mode-hook 'irony-mode)
   (add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options))
-  (add-hook 'irony-mode-hook 'my-cc-mode)
+  (add-hook 'irony-mode-hook 'my/cc-mode)
 
 (use-package company-irony-c-headers
   :init
@@ -211,28 +211,28 @@
 
 ;; ObjC/C++
 
-(defun my-objc-mode ()
+(defun my/objc-mode ()
   (setq tab-width 4)
   (setq indent-tabs-mode t)
   (setq indent-line-function 'insert-tab))
 
-(add-hook 'objc-mode-hook 'my-objc-mode)
+(add-hook 'objc-mode-hook 'my/objc-mode)
 
 ;; C#
 
-(defun my-csharp-mode ()
+(defun my/csharp-mode ()
   (setq tab-width 4)
   (setq indent-tabs-mode t))
 
 (use-package omnisharp
   :init
   (add-hook 'csharp-mode-hook 'omnisharp-mode)
-  (add-hook 'csharp-mode-hook 'my-csharp-mode)
+  (add-hook 'csharp-mode-hook 'my/csharp-mode)
   (add-to-list 'company-backends 'company-omnisharp))
 
 ;; Lua
 
-(defun my-lua-mode ()
+(defun my/lua-mode ()
   (setq tab-width 4)
   (setq indent-tabs-mode t)
   (setq indent-line-function 'insert-tab)
@@ -240,11 +240,12 @@
 
 (use-package lua-mode
   :init
-  (add-hook 'lua-mode-hook 'my-lua-mode))
+  (add-hook 'lua-mode-hook 'my/lua-mode))
 
 (use-package fzf)
 
-(use-package magit)
+(defun my/magit-org-read-date (prompt &optional _default)
+  (org-read-date 'with-time nil nil prompt))
 
 (use-package exec-path-from-shell
   :if (memq window-system '(mac ns x))
