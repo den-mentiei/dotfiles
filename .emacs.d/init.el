@@ -136,6 +136,7 @@
 	      ("SPC p"   . counsel-file-jump)
 	      ("SPC n"   . counsel-imenu)
 	      ("SPC g"   . magit-status)
+	      ("SPC o"   . ff-find-other-file)
 	 :map evil-visual-state-map
 	      ("SPC c"   . comment-or-uncomment-region)))
 
