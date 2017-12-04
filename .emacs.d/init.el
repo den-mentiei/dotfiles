@@ -245,9 +245,6 @@
 
 (use-package fzf)
 
-(defun my/magit-org-read-date (prompt &optional _default)
-  (org-read-date 'with-time nil nil prompt))
-
 (use-package exec-path-from-shell
   :if (memq window-system '(mac ns x))
   :config
