@@ -250,4 +250,3 @@
   :if (memq window-system '(mac ns x))
   :config
   (exec-path-from-shell-initialize))
-(put 'dired-find-alternate-file 'disabled nil)
