@@ -164,6 +164,8 @@
   :diminish ""
   :init (global-company-mode))
 
+(use-package magit)
+
 ;; Elm
 
 (use-package elm-mode
