@@ -131,7 +131,7 @@
 	      ("<left>"  . evil-prev-buffer)
 	      ("SPC e i" . my/find-user-init-file)
 	      ("SPC b"   . recompile)
-	      ("SPC s"   . save-buffer)
+	      ("SPC s"   . swiper)
 	      ("SPC p"   . counsel-file-jump)
 	      ("SPC n"   . counsel-imenu)
 	      ("SPC g"   . magit-status)
@@ -248,3 +248,4 @@
   :if (memq window-system '(mac ns x))
   :config
   (exec-path-from-shell-initialize))
+(put 'dired-find-alternate-file 'disabled nil)
