@@ -118,7 +118,9 @@
   (diminish 'abbrev-mode ""))
 
 (use-package org
-  :diminish (org-indent-mode . "")
+  :init
+  (require 'org-indent)
+  :diminish org-indent-mode
   :config
   (setq org-startup-indented 1)
   (setq org-M-RET-may-split-line '((item . nil))))
@@ -215,10 +217,12 @@
   (add-hook 'irony-mode-hook 'my/cc-mode)
 
 (use-package company-irony-c-headers
+  :after irony
   :init
   (add-to-list 'company-backends 'company-irony-c-headers))
 
 (use-package company-irony
+  :after (irony company)
   :init
   (add-to-list 'company-backends 'company-irony))
 
