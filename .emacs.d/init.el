@@ -220,6 +220,7 @@
   (setq indent-tabs-mode t))
 
 (use-package irony
+  :diminish irony-mode
   :init
   (add-hook 'c-mode-hook 'irony-mode)
   (add-hook 'c++-mode-hook 'irony-mode)
