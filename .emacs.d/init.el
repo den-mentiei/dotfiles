@@ -44,7 +44,9 @@
 
 (setq search-highlight t)
 
-(setq tab-width 4)
+(setq-default tab-width 4)
+(setq-default indent-tabs-mode t)
+(setq-default indent-line-function 'insert-tab)
 
 (setq mouse-wheel-scroll-amount '(1))
 (setq mouse-wheel-follow-mouse 't)
@@ -69,7 +71,7 @@
 (defadvice align-regexp (around align-regexp-with-spaces)
   "Use spaces for aligning as opposed to tabs for indentation."
   (let ((indent-tabs-mode nil))
-    ad-do-it))
+	ad-do-it))
 (ad-activate 'align-regexp)
 
 ;;; Functions
@@ -115,7 +117,13 @@
 
 (use-package diminish
   :init
-  (diminish 'abbrev-mode ""))
+  (diminish 'abbrev-mode)
+  (diminish 'auto-revert-mode))
+
+(use-package undo-tree
+  :diminish undo-tree-mode
+  :config
+  (global-undo-tree-mode 1))
 
 (use-package org
   :init
@@ -139,20 +147,17 @@
   (setq-default evil-symbol-word-search t)
   (defalias 'forward-evil-word 'forward-evil-symbol)
   :bind (:map evil-normal-state-map
-	      ("<right>" . evil-next-buffer)
-	      ("<left>"  . evil-prev-buffer)
-	      ("SPC e i" . my/find-user-init-file)
-	      ("SPC b"   . recompile)
-	      ("SPC s"   . swiper)
-	      ("SPC p"   . counsel-file-jump)
-	      ("SPC n"   . counsel-imenu)
-	      ("SPC g"   . magit-status)
-	      ("SPC o"   . ff-find-other-file)
+		  ("<right>" . evil-next-buffer)
+		  ("<left>"	 . evil-prev-buffer)
+		  ("SPC e i" . my/find-user-init-file)
+		  ("SPC b"	 . recompile)
+		  ("SPC s"	 . swiper)
+		  ("SPC p"	 . counsel-file-jump)
+		  ("SPC n"	 . counsel-imenu)
+		  ("SPC g"	 . magit-status)
+		  ("SPC o"	 . ff-find-other-file)
 	 :map evil-visual-state-map
-	      ("SPC c"   . comment-or-uncomment-region)))
-
-(use-package counsel
-  :diminish (counsel-mode . ""))
+		  ("SPC c"	 . comment-or-uncomment-region)))
 
 (use-package ivy
   :diminish (ivy-mode . "")
@@ -160,11 +165,14 @@
   (ivy-mode 1)
   (counsel-mode 1)
   :config
+  (use-package counsel
+	:diminish (counsel-mode . ""))
+  (use-package swiper)
   (setq ivy-use-virtual-buffers t)
   (setq ivy-count-format "(%d/%d) "))
 
 (use-package nyan-mode
-  :init  (nyan-mode 1)
+  :init	 (nyan-mode 1)
   :config
   (setq nyan-bar-length 16)
   (setq nyan-wavy-trail t))
@@ -182,6 +190,7 @@
 ;; Elm
 
 (use-package elm-mode
+  :after company
   :init
   (add-to-list 'company-backends 'company-elm))
 
@@ -193,11 +202,13 @@
   (setq indent-line-function 'insert-tab))
 
 (use-package anaconda-mode
+  :diminish anaconda-mode
   :init
   (add-hook 'python-mode-hook 'anaconda-mode)
   (add-hook 'python-mode-hook 'my/python-mode))
 
 (use-package company-anaconda
+  :after (company anaconda-mode)
   :init
   (add-to-list 'company-backends 'company-anaconda))
 
@@ -242,6 +253,7 @@
   (setq indent-tabs-mode t))
 
 (use-package omnisharp
+  :after company
   :init
   (add-hook 'csharp-mode-hook 'omnisharp-mode)
   (add-hook 'csharp-mode-hook 'my/csharp-mode)
