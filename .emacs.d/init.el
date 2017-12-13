@@ -111,7 +111,8 @@
 (setq use-package-always-ensure t)
 
 (use-package diminish
-  :init (diminish 'abbrev-mode ""))
+  :init
+  (diminish 'abbrev-mode ""))
 
 (use-package solarized-theme
   :init (load-theme 'solarized-dark t))
@@ -139,9 +140,10 @@
 	 :map evil-visual-state-map
 	      ("SPC c"   . comment-or-uncomment-region)))
 
-(use-package counsel)
+(use-package counsel
+  :diminish (counsel-mode . ""))
+
 (use-package ivy
-  :diminish (counsel-mode . "")
   :diminish (ivy-mode . "")
   :init
   (ivy-mode 1)
