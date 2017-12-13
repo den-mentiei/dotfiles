@@ -89,11 +89,6 @@
   (interactive)
   (kill-buffer (buffer-name)))
 
-;;; Org-mode
-
-(setq org-startup-indented 1)
-(setq org-M-RET-may-split-line '((item . nil)))
-
 ;;; Packages
 
 (require 'package)
@@ -113,6 +108,12 @@
 (use-package diminish
   :init
   (diminish 'abbrev-mode ""))
+
+(use-package org
+  :diminish (org-indent-mode . "")
+  :config
+  (setq org-startup-indented 1)
+  (setq org-M-RET-may-split-line '((item . nil))))
 
 (use-package solarized-theme
   :init (load-theme 'solarized-dark t))
