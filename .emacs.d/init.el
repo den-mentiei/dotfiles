@@ -74,6 +74,14 @@
 
 ;;; Functions
 
+(defun my/macos-p ()
+  "Check if a system is running macos."
+  (eq system-type 'darwin))
+
+(defun my/linux-p ()
+  "Check if a system is running Linux."
+  (eq system-type 'gnu/linux))
+
 (defun my/find-user-init-file ()
   "Edits the `user-init-file` in another window."
   (interactive)
@@ -247,7 +255,8 @@
   :init
   (add-hook 'lua-mode-hook 'my/lua-mode))
 
-(use-package fzf)
+(use-package fzf
+  :if (my/macos-p))
 
 (use-package exec-path-from-shell
   :if (memq window-system '(mac ns x))
