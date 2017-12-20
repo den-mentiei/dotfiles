@@ -147,17 +147,18 @@
   (setq-default evil-symbol-word-search t)
   (defalias 'forward-evil-word 'forward-evil-symbol)
   :bind (:map evil-normal-state-map
-		  ("<right>" . evil-next-buffer)
-		  ("<left>"	 . evil-prev-buffer)
-		  ("SPC e i" . my/find-user-init-file)
-		  ("SPC b"	 . recompile)
-		  ("SPC s"	 . swiper)
-		  ("SPC p"	 . counsel-file-jump)
-		  ("SPC n"	 . counsel-imenu)
-		  ("SPC g"	 . magit-status)
-		  ("SPC o"	 . ff-find-other-file)
-	 :map evil-visual-state-map
-		  ("SPC c"	 . comment-or-uncomment-region)))
+         ("SPC r" . counsel-rg)
+		 ("<right>" . evil-next-buffer)
+		 ("<left>"	 . evil-prev-buffer)
+		 ("SPC e i" . my/find-user-init-file)
+		 ("SPC b"	 . recompile)
+		 ("SPC s"	 . swiper)
+		 ("SPC p"	 . counsel-file-jump)
+		 ("SPC n"	 . counsel-imenu)
+		 ("SPC g"	 . magit-status)
+		 ("SPC o"	 . ff-find-other-file)
+		 :map evil-visual-state-map
+		 ("SPC c"	 . comment-or-uncomment-region)))
 
 (use-package ivy
   :diminish (ivy-mode . "")
