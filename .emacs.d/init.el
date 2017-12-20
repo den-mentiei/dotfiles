@@ -131,6 +131,7 @@
   :diminish org-indent-mode
   :config
   (setq org-startup-indented 1)
+  (setq org-src-fontify-natively t)
   (setq org-M-RET-may-split-line '((item . nil))))
 
 (use-package solarized-theme
