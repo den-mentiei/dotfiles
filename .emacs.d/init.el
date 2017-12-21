@@ -76,12 +76,16 @@
 
 ;;; Functions
 
+(defun my/win-p ()
+  "Check if a system is running windows."
+  (eq system-type 'windows-nt))
+
 (defun my/macos-p ()
   "Check if a system is running macos."
   (eq system-type 'darwin))
 
 (defun my/linux-p ()
-  "Check if a system is running Linux."
+  "Check if a system is running linux."
   (eq system-type 'gnu/linux))
 
 (defun my/find-user-init-file ()
@@ -223,12 +227,17 @@
 
 (use-package irony
   :diminish irony-mode
+  :config
+  (when (and (my/win-p) (boundp 'w32-pipe-read-delay))
+	(setq w32-pipe-read-delay 0))
+  (when (and (my/win-p) (boundp 'w32-pipe-buffer-size))
+	(setq irony-server-w32-pipe-buffer-size (* 64 1024)))
   :init
   (add-hook 'c-mode-hook 'irony-mode)
   (add-hook 'c++-mode-hook 'irony-mode)
   (add-hook 'objc-mode-hook 'irony-mode)
-  (add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options))
-  (add-hook 'irony-mode-hook 'my/cc-mode)
+  (add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options)
+  (add-hook 'irony-mode-hook 'my/cc-mode))
 
 (use-package company-irony-c-headers
   :after irony
