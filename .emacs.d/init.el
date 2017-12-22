@@ -166,19 +166,20 @@
 		 ("SPC c"	 . comment-or-uncomment-region)))
 
 (use-package ivy
-  :diminish (ivy-mode . "")
+  :diminish ivy-mode
   :init
   (ivy-mode 1)
   (counsel-mode 1)
   :config
-  (use-package counsel
-	:diminish (counsel-mode . ""))
+  (use-package counsel :diminish counsel-mode)
   (use-package swiper)
   (setq ivy-use-virtual-buffers t)
   (setq ivy-count-format "(%d/%d) "))
 
 (use-package nyan-mode
-  :init	 (nyan-mode 1)
+  :diminish nyan-mode
+  :init
+  (nyan-mode 1)
   :config
   (setq nyan-bar-length 16)
   (setq nyan-wavy-trail t))
