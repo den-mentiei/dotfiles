@@ -188,6 +188,8 @@
   (setq nyan-bar-length 16)
   (setq nyan-wavy-trail t))
 
+(use-package writeroom-mode)
+
 (use-package avy)
 
 (use-package web-mode)
