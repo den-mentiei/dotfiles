@@ -133,7 +133,9 @@
 (use-package diminish
   :init
   (diminish 'abbrev-mode)
-  (diminish 'auto-revert-mode))
+  (diminish 'auto-revert-mode)
+  (diminish 'flyspell-mode)
+  (diminish 'flyspell-prog-mode))
 
 (use-package undo-tree
   :diminish undo-tree-mode
