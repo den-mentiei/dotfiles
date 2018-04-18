@@ -106,6 +106,14 @@
   (interactive)
   (kill-buffer (buffer-name)))
 
+;;; Spelling
+
+(setq ispell-program-name "hunspell")
+(setq ispell-dictionary "en_GB")
+
+(add-hook 'text-mode-hook 'flyspell-mode)
+(add-hook 'prog-mode-hook 'flyspell-prog-mode)
+
 ;;; Packages
 
 (require 'package)
