@@ -25,7 +25,6 @@ if dein#load_state('~/.vim/bundle')
 	call dein#add('morhetz/gruvbox')
 
 	" git
-	call dein#add('tpope/vim-fugitive')
 	call dein#add('airblade/vim-gitgutter')
 
 	"" interface & ux
@@ -47,7 +46,6 @@ if dein#load_state('~/.vim/bundle')
 	""call dein#add('scrooloose/syntastic'
 	"" languages
 	call dein#add('davidhalter/jedi-vim')
-	"call dein#add('Valloric/YouCompleteMe')
 	""" shaders
 	call dein#add('beyondmarc/hlsl.vim')
 	call dein#add('tikhomirov/vim-glsl')
@@ -70,6 +68,8 @@ if dein#load_state('~/.vim/bundle')
 	call dein#add('digitaltoad/vim-pug')
 
 	call dein#add('lambdatoast/elm.vim')
+
+	call dein#add('haya14busa/dein-command.vim')
 
 	call dein#end()
 	call dein#save_state()
@@ -204,16 +204,6 @@ nnoremap <F6> :make<cr>
 nnoremap <leader>m :marks<cr>
 
 nnoremap <leader>z zA
-
-" Fugitive bindings
-" TODO: Revise and uncomment this.
-"nnoremap <leader>gs :Gstatus<CR>
-"nnoremap <leader>gd :Gdiff<CR>
-"nnoremap <leader>gc :Gcommit -v -q<CR>
-"nnoremap <leader>gC :Gcommit -v -q --all<CR>
-"nnoremap <leader>gr :Gread<CR>
-"nnoremap <leader>gw :Gwrite<CR>
-"nnoremap <leader>gb :Gblame<CR>
 
 " \\\ GUI \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
