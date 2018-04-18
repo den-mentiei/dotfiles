@@ -1,4 +1,4 @@
-;; done to redirect custom generated code, not using it anyway
+;; Done to redirect custom generated code, not using it anyway.
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
 (load custom-file 'noerror)
 
@@ -61,18 +61,21 @@
 ;; Automatically update unmodified buffers whose files have changed.
 (global-auto-revert-mode 1)
 
-;; Enables window configuration undo/redo by C-c left/right.
-(when (fboundp 'winner-mode)
-  (winner-mode))
+;; Enforces horizontal only splits.
+(setq split-height-threshold nil)
+(setq split-width-threshold 0)
 
-(require 'dired)
-(setq dired-recursive-deletes 'top)
+;; Do not warn about defadvice redefinitions.
+(setq ad-redefinition-action 'accept)
 
 (defadvice align-regexp (around align-regexp-with-spaces)
   "Use spaces for aligning as opposed to tabs for indentation."
   (let ((indent-tabs-mode nil))
 	ad-do-it))
 (ad-activate 'align-regexp)
+
+(require 'dired)
+(setq dired-recursive-deletes 'top)
 
 ;;; Functions
 
@@ -147,23 +150,24 @@
 
 (use-package evil
   :init (evil-mode 1)
-  :config
-  (setq evil-echo-state nil)
-  (setq-default evil-symbol-word-search t)
-  (defalias 'forward-evil-word 'forward-evil-symbol)
-  :bind (:map evil-normal-state-map
-         ("SPC r" . counsel-rg)
-		 ("<right>" . evil-next-buffer)
-		 ("<left>"	 . evil-prev-buffer)
-		 ("SPC e i" . my/find-user-init-file)
-		 ("SPC b"	 . recompile)
-		 ("SPC s"	 . swiper)
-		 ("SPC p"	 . counsel-file-jump)
-		 ("SPC n"	 . counsel-imenu)
-		 ("SPC g"	 . magit-status)
-		 ("SPC o"	 . ff-find-other-file)
-		 :map evil-visual-state-map
-		 ("SPC c"	 . comment-or-uncomment-region)))
+  :config (setq evil-echo-state nil)
+  :bind (("C-h"     . windmove-left)
+	 ("C-j"     . windmove-down)
+	 ("C-k"     . windmove-up)
+	 ("C-l"     . windmove-right)
+	 :map evil-normal-state-map
+	 ("C-p"     . find-file)
+	 ("<f5>"    . recompile)
+	 ("<right>" . evil-next-buffer)
+	 ("<left>"  . evil-prev-buffer)
+	 ("SPC a"   . align-regexp)
+	 ("SPC e i" . my/find-user-init-file)
+	 ("SPC s"   . save-buffer)
+	 ("SPC d"   . my/kill-current-buffer)
+	 ("SPC o"   . ff-find-other-file)
+	 ("SPC i"   . imenu)
+	 :map evil-visual-state-map
+	 ("SPC c"   . comment-or-uncomment-region)))
 
 (use-package ivy
   :diminish ivy-mode
