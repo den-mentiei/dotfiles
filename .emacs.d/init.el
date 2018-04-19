@@ -152,7 +152,7 @@
   (setq org-M-RET-may-split-line '((item . nil))))
 
 (use-package solarized-theme
-  :init (load-theme 'solarized-dark t))
+  :init (load-theme 'solarized-light t))
 
 ;; Highlights the current line number.
 (use-package hlinum
