@@ -94,7 +94,7 @@
 (defun my/find-user-init-file ()
   "Edits the `user-init-file` in another window."
   (interactive)
-  (find-file-other-window user-init-file))
+  (find-file user-init-file))
 
 (defun my/kill-buffers ()
   "Kills all open buffers."
