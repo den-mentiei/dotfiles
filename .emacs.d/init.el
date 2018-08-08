@@ -130,12 +130,7 @@
   (require 'use-package))
 (setq use-package-always-ensure t)
 
-(use-package diminish
-  :init
-  (diminish 'abbrev-mode)
-  (diminish 'auto-revert-mode)
-  (diminish 'flyspell-mode)
-  (diminish 'flyspell-prog-mode))
+(require 'diminish)
 
 (use-package undo-tree
   :diminish undo-tree-mode
