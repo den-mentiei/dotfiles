@@ -116,6 +116,9 @@
 ;; (add-hook 'text-mode-hook 'flyspell-mode)
 ;; (add-hook 'prog-mode-hook 'flyspell-prog-mode)
 
+(when (and (my/win-p) (boundp 'w32-pipe-read-delay))
+  (setq w32-pipe-read-delay 0))
+
 ;;; Packages
 
 (require 'package)
@@ -242,8 +245,6 @@
 (use-package irony
   :diminish irony-mode
   :config
-  (when (and (my/win-p) (boundp 'w32-pipe-read-delay))
-	(setq w32-pipe-read-delay 0))
   (when (and (my/win-p) (boundp 'w32-pipe-buffer-size))
 	(setq irony-server-w32-pipe-buffer-size (* 64 1024)))
   :init
