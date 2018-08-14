@@ -108,13 +108,13 @@
   (interactive)
   (kill-buffer (buffer-name)))
 
-;;; Spelling
+;;; TODO: Spelling
 
-(setq ispell-program-name "hunspell")
-(setq ispell-dictionary "en_US")
+;; (setq ispell-program-name "hunspell")
+;; (setq ispell-dictionary "en_US")
 
-(add-hook 'text-mode-hook 'flyspell-mode)
-(add-hook 'prog-mode-hook 'flyspell-prog-mode)
+;; (add-hook 'text-mode-hook 'flyspell-mode)
+;; (add-hook 'prog-mode-hook 'flyspell-prog-mode)
 
 ;;; Packages
 
