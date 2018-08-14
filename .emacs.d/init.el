@@ -156,8 +156,13 @@
 
 (use-package evil
   :init (evil-mode 1)
-  :config (setq evil-echo-state nil)
-  :bind (("C-h"     . windmove-left)
+  :config
+  (setq evil-echo-state nil)
+  (evil-set-initial-state 'term-mode 'emacs)
+  (evil-set-initial-state 'shell-mode 'emacs)
+  (evil-set-initial-state 'eshell-mode 'emacs)
+  :bind
+	(("C-h"     . windmove-left)
 	 ("C-j"     . windmove-down)
 	 ("C-k"     . windmove-up)
 	 ("C-l"     . windmove-right)
