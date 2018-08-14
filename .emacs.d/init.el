@@ -207,7 +207,9 @@
 
 (use-package company
   :diminish ""
-  :init (global-company-mode))
+  :init (global-company-mode)
+  :config
+  (setq company-dabbrev-downcase nil))
 
 (use-package magit)
 
