@@ -12,6 +12,7 @@
 (setq make-backup-files nil)
 (setq auto-save-default nil)
 
+(define-coding-system-alias 'cp65001 'utf-8)
 (set-language-environment "UTF-8")
 (prefer-coding-system 'utf-8)
 
