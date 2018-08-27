@@ -311,3 +311,5 @@
   (exec-path-from-shell-initialize))
 
 (use-package markdown-mode)
+
+(use-package rg)
