@@ -135,7 +135,7 @@
   (require 'use-package))
 (setq use-package-always-ensure t)
 
-(require 'diminish)
+(use-package diminish)
 
 (use-package undo-tree
   :diminish undo-tree-mode
