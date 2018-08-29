@@ -156,9 +156,6 @@
 (use-package solarized-theme
   :init (load-theme 'solarized-light t))
 
-;; Highlights the current line number.
-(use-package hlinum
-  :config (hlinum-activate))
 
 (use-package evil
   :init (evil-mode 1)
