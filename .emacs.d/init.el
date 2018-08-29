@@ -77,6 +77,8 @@
 	ad-do-it))
 (ad-activate 'align-regexp)
 
+(add-to-list 'default-frame-alist '(font . "DejaVu Sans Mono-10"))
+
 (require 'dired)
 (setq dired-recursive-deletes 'top)
 
