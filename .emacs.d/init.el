@@ -136,6 +136,11 @@
   (require 'use-package))
 (setq use-package-always-ensure t)
 
+;; (use-package benchmark-init
+;;   :ensure t
+;;   :config
+;;   (add-hook 'after-init-hook 'benchmark-init/deactivate))
+
 (use-package diminish)
 
 (use-package undo-tree
