@@ -153,9 +153,11 @@
   (setq org-src-fontify-natively t)
   (setq org-M-RET-may-split-line '((item . nil))))
 
-(use-package solarized-theme
-  :init (load-theme 'solarized-light t))
 
+(use-package solarized-theme
+  :init
+  (setq solarized-use-less-bold t)
+  (load-theme 'solarized-light t))
 
 (use-package evil
   :init (evil-mode 1)
