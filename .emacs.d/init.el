@@ -197,14 +197,6 @@
   (setq ivy-use-virtual-buffers t)
   (setq ivy-count-format "(%d/%d) "))
 
-(use-package nyan-mode
-  :diminish nyan-mode
-  :init
-  (nyan-mode 1)
-  :config
-  (setq nyan-bar-length 16)
-  (setq nyan-wavy-trail t))
-
 (use-package writeroom-mode)
 
 (use-package avy)
