@@ -143,7 +143,40 @@
 ;;   :config
 ;;   (add-hook 'after-init-hook 'benchmark-init/deactivate))
 
-(use-package diminish)
+(use-package general)
+
+(use-package evil
+  :config
+  (setq evil-echo-state nil)
+  (evil-mode 1))
+
+(defconst my/leader "SPC")
+(general-create-definer my/leader-def :prefix my/leader)
+
+(general-define-key
+  :states 'normal
+  "<left>"  'evil-prev-buffer
+  "<right>" 'evil-next-buffer
+  "C-h"     'windmove-left
+  "C-j"     'windmove-down
+  "C-k"     'windmove-up
+  "C-l"     'windmove-right)
+
+(my/leader-def
+  :states 'normal
+  "d"   'my/kill-current-buffer
+  "o"   'ff-find-other-file
+  "s"   'save-buffer
+  "i"   'imenu
+  "e i" 'my/find-user-init-file)
+
+(my/leader-def
+  :states 'visual
+  "c" 'comment-or-uncomment-region)
+
+(use-package diminish
+  :config
+  (diminish 'eldoc-mode))
 
 (use-package undo-tree
   :diminish undo-tree-mode
@@ -155,37 +188,10 @@
   (setq org-src-fontify-natively t)
   (setq org-M-RET-may-split-line '((item . nil))))
 
-
 (use-package solarized-theme
   :init
   (setq solarized-use-less-bold t)
   (load-theme 'solarized-light t))
-
-(use-package evil
-  :init (evil-mode 1)
-  :config
-  (setq evil-echo-state nil)
-  (evil-set-initial-state 'term-mode 'emacs)
-  (evil-set-initial-state 'shell-mode 'emacs)
-  (evil-set-initial-state 'eshell-mode 'emacs)
-  :bind
-	(("C-h"     . windmove-left)
-	 ("C-j"     . windmove-down)
-	 ("C-k"     . windmove-up)
-	 ("C-l"     . windmove-right)
-	 :map evil-normal-state-map
-	 ("C-p"     . find-file)
-	 ("<f5>"    . recompile)
-	 ("<right>" . evil-next-buffer)
-	 ("<left>"  . evil-prev-buffer)
-	 ("SPC a"   . align-regexp)
-	 ("SPC e i" . my/find-user-init-file)
-	 ("SPC s"   . save-buffer)
-	 ("SPC d"   . my/kill-current-buffer)
-	 ("SPC o"   . ff-find-other-file)
-	 ("SPC i"   . imenu)
-	 :map evil-visual-state-map
-	 ("SPC c"   . comment-or-uncomment-region)))
 
 (use-package counsel
   :diminish counsel-mode
