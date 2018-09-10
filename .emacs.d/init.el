@@ -220,7 +220,9 @@
   :config
   (setq company-dabbrev-downcase nil))
 
-(use-package magit)
+(use-package magit
+  :config
+  (general-define-key "C-x g" 'magit-status))
 
 ;; Elm
 
