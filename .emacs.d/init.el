@@ -187,14 +187,18 @@
 	 :map evil-visual-state-map
 	 ("SPC c"   . comment-or-uncomment-region)))
 
+(use-package counsel
+  :diminish counsel-mode
+  :init
+  (counsel-mode 1))
+
+(use-package swiper)
+
 (use-package ivy
   :diminish ivy-mode
   :init
   (ivy-mode 1)
-  (counsel-mode 1)
   :config
-  (use-package counsel :diminish counsel-mode)
-  (use-package swiper)
   (setq ivy-use-virtual-buffers t)
   (setq ivy-count-format "(%d/%d) "))
 
