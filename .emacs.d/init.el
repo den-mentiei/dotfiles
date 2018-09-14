@@ -323,3 +323,5 @@
 (use-package markdown-mode)
 
 (use-package rg)
+
+(use-package olivetti)
