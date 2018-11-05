@@ -198,7 +198,9 @@
   :init
   (counsel-mode 1))
 
-(use-package swiper)
+(use-package swiper
+  :general
+  ("C-s" 'swiper))
 
 (use-package ivy
   :diminish ivy-mode
@@ -222,6 +224,8 @@
 
 (use-package magit
   :config
+  ; Disables the automatic diff show-off of the changes about to commit.
+  (remove-hook 'server-switch-hook 'magit-commit-diff)
   (general-define-key "C-x g" 'magit-status))
 
 ;; Elm
