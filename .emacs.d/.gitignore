@@ -5,6 +5,7 @@
 /auto-save-list
 /anaconda-mode
 /irony
+/transient
 recentf
 custom.el
 *.elc
