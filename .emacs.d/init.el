@@ -191,10 +191,11 @@
   :config
   (diminish 'eldoc-mode))
 
-(use-package undo-tree
-  :diminish undo-tree-mode
-  :config
-  (global-undo-tree-mode 1))
+;; TODO: Enable or remove it eventually.
+;; (use-package undo-tree
+;;   :diminish undo-tree-mode
+;;   :config
+;;   (global-undo-tree-mode 1))
 
 (use-package org
   :config
