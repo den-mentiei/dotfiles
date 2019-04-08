@@ -205,6 +205,7 @@
 (use-package solarized-theme
   :init
   (setq solarized-use-less-bold t)
+  (setq solarized-scale-org-headlines nil)
   (load-theme 'solarized-light t))
 
 (use-package counsel
