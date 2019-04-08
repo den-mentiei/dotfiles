@@ -148,6 +148,7 @@
 (use-package evil
   :config
   (setq evil-echo-state nil)
+  (setq evil-want-Y-yank-to-eol t)
   (evil-mode 1))
 
 (defconst my/leader "SPC")
@@ -161,6 +162,10 @@
   "C-j"     'windmove-down
   "C-k"     'windmove-up
   "C-l"     'windmove-right)
+
+(general-define-key
+  :states 'insert
+  "C-v"   'evil-paste-after)
 
 (my/leader-def
   :states 'normal
