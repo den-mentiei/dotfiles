@@ -111,6 +111,14 @@
   (interactive)
   (kill-buffer (buffer-name)))
 
+(defun my/cc-settings ()
+  "Bunch of default settings valid for C-mode"
+  (interactive)
+  (setq tab-width 4)
+  (setq c-basic-offset 4)
+  (setq indent-tabs-mode t)
+  (modify-syntax-entry ?_ "w"))
+
 ;;; TODO: Spelling
 
 ;; (setq ispell-program-name "hunspell")
@@ -260,11 +268,6 @@
 
 ;; C/C++
 
-(defun my/cc-mode ()
-  (setq tab-width 4)
-  (setq c-basic-offset 4)
-  (setq indent-tabs-mode t))
-
 (use-package irony
   :diminish irony-mode
   :config
@@ -274,8 +277,7 @@
   (add-hook 'c-mode-hook 'irony-mode)
   (add-hook 'c++-mode-hook 'irony-mode)
   (add-hook 'objc-mode-hook 'irony-mode)
-  (add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options)
-  (add-hook 'irony-mode-hook 'my/cc-mode))
+  (add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options))
 
 (use-package company-irony-c-headers
   :after irony
@@ -287,26 +289,12 @@
   :init
   (add-to-list 'company-backends 'company-irony))
 
-;; ObjC/C++
-
-(defun my/objc-mode ()
-  (setq tab-width 4)
-  (setq indent-tabs-mode t)
-  (setq indent-line-function 'insert-tab))
-
-(add-hook 'objc-mode-hook 'my/objc-mode)
-
 ;; C#
-
-(defun my/csharp-mode ()
-  (setq tab-width 4)
-  (setq indent-tabs-mode t))
 
 (use-package omnisharp
   :after company
   :init
   (add-hook 'csharp-mode-hook 'omnisharp-mode)
-  (add-hook 'csharp-mode-hook 'my/csharp-mode)
   (add-to-list 'company-backends 'company-omnisharp))
 
 ;; Lua
