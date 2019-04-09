@@ -199,19 +199,45 @@
 
 (use-package org
   :config
-  (setq org-src-fontify-natively t)
-  (setq org-M-RET-may-split-line '((item . nil)))
   (setq org-default-notes-file (concat org-directory "/inbox.org"))
+
+  (setq org-src-fontify-natively t)
+
+  (setq org-M-RET-may-split-line '((item . nil)))
+
   (setq org-hide-leading-stars t)
+
   (setq org-startup-indented t)
+  (setq org-indent-indentation-per-level 1)
+
+  (setq org-startup-folded 'showall)
+
   (setq org-export-backends '(ascii html latex md))
+
+  ;;; Display entities like \alpha, \tilde, etc. via corresponding UTF-8 symbols.
+  (setq org-pretty-entities t)
+  ;;; Display sub/super-scripts, as well.
+  (setq org-pretty-entities-include-sub-superscripts t)
+
+  ;;; Blocks entries from going to DONE, if there are not-DONE children.
+  (setq org-enforce-todo-dependencies t)
+  ;;; Same goes for nested checkbox lists.
+  (setq org-enforce-todo-checkbox-dependencies t)
+
+  ;;; Should help preventing errorous edits.
+  (setq org-catch-invisible-edits 'smart)
+
+  ;;; RET will open links, as well.
+
+  (setq org-return-follows-link t)
+
   :general
   ("C-c c" 'org-capture))
 
 (use-package solarized-theme
   :init
   (setq solarized-use-less-bold t)
-  ;; (setq solarized-scale-org-headlines nil)
+  (setq solarized-scale-org-headlines nil)
   (load-theme 'solarized-light t))
 
 (use-package counsel
