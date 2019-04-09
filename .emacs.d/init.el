@@ -324,3 +324,8 @@
 (use-package rg)
 
 (use-package olivetti)
+
+(use-package typo
+  :diminish 'typo-mode
+  :init
+  (add-hook 'text-mode-hook 'typo-mode))
