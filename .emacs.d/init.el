@@ -202,6 +202,8 @@
   (setq org-src-fontify-natively t)
   (setq org-M-RET-may-split-line '((item . nil)))
   (setq org-default-notes-file (concat org-directory "/inbox.org"))
+  (setq org-hide-leading-stars t)
+  (setq org-startup-indented t)
   :general
   ("C-c c" 'org-capture))
 
