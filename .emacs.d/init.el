@@ -204,6 +204,7 @@
   (setq org-default-notes-file (concat org-directory "/inbox.org"))
   (setq org-hide-leading-stars t)
   (setq org-startup-indented t)
+  (setq org-export-backends '(ascii html latex md))
   :general
   ("C-c c" 'org-capture))
 
