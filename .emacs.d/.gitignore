@@ -11,3 +11,5 @@ custom.el
 *.elc
 network-security.data
 bookmarks
+.emacs.desktop
+.emacs.desktop.lock

@@ -65,6 +65,9 @@
 (setq split-height-threshold nil)
 (setq split-width-threshold 0)
 
+;; Save session by default.
+(desktop-save-mode 1)
+
 ;; Do not warn about defadvice redefinitions.
 (setq ad-redefinition-action 'accept)
 
