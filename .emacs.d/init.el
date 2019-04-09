@@ -16,9 +16,6 @@
 (set-language-environment "UTF-8")
 (prefer-coding-system 'utf-8)
 
-;; do not word wrap lines, want horizontal scrolling
-(setq-default truncate-lines t)
-
 ; ask "y"/"n" instead of "yes"/"no"
 (defalias 'yes-or-no-p 'y-or-n-p)
 
