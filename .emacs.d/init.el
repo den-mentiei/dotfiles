@@ -200,12 +200,15 @@
 (use-package org
   :config
   (setq org-src-fontify-natively t)
-  (setq org-M-RET-may-split-line '((item . nil))))
+  (setq org-M-RET-may-split-line '((item . nil)))
+  (setq org-default-notes-file (concat org-directory "/inbox.org"))
+  :general
+  ("C-c c" 'org-capture))
 
 (use-package solarized-theme
   :init
   (setq solarized-use-less-bold t)
-  (setq solarized-scale-org-headlines nil)
+  ;; (setq solarized-scale-org-headlines nil)
   (load-theme 'solarized-light t))
 
 (use-package counsel
