@@ -227,10 +227,6 @@
   ;;; Should help preventing errorous edits.
   (setq org-catch-invisible-edits 'smart)
 
-  ;;; RET will open links, as well.
-
-  (setq org-return-follows-link t)
-
   :general
   ("C-c c" 'org-capture))
 
