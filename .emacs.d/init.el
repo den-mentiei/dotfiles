@@ -16,9 +16,6 @@
 (set-language-environment "UTF-8")
 (prefer-coding-system 'utf-8)
 
-;; do not word wrap lines, want horizontal scrolling
-(setq-default truncate-lines t)
-
 ; ask "y"/"n" instead of "yes"/"no"
 (defalias 'yes-or-no-p 'y-or-n-p)
 
@@ -68,6 +65,9 @@
 (setq split-height-threshold nil)
 (setq split-width-threshold 0)
 
+;; Save session by default.
+(desktop-save-mode 1)
+
 ;; Do not warn about defadvice redefinitions.
 (setq ad-redefinition-action 'accept)
 
@@ -111,6 +111,14 @@
   (interactive)
   (kill-buffer (buffer-name)))
 
+(defun my/cc-settings ()
+  "Bunch of default settings valid for C-mode"
+  (interactive)
+  (setq tab-width 4)
+  (setq c-basic-offset 4)
+  (setq indent-tabs-mode t)
+  (modify-syntax-entry ?_ "w"))
+
 ;;; TODO: Spelling
 
 ;; (setq ispell-program-name "hunspell")
@@ -148,6 +156,7 @@
 (use-package evil
   :config
   (setq evil-echo-state nil)
+  (setq evil-want-Y-yank-to-eol t)
   (evil-mode 1))
 
 (defconst my/leader "SPC")
@@ -161,6 +170,10 @@
   "C-j"     'windmove-down
   "C-k"     'windmove-up
   "C-l"     'windmove-right)
+
+(general-define-key
+  :states 'insert
+  "C-v"   'evil-paste-after)
 
 (my/leader-def
   :states 'normal
@@ -178,19 +191,50 @@
   :config
   (diminish 'eldoc-mode))
 
-(use-package undo-tree
-  :diminish undo-tree-mode
-  :config
-  (global-undo-tree-mode 1))
+;; TODO: Enable or remove it eventually.
+;; (use-package undo-tree
+;;   :diminish undo-tree-mode
+;;   :config
+;;   (global-undo-tree-mode 1))
 
 (use-package org
   :config
+  (setq org-default-notes-file (concat org-directory "/inbox.org"))
+
   (setq org-src-fontify-natively t)
-  (setq org-M-RET-may-split-line '((item . nil))))
+
+  (setq org-M-RET-may-split-line '((item . nil)))
+
+  (setq org-hide-leading-stars t)
+
+  (setq org-startup-indented t)
+  (setq org-indent-indentation-per-level 1)
+
+  (setq org-startup-folded 'showall)
+
+  (setq org-export-backends '(ascii html latex md))
+
+  ;;; Display entities like \alpha, \tilde, etc. via corresponding UTF-8 symbols.
+  (setq org-pretty-entities t)
+  ;;; Display sub/super-scripts, as well.
+  (setq org-pretty-entities-include-sub-superscripts t)
+
+  ;;; Blocks entries from going to DONE, if there are not-DONE children.
+  (setq org-enforce-todo-dependencies t)
+  ;;; Same goes for nested checkbox lists.
+  (setq org-enforce-todo-checkbox-dependencies t)
+
+  ;;; Should help preventing errorous edits.
+  (setq org-catch-invisible-edits 'smart)
+
+  :general
+  ("C-c c" 'org-capture))
 
 (use-package solarized-theme
   :init
   (setq solarized-use-less-bold t)
+  (setq solarized-use-variable-pitch nil)
+  (setq solarized-scale-org-headlines nil)
   (load-theme 'solarized-light t))
 
 (use-package counsel
@@ -198,7 +242,9 @@
   :init
   (counsel-mode 1))
 
-(use-package swiper)
+(use-package swiper
+  :general
+  ("C-s" 'swiper))
 
 (use-package ivy
   :diminish ivy-mode
@@ -222,6 +268,8 @@
 
 (use-package magit
   :config
+  ; Disables the automatic diff show-off of the changes about to commit.
+  (remove-hook 'server-switch-hook 'magit-commit-diff)
   (general-define-key "C-x g" 'magit-status))
 
 ;; Elm
@@ -251,11 +299,6 @@
 
 ;; C/C++
 
-(defun my/cc-mode ()
-  (setq tab-width 4)
-  (setq c-basic-offset 4)
-  (setq indent-tabs-mode t))
-
 (use-package irony
   :diminish irony-mode
   :config
@@ -265,8 +308,7 @@
   (add-hook 'c-mode-hook 'irony-mode)
   (add-hook 'c++-mode-hook 'irony-mode)
   (add-hook 'objc-mode-hook 'irony-mode)
-  (add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options)
-  (add-hook 'irony-mode-hook 'my/cc-mode))
+  (add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options))
 
 (use-package company-irony-c-headers
   :after irony
@@ -278,26 +320,12 @@
   :init
   (add-to-list 'company-backends 'company-irony))
 
-;; ObjC/C++
-
-(defun my/objc-mode ()
-  (setq tab-width 4)
-  (setq indent-tabs-mode t)
-  (setq indent-line-function 'insert-tab))
-
-(add-hook 'objc-mode-hook 'my/objc-mode)
-
 ;; C#
-
-(defun my/csharp-mode ()
-  (setq tab-width 4)
-  (setq indent-tabs-mode t))
 
 (use-package omnisharp
   :after company
   :init
   (add-hook 'csharp-mode-hook 'omnisharp-mode)
-  (add-hook 'csharp-mode-hook 'my/csharp-mode)
   (add-to-list 'company-backends 'company-omnisharp))
 
 ;; Lua
@@ -327,3 +355,8 @@
 (use-package olivetti)
 
 (use-package rust-mode)
+
+(use-package typo
+  :diminish 'typo-mode
+  :init
+  (add-hook 'text-mode-hook 'typo-mode))

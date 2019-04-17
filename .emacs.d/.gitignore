@@ -5,7 +5,11 @@
 /auto-save-list
 /anaconda-mode
 /irony
+/transient
 recentf
 custom.el
 *.elc
 network-security.data
+bookmarks
+.emacs.desktop
+.emacs.desktop.lock
