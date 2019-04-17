@@ -325,3 +325,5 @@
 (use-package rg)
 
 (use-package olivetti)
+
+(use-package rust-mode)
