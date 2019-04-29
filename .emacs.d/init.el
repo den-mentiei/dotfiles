@@ -24,7 +24,7 @@
 (setq initial-scratch-message "")
 (setq inhibit-splash-screen t)
 
-(setq frame-title-format "emacs: %b")
+(setq frame-title-format "%f")
 
 (tooltip-mode -1)
 (tool-bar-mode -1)
