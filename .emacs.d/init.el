@@ -360,3 +360,5 @@
   :diminish 'typo-mode
   :init
   (add-hook 'text-mode-hook 'typo-mode))
+
+(use-package yaml-mode)
