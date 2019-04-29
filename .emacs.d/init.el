@@ -262,11 +262,21 @@
 
 (use-package lsp-mode)
 
+;; (use-package lsp-ui
+;;   :after lsp-mode
+;;   :init
+;;   (add-hook 'lsp-mode-hook 'lsp-ui-mode))
+
 (use-package company
   :diminish ""
   :init (global-company-mode)
   :config
   (setq company-dabbrev-downcase nil))
+
+(use-package company-lsp
+  :after company
+  :init
+  (add-to-list 'company-backends 'company-lsp))
 
 (use-package magit
   :config
@@ -356,8 +366,6 @@
 
 (use-package olivetti)
 
-(use-package rust-mode)
-
 (use-package typo
   :diminish 'typo-mode
   :init
@@ -367,7 +375,7 @@
 
 ;; Rust
 
-(setq my/rust-analyzer-el "ra-emacs-lsp.el")
+(setq my/rust-analyzer-el "~/.emacs.d/ra-emacs-lsp.el")
 
 (defun my/setup-rust-analyzer ()
   "Setups rust analyzer LSP."
@@ -377,3 +385,16 @@
 
 (when (file-readable-p my/rust-analyzer-el)
   (my/setup-rust-analyzer))
+
+(defun my/rust-settings ()
+  "Bunch of default settings valid for rust-mode"
+  (interactive)
+  (setq tab-width 4)
+  (setq c-basic-offset 4)
+  (setq indent-tabs-mode t)
+  (modify-syntax-entry ?_ "w"))
+
+(use-package rust-mode
+  :init
+  (add-hook 'rust-mode-hook #'lsp)
+  (add-hook 'rust-mode-hook 'my/rust-settings))

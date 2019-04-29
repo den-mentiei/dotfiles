@@ -16,3 +16,5 @@ bookmarks
 # It is usually symlinked to the original repo.
 # Init file handles its absense well.
 ra-emacs-lsp.el
+
+.lsp-session-*
