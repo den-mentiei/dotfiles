@@ -260,6 +260,8 @@
 
 (use-package web-mode)
 
+(use-package lsp-mode)
+
 (use-package company
   :diminish ""
   :init (global-company-mode)
@@ -362,3 +364,16 @@
   (add-hook 'text-mode-hook 'typo-mode))
 
 (use-package yaml-mode)
+
+;; Rust
+
+(setq my/rust-analyzer-el "ra-emacs-lsp.el")
+
+(defun my/setup-rust-analyzer ()
+  "Setups rust analyzer LSP."
+  (use-package dash)
+  (use-package ht)
+  (load-file my/rust-analyzer-el))
+
+(when (file-readable-p my/rust-analyzer-el)
+  (my/setup-rust-analyzer))
