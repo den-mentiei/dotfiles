@@ -398,3 +398,8 @@
   :init
   (add-hook 'rust-mode-hook #'lsp)
   (add-hook 'rust-mode-hook 'my/rust-settings))
+
+(use-package yasnippet
+  :diminish 'yas-minor-mode
+  :init
+  (yas-global-mode 1))
