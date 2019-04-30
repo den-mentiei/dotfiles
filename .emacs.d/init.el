@@ -262,7 +262,11 @@
 
 (use-package web-mode)
 
-(use-package lsp-mode)
+(use-package lsp-mode
+  :config
+  (setq lsp-enable-snippet t)
+  (setq lsp-enable-xref t)
+  (setq lsp-prefer-flymake :none))
 
 ;; (use-package lsp-ui
 ;;   :after lsp-mode
@@ -277,10 +281,6 @@
 
 (use-package company-lsp
   :after company
-  :config
-  (setq lsp-enable-snippet t)
-  (setq lsp-enable-xref t)
-  (setq lsp-prefer-flymake :none)
   :init
   (add-to-list 'company-backends 'company-lsp))
 
