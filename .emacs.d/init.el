@@ -235,7 +235,7 @@
   (setq solarized-use-less-bold t)
   (setq solarized-use-variable-pitch nil)
   (setq solarized-scale-org-headlines nil)
-  (load-theme 'solarized-light t))
+  (load-theme 'solarized-dark t))
 
 (use-package counsel
   :diminish counsel-mode
