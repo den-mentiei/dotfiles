@@ -189,7 +189,8 @@
 
 (use-package diminish
   :config
-  (diminish 'eldoc-mode))
+  (diminish 'eldoc-mode)
+  (diminish 'undo-tree-mode))
 
 ;; TODO: Enable or remove it eventually.
 ;; (use-package undo-tree
@@ -198,6 +199,7 @@
 ;;   (global-undo-tree-mode 1))
 
 (use-package org
+  :diminish 'org-indent-mode
   :config
   (setq org-default-notes-file (concat org-directory "/inbox.org"))
 
