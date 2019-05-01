@@ -274,7 +274,7 @@
 ;;   (add-hook 'lsp-mode-hook 'lsp-ui-mode))
 
 (use-package company
-  :diminish ""
+  :diminish 'company-mode
   :init (global-company-mode)
   :config
   (setq company-dabbrev-downcase nil))
