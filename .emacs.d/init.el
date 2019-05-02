@@ -297,6 +297,18 @@
   (setq ivy-use-virtual-buffers t)
   (setq ivy-count-format "(%d/%d) "))
 
+(use-package ivy-posframe
+  :after ivy
+  :config
+  (setq ivy-display-function #'ivy-posframe-display-at-window-center)
+  (setq ivy-posframe-parameters
+		'((top-fringe . 8)
+		  (bottom-fringe . 8)
+		  (left-fringe . 8)
+		  (right-fringe . 8)))
+  :init
+  (ivy-posframe-enable))
+
 (use-package writeroom-mode)
 
 (use-package avy)
