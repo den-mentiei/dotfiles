@@ -151,6 +151,54 @@
 ;;   :config
 ;;   (add-hook 'after-init-hook 'benchmark-init/deactivate))
 
+;;; Mode-line
+
+(use-package all-the-icons)
+
+(use-package doom-modeline
+  :config
+  (setq doom-modeline-icon t)
+  (setq doom-modeline-major-mode-icon t)
+  (setq doom-modeline-major-mode-color-icon t)
+  (setq doom-modeline-percent-position nil)
+
+  (doom-modeline-def-modeline 'my/mode-line
+	'(bar modals matches buffer-info buffer-position) '(buffer-encoding vcs lsp))
+
+  (defun my/setup-custom-modeline ()
+	(doom-modeline-set-modeline 'my/mode-line 'default))
+
+  (add-hook 'doom-modeline-mode-hook 'my/setup-custom-modeline)
+
+  :hook
+  (after-init . doom-modeline-mode))
+
+(force-mode-line-update t)
+
+;; (setq mode-line-format
+;;   '(
+;; 	;; When Emacs is nearly out of memory for Lisp objects, a brief message saying so. Otherwise, this is empty. 
+;; 	"%e"
+;; 	mode-line-front-space
+;; 	;; Encoding/line-endings.
+;; 	;; mode-line-mule-info
+;; 	"%l:%c"
+;; 	" "
+;; 	mode-line-buffer-identification
+;; 	" "
+;; 	mode-name
+;; 	" "
+;; 	mode-line-end-spaces
+;;    ))
+;; (force-mode-line-update t)
+
+(use-package solarized-theme
+  :init
+  (setq solarized-use-less-bold t)
+  (setq solarized-use-variable-pitch nil)
+  (setq solarized-scale-org-headlines nil)
+  (load-theme 'solarized-dark t))
+
 (use-package general)
 
 (use-package evil
@@ -231,13 +279,6 @@
 
   :general
   ("C-c c" 'org-capture))
-
-(use-package solarized-theme
-  :init
-  (setq solarized-use-less-bold t)
-  (setq solarized-use-variable-pitch nil)
-  (setq solarized-scale-org-headlines nil)
-  (load-theme 'solarized-dark t))
 
 (use-package counsel
   :diminish counsel-mode
