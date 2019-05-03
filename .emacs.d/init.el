@@ -1,4 +1,5 @@
-;; -*-no-byte-compile: t; -*-
+;; -*- no-byte-compile: t; -*-
+;; -*- lexical-binding: t; -*-
 
 ;; Done to redirect custom generated code, not using it anyway.
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
