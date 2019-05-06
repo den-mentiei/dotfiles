@@ -14,3 +14,5 @@ unsetopt nomatch
 
 # aliases
 alias please='sudo $(fc -ln -1)'
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
