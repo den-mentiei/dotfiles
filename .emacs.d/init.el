@@ -7,6 +7,8 @@
 
 ;;; Basic stuff
 
+(setq gc-cons-threshold (* 10 1024 1024))
+
 (setq user-full-name "Denys Mentiei")
 (setq user-mail-address "endden@gmail.com")
 
