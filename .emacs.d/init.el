@@ -19,6 +19,8 @@
 (set-language-environment "UTF-8")
 (prefer-coding-system 'utf-8)
 
+(setq x-underline-at-descent-line t)
+
 ; ask "y"/"n" instead of "yes"/"no"
 (defalias 'yes-or-no-p 'y-or-n-p)
 
@@ -84,9 +86,9 @@
 ; 0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ {} <> "'`  ~-_/|\?
 (cond
   ((find-font (font-spec :name "Fira Code"))
-   (set-frame-font "Fira Code-10"))
+   (set-frame-font "Fira Code Light-10"))
   ((find-font (font-spec :name "DejaVu Sans Mono"))
-   (set-frame-font "DejaVu Sans Mono-12")))
+   (set-frame-font "DejaVu Sans Mono-10")))
 
 (require 'dired)
 (setq dired-recursive-deletes 'top)
