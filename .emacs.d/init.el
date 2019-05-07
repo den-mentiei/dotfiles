@@ -351,6 +351,7 @@
   :config
   ; Disables the automatic diff show-off of the changes about to commit.
   (remove-hook 'server-switch-hook 'magit-commit-diff)
+  (setq vc-handled-backends nil)
   (general-define-key "C-x g" 'magit-status))
 
 ;; Elm
@@ -380,34 +381,34 @@
 
 ;; C/C++
 
-(use-package irony
-  :diminish irony-mode
-  :config
-  (when (and (my/win-p) (boundp 'w32-pipe-buffer-size))
-	(setq irony-server-w32-pipe-buffer-size (* 64 1024)))
-  :init
-  (add-hook 'c-mode-hook 'irony-mode)
-  (add-hook 'c++-mode-hook 'irony-mode)
-  (add-hook 'objc-mode-hook 'irony-mode)
-  (add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options))
+;; (use-package irony
+;;   :diminish irony-mode
+;;   :config
+;;   (when (and (my/win-p) (boundp 'w32-pipe-buffer-size))
+;; 	(setq irony-server-w32-pipe-buffer-size (* 64 1024)))
+;;   :init
+;;   (add-hook 'c-mode-hook 'irony-mode)
+;;   (add-hook 'c++-mode-hook 'irony-mode)
+;;   (add-hook 'objc-mode-hook 'irony-mode)
+;;   (add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options))
 
-(use-package company-irony-c-headers
-  :after irony
-  :init
-  (add-to-list 'company-backends 'company-irony-c-headers))
+;; (use-package company-irony-c-headers
+;;   :after irony
+;;   :init
+;;   (add-to-list 'company-backends 'company-irony-c-headers))
 
-(use-package company-irony
-  :after (irony company)
-  :init
-  (add-to-list 'company-backends 'company-irony))
+;; (use-package company-irony
+;;   :after (irony company)
+;;   :init
+;;   (add-to-list 'company-backends 'company-irony))
 
 ;; C#
 
-(use-package omnisharp
-  :after company
-  :init
-  (add-hook 'csharp-mode-hook 'omnisharp-mode)
-  (add-to-list 'company-backends 'company-omnisharp))
+;; (use-package omnisharp
+;;   :after company
+;;   :init
+;;   (add-hook 'csharp-mode-hook 'omnisharp-mode)
+;;   (add-to-list 'company-backends 'company-omnisharp))
 
 ;; Lua
 
