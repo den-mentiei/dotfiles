@@ -213,6 +213,10 @@
 
 (use-package general)
 
+(use-package hydra
+  :init
+  (use-package use-package-hydra))
+
 (use-package evil
   :config
   (setq evil-echo-state nil)
