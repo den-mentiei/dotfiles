@@ -264,6 +264,14 @@
 ;;   :config
 ;;   (global-undo-tree-mode 1))
 
+(use-package which-key
+  :diminish 'which-key-mode
+  :init
+  (setq which-key-separator " ")
+  (setq which-key-prefix-prefix "+")
+  :config
+  (which-key-mode 1))
+
 (use-package org
   :diminish 'org-indent-mode
   :config
