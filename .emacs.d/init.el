@@ -426,8 +426,7 @@
   :init
   (add-hook 'lua-mode-hook 'my/lua-mode))
 
-(use-package fzf
-  :if (my/macos-p))
+(use-package fzf)
 
 (use-package exec-path-from-shell
   :if (memq window-system '(mac ns x))
