@@ -310,21 +310,30 @@
   ("C-c c" 'org-capture))
 
 (use-package counsel
+  :after ivy
   :diminish counsel-mode
   :init
   (counsel-mode 1))
 
 (use-package swiper
+  :after ivy
+  :config
+  (ivy-set-occur 'swiper-isearch 'swiper-occur)
   :general
-  ("C-s" 'swiper))
+  ("C-s" 'swiper-isearch))
 
 (use-package ivy
   :diminish ivy-mode
   :init
   (ivy-mode 1)
   :config
+  (setq enable-recursive-minibuffers t)
   (setq ivy-use-virtual-buffers t)
-  (setq ivy-count-format "(%d/%d) "))
+  (setq ivy-height 16)
+  ;;; No regexes by default.
+  (setq ivy-initial-inputs-alist nil)
+  (setq ivy-count-format "(%d/%d) ")
+  (setq ivy-extra-directories nil))
 
 (use-package ivy-posframe
   :after ivy
