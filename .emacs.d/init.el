@@ -338,7 +338,26 @@
   :init
   (ivy-posframe-enable))
 
-(use-package writeroom-mode)
+(use-package writeroom-mode
+  :after hydra
+  :bind (:map writeroom-mode-map ("<f2>" . hydra/writeroom/body))
+  :hydra
+  (hydra/writeroom
+    (:color blue :hint nil)
+"
+Welcome to writeroom!
+---------------------
+
+^Toggles^                  ^Width^
+
+_m_ toggle fullscreen      _j_ increase
+_q_ disable                _k_ decrease
+"
+	("f" writeroom-set-fullscreen)
+	("m" writeroom-toggle-mode-line)
+    ("j" writeroom-decrease-width)
+    ("k" writeroom-increase-width)
+	("q" writeroom-mode)))
 
 (use-package avy)
 
