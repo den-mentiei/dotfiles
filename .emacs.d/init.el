@@ -243,6 +243,10 @@
 (use-package general)
 
 (use-package hydra
+  :config
+  ;;; TODO: Customize border/bg/fringes via
+  ;;; https://github.com/abo-abo/hydra/blob/master/hydra.el#L227
+  (setq hydra-hint-display-type 'posframe)
   :init
   (use-package use-package-hydra))
 
