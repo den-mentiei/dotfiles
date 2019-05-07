@@ -197,25 +197,6 @@
   :hook
   (after-init . doom-modeline-mode))
 
-(force-mode-line-update t)
-
-;; (setq mode-line-format
-;;   '(
-;; 	;; When Emacs is nearly out of memory for Lisp objects, a brief message saying so. Otherwise, this is empty.
-;; 	"%e"
-;; 	mode-line-front-space
-;; 	;; Encoding/line-endings.
-;; 	;; mode-line-mule-info
-;; 	"%l:%c"
-;; 	" "
-;; 	mode-line-buffer-identification
-;; 	" "
-;; 	mode-name
-;; 	" "
-;; 	mode-line-end-spaces
-;;    ))
-;; (force-mode-line-update t)
-
 (defun my-solarized-theme ()
   "My solarized child theme."
   (custom-theme-set-faces
