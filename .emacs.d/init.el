@@ -122,6 +122,18 @@
   (interactive)
   (kill-buffer (buffer-name)))
 
+(defun my/show-installed-packages ()
+  "Shows installed non-builtin packages."
+  (interactive)
+  (package-refresh-contents)
+  (package-show-package-list
+    (remove-if-not
+   	  (lambda (x)
+		(and
+		  (package-installed-p x)
+		  (not (package-built-in-p x))))
+	  (mapcar 'car package-archive-contents))))
+
 (defun my/cc-settings ()
   "Bunch of default settings valid for C-mode"
   (interactive)
