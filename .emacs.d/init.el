@@ -241,7 +241,9 @@
   "o"   'ff-find-other-file
   "s"   'save-buffer
   "i"   'imenu
-  "e i" 'my/find-user-init-file)
+  "e i" 'my/find-user-init-file
+  "r"   'rg
+  "w"   'writeroom-mode)
 
 (my/leader-def
   :states 'visual
@@ -436,7 +438,6 @@
 
 (use-package rg)
 
-(use-package olivetti)
 
 (use-package typo
   :diminish 'typo-mode
