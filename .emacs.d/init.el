@@ -435,8 +435,11 @@
 
 (use-package markdown-mode)
 
-(use-package rg)
-
+(use-package rg
+  :config
+  (setq rg-hide-command t)
+  (setq rg-group-result t)
+  (rg-define-toggle "--context 3" (kbd "C-c c")))
 
 (use-package typo
   :diminish 'typo-mode
