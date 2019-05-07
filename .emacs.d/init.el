@@ -19,8 +19,6 @@
 (set-language-environment "UTF-8")
 (prefer-coding-system 'utf-8)
 
-(setq x-underline-at-descent-line t)
-
 ; ask "y"/"n" instead of "yes"/"no"
 (defalias 'yes-or-no-p 'y-or-n-p)
 
@@ -218,12 +216,48 @@
 ;;    ))
 ;; (force-mode-line-update t)
 
+(defun my-solarized-theme ()
+  "My solarized child theme."
+  (custom-theme-set-faces
+    theme-name
+
+	`(mode-line
+	  ((,class (:inverse-video unspecified
+							   :overline nil
+							   :underline nil
+							   :foreground ,s-mode-line-fg
+							   :background ,s-mode-line-bg
+							   :box (:line-width 1
+									 :color ,s-mode-line-bg
+									 :style unspecified)))))
+
+	`(mode-line-buffer-id ((,class (:foreground ,s-mode-line-buffer-id-fg :weight bold))))
+
+	`(mode-line-inactive
+	  ((,class (:inverse-video unspecified
+							   :overline nil
+							   :underline nil
+							   :foreground ,s-mode-line-inactive-fg
+							   :background ,s-mode-line-inactive-bg
+							   :box (:line-width 1
+									 :color ,s-mode-line-inactive-bg
+									 :style unspecified)))))
+
+	`(doom-modeline-bar ((,class (:background ,green-hc))))
+	`(doom-modeline-inactive-bar ((,class (:background ,s-base1))))
+	))
+
 (use-package solarized-theme
   :init
   (setq solarized-use-less-bold t)
   (setq solarized-use-variable-pitch nil)
   (setq solarized-scale-org-headlines nil)
-  (load-theme 'solarized-dark t))
+  (setq x-underline-at-descent-line t)
+  
+  (require 'solarized)
+  (deftheme my-solarized-dark "The dark variant of the Solarized colour theme")
+  (create-solarized-theme 'dark 'my-solarized-dark 'my-solarized-theme)
+  (provide-theme 'my-solarized-dark))
 
 (use-package general)
 
@@ -510,7 +544,7 @@ _q_ disable                _k_ decrease
 (setq my/rust-analyzer-el "~/.emacs.d/ra-emacs-lsp.el")
 
 (defun my/setup-rust-analyzer ()
-  "Setups rust analyzer LSP."
+  "Setupcustom-theme-set-facescustom-theme-set-facess rust analyzer LSP."
   (use-package dash)
   (use-package ht)
   (load-file my/rust-analyzer-el))
