@@ -385,21 +385,20 @@
   :bind (:map writeroom-mode-map ("<f2>" . hydra/writeroom/body))
   :hydra
   (hydra/writeroom
-    (:color blue :hint nil)
+    (:color red :hint nil)
 "
 Welcome to writeroom!
 ---------------------
 
 ^Toggles^                  ^Width^
 
-_m_ toggle fullscreen      _j_ increase
+_m_ toggle mode-line       _j_ increase
 _q_ disable                _k_ decrease
 "
-	("f" writeroom-set-fullscreen)
-	("m" writeroom-toggle-mode-line)
-    ("j" writeroom-decrease-width)
-    ("k" writeroom-increase-width)
-	("q" writeroom-mode)))
+	("m" writeroom-toggle-mode-line :color pink)
+	("j" writeroom-decrease-width :color pink)
+	("k" writeroom-increase-width :color pink)
+	("q" writeroom-mode :color blue)))
 
 (use-package avy)
 
