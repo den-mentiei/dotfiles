@@ -291,6 +291,9 @@
   ;;; Should help preventing errorous edits.
   (setq org-catch-invisible-edits 'smart)
 
+  ;;; Show *foo* and /foo/ without org markers, just the formatting.
+  (setq org-hide-emphasis-markers t)
+
   :general
   ("C-c c" 'org-capture))
 
