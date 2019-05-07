@@ -78,7 +78,13 @@
 	ad-do-it))
 (ad-activate 'align-regexp)
 
-(add-to-list 'default-frame-alist '(font . "DejaVu Sans Mono-10"))
+; 0123456789abcdefghijklmnopqrstuvwxyz [] () :;,. !@#$^&*
+; 0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ {} <> "'`  ~-_/|\?
+(cond
+  ((find-font (font-spec :name "Fira Code"))
+   (set-frame-font "Fira Code-10"))
+  ((find-font (font-spec :name "DejaVu Sans Mono"))
+   (set-frame-font "DejaVu Sans Mono-12")))
 
 (require 'dired)
 (setq dired-recursive-deletes 'top)
@@ -181,7 +187,7 @@
 
 ;; (setq mode-line-format
 ;;   '(
-;; 	;; When Emacs is nearly out of memory for Lisp objects, a brief message saying so. Otherwise, this is empty. 
+;; 	;; When Emacs is nearly out of memory for Lisp objects, a brief message saying so. Otherwise, this is empty.
 ;; 	"%e"
 ;; 	mode-line-front-space
 ;; 	;; Encoding/line-endings.
