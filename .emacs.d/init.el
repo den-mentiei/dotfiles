@@ -13,6 +13,11 @@
 (setq user-mail-address "endden@gmail.com")
 
 (setq make-backup-files nil)
+(setq backup-by-copying t)
+(setq backup-directory-alist '(("." . "~/.emacs.d/backups")))
+(setq delete-old-versions t)
+(setq version-control t)
+(setq create-lockfiles nil)
 (setq auto-save-default nil)
 
 (define-coding-system-alias 'cp65001 'utf-8)
