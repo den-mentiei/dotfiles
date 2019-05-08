@@ -48,7 +48,7 @@
 (setq-default show-paren-delay 0)
 (show-paren-mode t)
 
-(electric-indent-mode -1)
+;; (electric-indent-mode -1)
 
 (setq search-highlight t)
 
