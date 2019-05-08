@@ -257,6 +257,7 @@
 
 (use-package evil
   :config
+  (setq evil-auto-indent t)
   (setq evil-echo-state nil)
   (setq evil-want-Y-yank-to-eol t)
   (evil-mode 1))
