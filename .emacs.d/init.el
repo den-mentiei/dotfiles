@@ -320,7 +320,6 @@
   :diminish ivy-mode
   :init
   (setq enable-recursive-minibuffers t)
-  (setq ivy-use-virtual-buffers t)
   (setq ivy-height 16)
   ;;; No regexes by default.
   (setq ivy-initial-inputs-alist nil)
@@ -478,7 +477,7 @@ _q_ disable                _k_ decrease
   :config
   (add-hook 'lua-mode-hook 'my/lua-mode))
 
-(use-package fzf)
+(use-package fzf :disabled)
 
 (use-package exec-path-from-shell
   :if (memq window-system '(mac ns x))
