@@ -307,10 +307,14 @@
   (which-key-mode 1))
 
 (use-package org
+  :mode ("\\.org\\'" . org-mode)
+
   :diminish 'org-indent-mode
+
   :config
   (setq org-default-notes-file (concat org-directory "/inbox.org"))
 
+  :init
   (setq org-src-fontify-natively t)
 
   (setq org-M-RET-may-split-line '((item . nil)))
@@ -339,6 +343,8 @@
 
   ;;; Show *foo* and /foo/ without org markers, just the formatting.
   (setq org-hide-emphasis-markers t)
+
+  (setq org-log-done 'time)
 
   :general
   ("C-c c" 'org-capture))
