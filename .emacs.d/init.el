@@ -48,8 +48,6 @@
 (setq-default show-paren-delay 0)
 (show-paren-mode t)
 
-;; (electric-indent-mode -1)
-
 (setq search-highlight t)
 
 (setq-default tab-width 4)
@@ -262,37 +260,6 @@
   (setq evil-want-Y-yank-to-eol t)
   (evil-mode 1))
 
-(defconst my/leader "SPC")
-(general-create-definer my/leader-def :prefix my/leader)
-
-(general-define-key
-  :states 'normal
-  "<left>"  'evil-prev-buffer
-  "<right>" 'evil-next-buffer
-  "C-h"     'windmove-left
-  "C-j"     'windmove-down
-  "C-k"     'windmove-up
-  "C-l"     'windmove-right)
-
-(general-define-key
- :states 'insert
- ;;; TODO:  Live wuth electric-indent or "RET" 'newline-and-indent
-  "C-v" 'evil-paste-after)
-
-(my/leader-def
-  :states 'normal
-  "d"   'my/kill-current-buffer
-  "o"   'ff-find-other-file
-  "s"   'save-buffer
-  "i"   'imenu
-  "e i" 'my/find-user-init-file
-  "r"   'rg
-  "w"   'writeroom-mode)
-
-(my/leader-def
-  :states 'visual
-  "c" 'comment-or-uncomment-region)
-
 (use-package diminish
   :config
   (diminish 'eldoc-mode)
@@ -307,7 +274,7 @@
   (which-key-mode 1))
 
 (use-package org
-  :mode ("\\.org\\'" . org-mode)
+  :mode ("\\.org$" . org-mode)
 
   :diminish 'org-indent-mode
 
@@ -349,6 +316,19 @@
   :general
   ("C-c c" 'org-capture))
 
+(use-package ivy
+  :diminish ivy-mode
+  :init
+  (setq enable-recursive-minibuffers t)
+  (setq ivy-use-virtual-buffers t)
+  (setq ivy-height 16)
+  ;;; No regexes by default.
+  (setq ivy-initial-inputs-alist nil)
+  (setq ivy-count-format "(%d/%d) ")
+  (setq ivy-extra-directories nil)
+  :config
+  (ivy-mode 1))
+
 (use-package counsel
   :after ivy
   :diminish counsel-mode
@@ -362,29 +342,15 @@
   :general
   ("C-s" 'swiper-isearch))
 
-(use-package ivy
-  :diminish ivy-mode
-  :init
-  (ivy-mode 1)
-  :config
-  (setq enable-recursive-minibuffers t)
-  (setq ivy-use-virtual-buffers t)
-  (setq ivy-height 16)
-  ;;; No regexes by default.
-  (setq ivy-initial-inputs-alist nil)
-  (setq ivy-count-format "(%d/%d) ")
-  (setq ivy-extra-directories nil))
-
 (use-package ivy-posframe
   :after ivy
-  :config
-  (setq ivy-display-function #'ivy-posframe-display-at-window-center)
+  :init
   (setq ivy-posframe-parameters
 		'((top-fringe . 8)
 		  (bottom-fringe . 8)
-		  (left-fringe . 8)
-		  (right-fringe . 8)))
-  :init
+		  (left-fringe . 8)))
+  :config
+  (setq ivy-display-function #'ivy-posframe-display-at-window-center)
   (ivy-posframe-enable))
 
 (use-package writeroom-mode
@@ -412,7 +378,7 @@ _q_ disable                _k_ decrease
 (use-package web-mode)
 
 (use-package lsp-mode
-  :config
+  :init
   (setq lsp-enable-snippet t)
   (setq lsp-enable-xref t)
   (setq lsp-prefer-flymake :none))
@@ -424,13 +390,14 @@ _q_ disable                _k_ decrease
 
 (use-package company
   :diminish 'company-mode
-  :init (global-company-mode)
+  :init
+  (setq company-dabbrev-downcase nil)
   :config
-  (setq company-dabbrev-downcase nil))
+  (global-company-mode))
 
 (use-package company-lsp
   :after company
-  :init
+  :config
   (add-to-list 'company-backends 'company-lsp))
 
 (use-package magit
@@ -443,8 +410,9 @@ _q_ disable                _k_ decrease
 ;; Elm
 
 (use-package elm-mode
+  :mode ("\\.elm$" . elm-mode)
   :after company
-  :init
+  :config
   (add-to-list 'company-backends 'company-elm))
 
 ;; Python
@@ -455,14 +423,15 @@ _q_ disable                _k_ decrease
   (setq indent-line-function 'insert-tab))
 
 (use-package anaconda-mode
+  :mode ("\\.py$" . anaconda-mode)
   :diminish anaconda-mode
-  :init
+  :config
   (add-hook 'python-mode-hook 'anaconda-mode)
   (add-hook 'python-mode-hook 'my/python-mode))
 
 (use-package company-anaconda
   :after (company anaconda-mode)
-  :init
+  :config
   (add-to-list 'company-backends 'company-anaconda))
 
 ;; C/C++
@@ -505,7 +474,8 @@ _q_ disable                _k_ decrease
   (setq lua-indent-level 4))
 
 (use-package lua-mode
-  :init
+  :mode ("\\.lua$" . lua-mode)
+  :config
   (add-hook 'lua-mode-hook 'my/lua-mode))
 
 (use-package fzf)
@@ -528,7 +498,8 @@ _q_ disable                _k_ decrease
   :init
   (add-hook 'text-mode-hook 'typo-mode))
 
-(use-package yaml-mode)
+(use-package yaml-mode
+  :mode ("\\.yml$". yaml-mode ))
 
 ;; Rust
 
@@ -552,11 +523,45 @@ _q_ disable                _k_ decrease
   (modify-syntax-entry ?_ "w"))
 
 (use-package rust-mode
-  :init
+  :mode ("\\.rs$" . rust-mode)
+  :config
   (add-hook 'rust-mode-hook #'lsp)
   (add-hook 'rust-mode-hook 'my/rust-settings))
 
 (use-package yasnippet
   :diminish 'yas-minor-mode
-  :init
+  :config
   (yas-global-mode 1))
+
+;;; Bindings
+
+(defconst my/leader "SPC")
+(general-create-definer my/leader-def :prefix my/leader)
+
+(general-define-key
+  :states 'normal
+  "<left>"  'evil-prev-buffer
+  "<right>" 'evil-next-buffer
+  "C-h"     'windmove-left
+  "C-j"     'windmove-down
+  "C-k"     'windmove-up
+  "C-l"     'windmove-right)
+
+(general-define-key
+ :states 'insert
+ ;;; TODO:  Live wuth electric-indent or "RET" 'newline-and-indent
+  "C-v" 'evil-paste-after)
+
+(my/leader-def
+  :states 'normal
+  "d"   'my/kill-current-buffer
+  "o"   'ff-find-other-file
+  "s"   'save-buffer
+  "i"   'imenu
+  "e i" 'my/find-user-init-file
+  "r"   'rg
+  "w"   'writeroom-mode)
+
+(my/leader-def
+  :states 'visual
+  "c" 'comment-or-uncomment-region)
