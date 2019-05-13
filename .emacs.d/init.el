@@ -275,8 +275,9 @@
   "C-l"     'windmove-right)
 
 (general-define-key
-  :states 'insert
-  "C-v"   'evil-paste-after)
+ :states 'insert
+ ;;; TODO:  Live wuth electric-indent or "RET" 'newline-and-indent
+  "C-v" 'evil-paste-after)
 
 (my/leader-def
   :states 'normal
@@ -296,12 +297,6 @@
   :config
   (diminish 'eldoc-mode)
   (diminish 'undo-tree-mode))
-
-;; TODO: Enable or remove it eventually.
-;; (use-package undo-tree
-;;   :diminish undo-tree-mode
-;;   :config
-;;   (global-undo-tree-mode 1))
 
 (use-package which-key
   :diminish 'which-key-mode
