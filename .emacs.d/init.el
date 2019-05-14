@@ -316,18 +316,6 @@
   :general
   ("C-c c" 'org-capture))
 
-(use-package ivy
-  :diminish ivy-mode
-  :init
-  (setq enable-recursive-minibuffers t)
-  (setq ivy-height 16)
-  ;;; No regexes by default.
-  (setq ivy-initial-inputs-alist nil)
-  (setq ivy-count-format "(%d/%d) ")
-  (setq ivy-extra-directories nil)
-  :config
-  (ivy-mode 1))
-
 (use-package counsel
   :after ivy
   :diminish counsel-mode
@@ -340,6 +328,18 @@
   (ivy-set-occur 'swiper-isearch 'swiper-occur)
   :general
   ("C-s" 'swiper-isearch))
+
+(use-package ivy
+  :diminish ivy-mode
+  :init
+  (setq enable-recursive-minibuffers t)
+  (setq ivy-height 16)
+  ;;; No regexes by default.
+  (setq ivy-initial-inputs-alist nil)
+  (setq ivy-count-format "(%d/%d) ")
+  (setq ivy-extra-directories nil)
+  :config
+  (ivy-mode 1))
 
 (use-package ivy-posframe
   :after ivy
