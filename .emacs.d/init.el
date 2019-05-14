@@ -320,6 +320,9 @@
   :after ivy
   :diminish counsel-mode
   :init
+  (setq counsel-fzf-cmd "rg --files . | fzf -f \"%s\"")
+  (setq counsel-fzf-dir-function 'vc-root-dir)
+  :config
   (counsel-mode 1))
 
 (use-package swiper
@@ -476,8 +479,6 @@ _q_ disable                _k_ decrease
   :mode ("\\.lua$" . lua-mode)
   :config
   (add-hook 'lua-mode-hook 'my/lua-mode))
-
-(use-package fzf :disabled)
 
 (use-package exec-path-from-shell
   :if (memq window-system '(mac ns x))
