@@ -353,7 +353,7 @@
 		  (left-fringe . 8)))
   :config
   (setq ivy-display-function #'ivy-posframe-display-at-window-center)
-  (ivy-posframe-enable))
+  (ivy-posframe-mode 1))
 
 (use-package writeroom-mode
   :after hydra
