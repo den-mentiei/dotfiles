@@ -1,0 +1,44 @@
+scoop bucket add extras
+scoop bucket add nerd-fonts
+
+scoop install aria2
+scoop install firefox
+scoop install alacritty
+
+sudo scoop install DejaVuSansMono-NF
+sudo scoop install FiraCode-NF
+sudo scoop install FiraMono-NF
+
+scoop install launchy
+
+scoop install rapidee
+
+scoop install flux
+
+scoop install irfanview
+scoop install 7zip
+scoop install vlc
+scoop install wiztree
+scoop install paint.net
+scoop install greenshot
+
+scoop install putty
+
+scoop install git
+scoop install gitextensions
+scoop install p4merge
+
+scoop install emacs
+scoop install vscode
+
+scoop install x64dbg
+scoop install hwmonitor
+scoop install sysinternals
+scoop install fd
+scoop install fzf
+scoop install ripgrep
+scoop install everything
+
+scoop install msbuild-structured-log-viewer
+
+scoop install cpu-z gpu-z
