@@ -30,6 +30,7 @@ scoop install p4merge
 
 scoop install emacs
 scoop install vscode
+scoop install rustup-msvc
 
 scoop install x64dbg
 scoop install hwmonitor
