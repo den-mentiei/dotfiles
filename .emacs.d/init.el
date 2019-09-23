@@ -1,6 +1,8 @@
 ;; -*- no-byte-compile: t; -*-
 ;; -*- lexical-binding: t; -*-
 
+(require 'cl)
+
 ;; Done to redirect custom generated code, not using it anyway.
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
 (load custom-file 'noerror)
