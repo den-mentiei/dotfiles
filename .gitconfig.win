@@ -14,3 +14,5 @@
 	editor = \"C:/Program Files (x86)/GitExtensions/GitExtensions.exe\" fileeditor
 [credential]
 	helper = manager
+[alias]
+	
