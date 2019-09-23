@@ -4,6 +4,7 @@ scoop bucket add nerd-fonts
 scoop install aria2
 scoop install firefox
 scoop install alacritty
+scoop install pwsh
 
 sudo scoop install DejaVuSansMono-NF
 sudo scoop install FiraCode-NF
@@ -15,11 +16,14 @@ scoop install rapidee
 
 scoop install flux
 
-scoop install irfanview
 scoop install 7zip
-scoop install vlc
 scoop install wiztree
 scoop install paint.net
+scoop install irfanview
+scoop install vlc
+scoop install mediainfo-gui
+scoop install graphviz
+scoop install audacity
 scoop install greenshot
 
 scoop install putty
@@ -33,6 +37,8 @@ scoop install vscode
 scoop install rustup-msvc
 
 scoop install x64dbg
+scoop install hxd
+scoop install ilspy
 scoop install hwmonitor
 scoop install sysinternals
 scoop install fd
@@ -43,3 +49,11 @@ scoop install everything
 scoop install msbuild-structured-log-viewer
 
 scoop install cpu-z gpu-z
+
+scoop install xmind8
+
+; CFF is missing!
+scoop install vncviewer
+
+scoop install extras/vcredist2015
+scoop install extras/vcredist2017
