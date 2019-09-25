@@ -22,6 +22,7 @@ scoop install paint.net
 scoop install irfanview
 scoop install vlc
 scoop install mediainfo-gui
+scoop install ffmpeg
 scoop install graphviz
 scoop install audacity
 scoop install greenshot
