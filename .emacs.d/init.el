@@ -542,8 +542,6 @@ _q_ disable                _k_ decrease
 
 (general-define-key
   :states 'normal
-  "<left>"  'evil-prev-buffer
-  "<right>" 'evil-next-buffer
   "C-h"     'windmove-left
   "C-j"     'windmove-down
   "C-k"     'windmove-up
