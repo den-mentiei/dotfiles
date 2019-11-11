@@ -350,11 +350,11 @@
   :after ivy
   :init
   (setq ivy-posframe-parameters
-		'((top-fringe . 8)
+		'((top-fringe    . 8)
 		  (bottom-fringe . 8)
-		  (left-fringe . 8)))
+		  (left-fringe   . 8)))
   :config
-  (setq ivy-display-function #'ivy-posframe-display-at-window-center)
+  (setq ivy-posframe-display-functions-alist '((t . ivy-posframe-display-at-window-center)))
   (ivy-posframe-mode 1))
 
 (use-package writeroom-mode
@@ -549,7 +549,7 @@ _q_ disable                _k_ decrease
 
 (general-define-key
  :states 'insert
- ;;; TODO:  Live wuth electric-indent or "RET" 'newline-and-indent
+ ;;; TODO:  Live with electric-indent or "RET" 'newline-and-indent
   "C-v" 'evil-paste-after)
 
 (my/leader-def
