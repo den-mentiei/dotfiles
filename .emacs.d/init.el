@@ -202,36 +202,35 @@
   :hook
   (after-init . doom-modeline-mode))
 
-(defun my-solarized-theme ()
-  "My solarized child theme."
-  (custom-theme-set-faces
-    theme-name
+(setq my-solarized-faces
+	  '("My solarized theme customization."
+		(custom-theme-set-faces
+		 theme-name
 
-	`(mode-line
-	  ((,class (:inverse-video unspecified
-							   :overline nil
-							   :underline nil
-							   :foreground ,s-mode-line-fg
-							   :background ,s-mode-line-bg
-							   :box (:line-width 1
-									 :color ,s-mode-line-bg
-									 :style unspecified)))))
+		 `(mode-line
+		   ((,class (:inverse-video unspecified
+									:overline nil
+									:underline nil
+									:foreground ,s-mode-line-fg
+									:background ,s-mode-line-bg
+									:box (:line-width 1
+													  :color ,s-mode-line-bg
+													  :style unspecified)))))
 
-	`(mode-line-buffer-id ((,class (:foreground ,s-mode-line-buffer-id-fg :weight bold))))
+		 `(mode-line-buffer-id ((,class (:foreground ,s-mode-line-buffer-id-fg :weight bold))))
 
-	`(mode-line-inactive
-	  ((,class (:inverse-video unspecified
-							   :overline nil
-							   :underline nil
-							   :foreground ,s-mode-line-inactive-fg
-							   :background ,s-mode-line-inactive-bg
-							   :box (:line-width 1
-									 :color ,s-mode-line-inactive-bg
-									 :style unspecified)))))
+		 `(mode-line-inactive
+		   ((,class (:inverse-video unspecified
+									:overline nil
+									:underline nil
+									:foreground ,s-mode-line-inactive-fg
+									:background ,s-mode-line-inactive-bg
+									:box (:line-width 1
+													  :color ,s-mode-line-inactive-bg
+													  :style unspecified)))))
 
-	`(doom-modeline-bar ((,class (:background ,green-hc))))
-	`(doom-modeline-inactive-bar ((,class (:background ,s-base1))))
-	))
+		 `(doom-modeline-bar ((,class (:background ,green-hc))))
+		 `(doom-modeline-inactive-bar ((,class (:background ,s-base1)))))))
 
 (use-package solarized-theme
   :init
@@ -239,11 +238,10 @@
   (setq solarized-use-variable-pitch nil)
   (setq solarized-scale-org-headlines nil)
   (setq x-underline-at-descent-line t)
-  
   (require 'solarized)
-  (deftheme my-solarized-dark "The dark variant of the Solarized colour theme")
-  (create-solarized-theme 'dark 'my-solarized-dark 'my-solarized-theme)
-  (provide-theme 'my-solarized-dark))
+  (eval-when-compile (require 'solarized-palettes))
+  (deftheme my-solarized-dark "The dark varian of the Solarized colour theme.")
+  (solarized-with-color-variables 'dark 'my-solarized-dark solarized-dark-color-palette-alist my-solarized-faces))
 
 (use-package general)
 
