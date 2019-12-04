@@ -1,6 +1,6 @@
 @echo off
-;;
-;; Taken from https://github.com/chocolatey/choco/blob/b6495f72d1f2b9901747d857467c4ed3f7306391/src/chocolatey.resources/redirects/RefreshEnv.cmd
+::
+:: Taken from https://github.com/chocolatey/choco/blob/b6495f72d1f2b9901747d857467c4ed3f7306391/src/chocolatey.resources/redirects/RefreshEnv.cmd
 ::
 :: RefreshEnv.cmd
 ::
