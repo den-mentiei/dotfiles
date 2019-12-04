@@ -3,7 +3,7 @@ ZSH_CUSTOM=$HOME/.zsh_customs
 
 ZSH_THEME="amuse-mod"
  
-plugins=(git command-not-found colored-man-pages encode64 urltools ssh-agent)
+plugins=(git command-not-found colored-man-pages encode64 urltools ssh-agent archlinux)
 
 source $ZSH/oh-my-zsh.sh
 
