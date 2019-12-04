@@ -60,3 +60,5 @@ scoop install extras/vcredist2015
 scoop install extras/vcredist2017
 
 scoop install codetrack
+
+scoop install archwsl
