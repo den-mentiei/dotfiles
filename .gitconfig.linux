@@ -1,2 +1,4 @@
 [include]
 	path = .gitconfig.base
+[core]
+	autocrlf = input
