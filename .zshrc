@@ -16,3 +16,5 @@ unsetopt nomatch
 alias please='sudo $(fc -ln -1)'
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+[ -f ~/.config/broot/launcher/bash/br ] && source ~/.config/broot/launcher/bash/br
