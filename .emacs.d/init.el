@@ -506,7 +506,7 @@ _q_ disable                _k_ decrease
 (setq my/rust-analyzer-el "~/.emacs.d/ra-emacs-lsp.el")
 
 (defun my/setup-rust-analyzer ()
-  "Setupcustom-theme-set-facescustom-theme-set-facess rust analyzer LSP."
+  "Sets up the rust analyzer LSP."
   (use-package dash)
   (use-package ht)
   (load-file my/rust-analyzer-el))
