@@ -525,7 +525,7 @@ _q_ disable                _k_ decrease
 (use-package rust-mode
   :mode ("\\.rs$" . rust-mode)
   :config
-  (add-hook 'rust-mode-hook #'lsp)
+  ;; (add-hook 'rust-mode-hook #'lsp)
   (add-hook 'rust-mode-hook 'my/rust-settings))
 
 (use-package yasnippet
@@ -548,7 +548,7 @@ _q_ disable                _k_ decrease
 (general-define-key
  :states 'insert
  ;;; TODO:  Live with electric-indent or "RET" 'newline-and-indent
-  "C-v" 'evil-paste-after)
+  "C-v" 'evil-paste-before)
 
 (my/leader-def
   :states 'normal
