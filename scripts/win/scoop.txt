@@ -62,3 +62,7 @@ scoop install extras/vcredist2017
 scoop install codetrack
 
 scoop install archwsl
+
+scoop install dnspy
+
+scoop install stack
