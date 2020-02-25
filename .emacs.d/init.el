@@ -528,10 +528,25 @@ _q_ disable                _k_ decrease
   ;; (add-hook 'rust-mode-hook #'lsp)
   (add-hook 'rust-mode-hook 'my/rust-settings))
 
-(use-package yasnippet
-  :diminish 'yas-minor-mode
+;; Haskell
+
+(defun my/haskell-settings ()
+  (setq tab-width 4)
+  (setq indent-tabs-mode t)
+  (setq indent-line-function 'insert-tab))
+
+(use-package haskell-mode
+  :mode ("\\.hs\\'" "\\.lhs\\'" "\\.hsc\\'" "\\.cpphs\\'" "\\.c2hs\\'")
   :config
-  (yas-global-mode 1))
+  (add-hook 'haskell-mode-hook 'my/haskell-settings)
+  (setq haskell-compile-cabal-build-command "stack build"))
+
+;; Etc
+
+;; (use-package yasnippet
+;;   :diminish 'yas-minor-mode
+;;   :config
+;;   (yas-global-mode 1))
 
 ;;; Bindings
 
