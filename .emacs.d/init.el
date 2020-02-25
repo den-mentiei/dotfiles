@@ -379,11 +379,11 @@ _q_ disable                _k_ decrease
 
 (use-package web-mode)
 
-(use-package lsp-mode
-  :init
-  (setq lsp-enable-snippet t)
-  (setq lsp-enable-xref t)
-  (setq lsp-prefer-flymake :none))
+;; (use-package lsp-mode
+;;   :init
+;;   (setq lsp-enable-snippet t)
+;;   (setq lsp-enable-xref t)
+;;   (setq lsp-prefer-flymake :none))
 
 ;; (use-package lsp-ui
 ;;   :after lsp-mode
