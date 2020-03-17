@@ -530,15 +530,9 @@ _q_ disable                _k_ decrease
 
 ;; Haskell
 
-(defun my/haskell-settings ()
-  (setq tab-width 4)
-  (setq indent-tabs-mode t)
-  (setq indent-line-function 'insert-tab))
-
 (use-package haskell-mode
   :mode ("\\.hs\\'" "\\.lhs\\'" "\\.hsc\\'" "\\.cpphs\\'" "\\.c2hs\\'")
   :config
-  (add-hook 'haskell-mode-hook 'my/haskell-settings)
   (setq haskell-compile-cabal-build-command "stack build"))
 
 ;; Etc
