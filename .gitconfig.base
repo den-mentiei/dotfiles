@@ -2,7 +2,12 @@
 	name = Denys Mentiei
 	email = endden@gmail.com
 [core]
-	editor = vim
 	excludesfile = ~/.gitignore
 [push]
 	default = simple
+[pull]
+	rebase = true
+[fetch]
+	prune = true
+[rebase]
+	autoStash = false
