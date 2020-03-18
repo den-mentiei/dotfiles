@@ -85,6 +85,9 @@
 	ad-do-it))
 (ad-activate 'align-regexp)
 
+;; Do not resize the frame when font size is changed.
+(add-to-list 'frame-inhibit-implied-resize 'font)
+
 ; 0123456789abcdefghijklmnopqrstuvwxyz [] () :;,. !@#$^&*
 ; 0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ {} <> "'`  ~-_/|\?
 (cond
