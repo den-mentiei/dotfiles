@@ -25,6 +25,13 @@
 (define-coding-system-alias 'cp65001 'utf-8)
 (set-language-environment "UTF-8")
 (prefer-coding-system 'utf-8)
+(setq locale-coding-system 'utf-8)
+(set-terminal-coding-system 'utf-8)
+(set-keyboard-coding-system 'utf-8)
+(set-selection-coding-system 'utf-8)
+(prefer-coding-system 'utf-8)
+(when (display-graphic-p)
+   (setq x-select-request-type '(UTF8_STRING COMPOUND_TEXT TEXT STRING)))
 
 ; ask "y"/"n" instead of "yes"/"no"
 (defalias 'yes-or-no-p 'y-or-n-p)
