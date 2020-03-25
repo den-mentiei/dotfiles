@@ -105,6 +105,9 @@
 (require 'dired)
 (setq dired-recursive-deletes 'top)
 
+;; Trust all themes.
+(setq custom-safe-themes t)
+
 ;;; Functions
 
 (defun my/win-p ()
@@ -154,6 +157,7 @@
   (setq indent-tabs-mode t)
   (modify-syntax-entry ?_ "w"))
 
+;; Trying to make win performance better :(
 (when (and (my/win-p) (boundp 'w32-pipe-read-delay))
   (setq w32-pipe-read-delay 0))
 
