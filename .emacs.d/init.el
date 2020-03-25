@@ -377,7 +377,10 @@ _q_ disable                _k_ decrease
   ; Disables the automatic diff show-off of the changes about to commit.
   (remove-hook 'server-switch-hook 'magit-commit-diff)
   (setq vc-handled-backends '(git))
-  (general-define-key "C-x g" 'magit-status))
+  (evil-set-initial-state 'magit-log-edit-mode 'insert)
+  (add-hook 'git-commit-mode-hook 'evil-insert-state)
+  :general
+  ("C-x g" 'magit-status))
 
 ;; Elm
 
