@@ -284,7 +284,7 @@
   (setq org-hide-leading-stars t)
   (setq org-startup-indented t)
   (setq org-indent-indentation-per-level 1)
-  (setq org-startup-folded 'showall)
+  (setq org-startup-folded 'content)
   (setq org-export-backends '(ascii html latex md))
   ;;; Display entities like \alpha, \tilde, etc. via corresponding UTF-8 symbols.
   (setq org-pretty-entities t)
