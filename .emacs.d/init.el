@@ -155,14 +155,6 @@
   (setq indent-tabs-mode t)
   (modify-syntax-entry ?_ "w"))
 
-;;; TODO: Spelling
-
-;; (setq ispell-program-name "hunspell")
-;; (setq ispell-dictionary "en_US")
-
-;; (add-hook 'text-mode-hook 'flyspell-mode)
-;; (add-hook 'prog-mode-hook 'flyspell-prog-mode)
-
 (when (and (my/win-p) (boundp 'w32-pipe-read-delay))
   (setq w32-pipe-read-delay 0))
 
@@ -184,11 +176,6 @@
 (eval-when-compile
   (require 'use-package))
 (setq use-package-always-ensure t)
-
-;; (use-package benchmark-init
-;;   :ensure t
-;;   :config
-;;   (add-hook 'after-init-hook 'benchmark-init/deactivate))
 
 ;;; Mode-line
 
@@ -277,10 +264,9 @@
 
 (use-package which-key
   :diminish 'which-key-mode
-  :init
+  :config
   (setq which-key-separator " ")
   (setq which-key-prefix-prefix "+")
-  :config
   (which-key-mode 1))
 
 (use-package org
@@ -291,7 +277,6 @@
   :config
   (setq org-default-notes-file (concat org-directory "/inbox.org"))
 
-  :init
   (setq org-src-fontify-natively t)
 
   (setq org-M-RET-may-split-line '((item . nil)))
@@ -329,10 +314,9 @@
 (use-package counsel
   :after ivy
   :diminish counsel-mode
-  :init
+  :config
   (setq counsel-fzf-cmd "rg --files . | fzf -f \"%s\"")
   (setq counsel-fzf-dir-function 'vc-root-dir)
-  :config
   (counsel-mode 1))
 
 (use-package swiper
@@ -344,24 +328,22 @@
 
 (use-package ivy
   :diminish ivy-mode
-  :init
+  :config
   (setq enable-recursive-minibuffers t)
   (setq ivy-height 16)
   ;;; No regexes by default.
   (setq ivy-initial-inputs-alist nil)
   (setq ivy-count-format "(%d/%d) ")
   (setq ivy-extra-directories nil)
-  :config
   (ivy-mode 1))
 
 (use-package ivy-posframe
   :after ivy
-  :init
+  :config
   (setq ivy-posframe-parameters
 		'((top-fringe    . 8)
 		  (bottom-fringe . 8)
 		  (left-fringe   . 8)))
-  :config
   (setq ivy-posframe-display-functions-alist '((t . ivy-posframe-display-at-window-center)))
   (ivy-posframe-mode 1))
 
@@ -385,20 +367,8 @@ _q_ disable                _k_ decrease
 	("k" writeroom-increase-width :color pink)
 	("q" writeroom-mode :color blue)))
 
-(use-package avy)
-
-(use-package web-mode)
-
-;; (use-package lsp-mode
-;;   :init
-;;   (setq lsp-enable-snippet t)
-;;   (setq lsp-enable-xref t)
-;;   (setq lsp-prefer-flymake :none))
-
-;; (use-package lsp-ui
-;;   :after lsp-mode
-;;   :init
-;;   (add-hook 'lsp-mode-hook 'lsp-ui-mode))
+(use-package web-mode
+  :mode ("\\.html?\\'" "\\.css\\'"))
 
 (use-package company
   :diminish 'company-mode
@@ -446,37 +416,6 @@ _q_ disable                _k_ decrease
   :config
   (add-to-list 'company-backends 'company-anaconda))
 
-;; C/C++
-
-;; (use-package irony
-;;   :diminish irony-mode
-;;   :config
-;;   (when (and (my/win-p) (boundp 'w32-pipe-buffer-size))
-;; 	(setq irony-server-w32-pipe-buffer-size (* 64 1024)))
-;;   :init
-;;   (add-hook 'c-mode-hook 'irony-mode)
-;;   (add-hook 'c++-mode-hook 'irony-mode)
-;;   (add-hook 'objc-mode-hook 'irony-mode)
-;;   (add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options))
-
-;; (use-package company-irony-c-headers
-;;   :after irony
-;;   :init
-;;   (add-to-list 'company-backends 'company-irony-c-headers))
-
-;; (use-package company-irony
-;;   :after (irony company)
-;;   :init
-;;   (add-to-list 'company-backends 'company-irony))
-
-;; C#
-
-;; (use-package omnisharp
-;;   :after company
-;;   :init
-;;   (add-hook 'csharp-mode-hook 'omnisharp-mode)
-;;   (add-to-list 'company-backends 'company-omnisharp))
-
 ;; Lua
 
 (defun my/lua-mode ()
@@ -513,17 +452,6 @@ _q_ disable                _k_ decrease
 
 ;; Rust
 
-(setq my/rust-analyzer-el "~/.emacs.d/ra-emacs-lsp.el")
-
-(defun my/setup-rust-analyzer ()
-  "Sets up the rust analyzer LSP."
-  (use-package dash)
-  (use-package ht)
-  (load-file my/rust-analyzer-el))
-
-(when (file-readable-p my/rust-analyzer-el)
-  (my/setup-rust-analyzer))
-
 (defun my/rust-settings ()
   "Bunch of default settings valid for rust-mode"
   (interactive)
@@ -535,7 +463,6 @@ _q_ disable                _k_ decrease
 (use-package rust-mode
   :mode ("\\.rs$" . rust-mode)
   :config
-  ;; (add-hook 'rust-mode-hook #'lsp)
   (add-hook 'rust-mode-hook 'my/rust-settings))
 
 ;; Haskell
@@ -544,13 +471,6 @@ _q_ disable                _k_ decrease
   :mode ("\\.hs\\'" "\\.lhs\\'" "\\.hsc\\'" "\\.cpphs\\'" "\\.c2hs\\'")
   :config
   (setq haskell-compile-cabal-build-command "stack build"))
-
-;; Etc
-
-;; (use-package yasnippet
-;;   :diminish 'yas-minor-mode
-;;   :config
-;;   (yas-global-mode 1))
 
 ;;; Bindings
 
