@@ -460,10 +460,18 @@ _q_ disable                _k_ decrease
 
 ;; Haskell
 
+(defun my/haskell-settings ()
+  "Bunch of default settings valid for haskell-mode"
+  (interactive)
+  (setq tab-width 2)
+  (setq c-basic-offset 2)
+  (setq indent-tabs-mode nil))
+
 (use-package haskell-mode
   :mode ("\\.hs\\'" "\\.lhs\\'" "\\.hsc\\'" "\\.cpphs\\'" "\\.c2hs\\'")
   :config
-  (setq haskell-compile-cabal-build-command "stack build"))
+  (setq haskell-compile-cabal-build-command "stack build")
+  (add-hook 'haskell-mode 'my/haskell-settings))
 
 ;;; Bindings
 
