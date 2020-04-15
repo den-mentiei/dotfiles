@@ -476,6 +476,9 @@ _q_ disable                _k_ decrease
 (use-package dockerfile-mode
   :mode ("Dockerfile\\'"))
 
+(use-package typescript-mode
+  :mode ("\\.ts\\'"))
+
 ;;; Bindings
 
 (defconst my/leader "SPC")
