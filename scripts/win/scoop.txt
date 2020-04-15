@@ -53,7 +53,6 @@ scoop install cpu-z gpu-z
 
 scoop install xmind8
 
-; CFF is missing!
 scoop install vncviewer
 
 scoop install extras/vcredist2015
@@ -66,3 +65,5 @@ scoop install archwsl
 scoop install dnspy
 
 scoop install stack
+
+scoop install docker
