@@ -473,6 +473,9 @@ _q_ disable                _k_ decrease
   (setq haskell-compile-cabal-build-command "stack build")
   (add-hook 'haskell-mode 'my/haskell-settings))
 
+(use-package dockerfile-mode
+  :mode ("Dockerfile\\'"))
+
 ;;; Bindings
 
 (defconst my/leader "SPC")
