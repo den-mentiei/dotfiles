@@ -67,3 +67,5 @@ scoop install dnspy
 scoop install stack
 
 scoop install docker
+
+scoop install ffmpeg
