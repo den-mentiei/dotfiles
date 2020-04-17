@@ -79,9 +79,6 @@
 (setq split-height-threshold nil)
 (setq split-width-threshold 0)
 
-;; Save session by default.
-(desktop-save-mode 1)
-
 ;; Do not warn about defadvice redefinitions.
 (setq ad-redefinition-action 'accept)
 
@@ -377,6 +374,7 @@ _q_ disable                _k_ decrease
   ; Disables the automatic diff show-off of the changes about to commit.
   (remove-hook 'server-switch-hook 'magit-commit-diff)
   (setq vc-handled-backends '(git))
+  (setq magit-display-buffer-function #'magit-display-buffer-fullframe-status-v1)
   (evil-set-initial-state 'magit-log-edit-mode 'insert)
   (add-hook 'git-commit-mode-hook 'evil-insert-state)
   :general
