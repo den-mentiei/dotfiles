@@ -71,3 +71,5 @@ scoop install docker
 scoop install ffmpeg
 
 scoop install hxd
+
+scoop install scc
