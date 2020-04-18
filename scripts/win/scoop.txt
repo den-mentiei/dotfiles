@@ -69,6 +69,7 @@ scoop install stack
 scoop install docker
 
 scoop install ffmpeg
+scoop install mediainfo-gui
 
 scoop install hxd
 
