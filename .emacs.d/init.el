@@ -373,6 +373,7 @@ _q_ disable                _k_ decrease
   :config
   ; Disables the automatic diff show-off of the changes about to commit.
   (remove-hook 'server-switch-hook 'magit-commit-diff)
+  (add-to-list 'magit-no-confirm 'stage-all-changes)
   (setq vc-handled-backends '(git))
   (setq magit-display-buffer-function #'magit-display-buffer-fullframe-status-v1)
   (evil-set-initial-state 'magit-log-edit-mode 'insert)
