@@ -359,8 +359,9 @@ _q_ disable                _k_ decrease
 
 (use-package company
   :diminish 'company-mode
-  :init
-  (setq company-dabbrev-downcase nil)
+  :custom
+  (company-dabbrev-downcase nil)
+  (company-idle-delay 0.1)
   :config
   (global-company-mode))
 
