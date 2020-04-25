@@ -427,7 +427,8 @@ _q_ disable                _k_ decrease
   :config
   (exec-path-from-shell-initialize))
 
-(use-package markdown-mode)
+(use-package markdown-mode
+  :mode ("\\.md\\'"))
 
 (use-package rg
   :config
@@ -441,7 +442,7 @@ _q_ disable                _k_ decrease
   (add-hook 'text-mode-hook 'typo-mode))
 
 (use-package yaml-mode
-  :mode ("\\.yml$". yaml-mode ))
+  :mode ("\\.yml$". yaml-mode))
 
 ;; Rust
 
