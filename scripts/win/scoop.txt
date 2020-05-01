@@ -70,9 +70,9 @@ scoop install docker
 
 scoop install ffmpeg
 scoop install mediainfo-gui
+scoop install graphstudionext
 
 scoop install hxd
-
 scoop install scc
 
 scoop install cffexplorer
