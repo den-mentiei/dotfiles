@@ -77,5 +77,6 @@ scoop install scc
 
 scoop install cffexplorer
 
-
 scoop install nuget-package-explorer
+
+scoop install obs
