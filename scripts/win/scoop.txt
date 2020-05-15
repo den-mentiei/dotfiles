@@ -80,3 +80,5 @@ scoop install cffexplorer
 scoop install nuget-package-explorer
 
 scoop install obs
+
+scoop install perfview
