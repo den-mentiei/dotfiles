@@ -82,3 +82,5 @@ scoop install nuget-package-explorer
 scoop install obs
 
 scoop install perfview
+
+scoop install darktable
