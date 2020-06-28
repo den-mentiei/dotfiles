@@ -84,3 +84,5 @@ scoop install obs
 scoop install perfview
 
 scoop install darktable
+
+scoop install crystaldiskinfo
