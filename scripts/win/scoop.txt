@@ -86,3 +86,5 @@ scoop install perfview
 scoop install darktable
 
 scoop install crystaldiskinfo
+
+scoop install so
