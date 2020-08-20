@@ -88,3 +88,5 @@ scoop install darktable
 scoop install crystaldiskinfo
 
 scoop install so
+
+scoop bottom
