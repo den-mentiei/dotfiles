@@ -483,6 +483,9 @@ _q_ disable                _k_ decrease
 (use-package swift-mode
   :mode ("\\.swift\\'"))
 
+(use-package csharp-mode
+  :mode ("\\.cs\\'"))
+
 ;;; Bindings
 
 (defconst my/leader "SPC")
