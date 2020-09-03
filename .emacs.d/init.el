@@ -480,6 +480,9 @@ _q_ disable                _k_ decrease
 (use-package typescript-mode
   :mode ("\\.ts\\'"))
 
+(use-package swift-mode
+  :mode ("\\.swift\\'"))
+
 ;;; Bindings
 
 (defconst my/leader "SPC")
