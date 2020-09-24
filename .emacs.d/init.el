@@ -398,7 +398,7 @@ _q_ disable                _k_ decrease
   (setq indent-line-function 'insert-tab))
 
 (use-package anaconda-mode
-  :mode ("\\.py$" . anaconda-mode)
+  :mode ("\\.py$" . python-mode)
   :diminish anaconda-mode
   :config
   (add-hook 'python-mode-hook 'anaconda-mode)
