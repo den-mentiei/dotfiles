@@ -90,3 +90,5 @@ scoop install crystaldiskinfo
 scoop install so
 
 scoop bottom
+
+scoop install milton
