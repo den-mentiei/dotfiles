@@ -92,3 +92,5 @@ scoop install so
 scoop bottom
 
 scoop install milton
+
+scoop install postman
