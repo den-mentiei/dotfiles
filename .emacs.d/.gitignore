@@ -6,6 +6,7 @@
 /anaconda-mode
 /irony
 /transient
+/url
 recentf
 custom.el
 *.elc
