@@ -486,6 +486,9 @@ _q_ disable                _k_ decrease
 (use-package csharp-mode
   :mode ("\\.cs\\'"))
 
+(use-package kotlin-mode
+  :mode("\\.kt\\'"))
+
 ;;; Bindings
 
 (defconst my/leader "SPC")
