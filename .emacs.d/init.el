@@ -439,7 +439,7 @@ _q_ disable                _k_ decrease
 (use-package typo
   :diminish 'typo-mode
   :init
-  (add-hook 'text-mode-hook 'typo-mode))
+  (add-hook 'org-mode-hook 'typo-mode))
 
 (use-package yaml-mode
   :mode ("\\.yml$". yaml-mode))
