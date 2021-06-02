@@ -365,11 +365,6 @@ _q_ disable                _k_ decrease
   :config
   (global-company-mode))
 
-(use-package company-lsp
-  :after company
-  :config
-  (add-to-list 'company-backends 'company-lsp))
-
 (use-package magit
   :config
   ; Disables the automatic diff show-off of the changes about to commit.
