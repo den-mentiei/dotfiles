@@ -80,8 +80,8 @@ bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcu
 mode "resize" {
 	# These bindings trigger as soon as I enter the resize mode
 	bindsym h resize shrink width 5 px or 5 ppt
-	bindsym j resize grow height 5 px or 5 ppt
-	bindsym k resize shrink height 5 px or 5 ppt
+	bindsym j resize shrink height 5 px or 5 ppt
+	bindsym k resize grow height 5 px or 5 ppt
 	bindsym l resize grow width 5 px or 5 ppt
 
 	# Back to normal: Enter or Escape.
