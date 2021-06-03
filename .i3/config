@@ -18,11 +18,6 @@ bindsym $mod+q kill
 
 # Start dmenu (a program launcher).
 bindsym $mod+d exec --no-startup-id rofi -fuzzy -show run
-#bindsym $mod+d exec dmenu_run
-# There also is the (new) i3-dmenu-desktop which only displays applications
-# shipping a .desktop file. It is a wrapper around dmenu, so you need that
-# installed.
-# bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
 
 # Screenshotting.
 bindsym Print exec "scrot '%Y-%m-%d-%T.png' -e 'mv $f ~/screenshots/ ; feh ~/screenshots/%Y-%m-%d-%T.png'"
@@ -52,11 +47,11 @@ bindsym $mod+f fullscreen
 #bindsym $mod+Shift+space floating toggle
 
 # Workspaces.
-set $tag1 "1: code"
-set $tag2 "2: www"
-set $tag3 "3: music"
-set $tag4 "4: im"
-set $tag5 "5: etc"
+set $tag1 "1"
+set $tag2 "2"
+set $tag3 "3"
+set $tag4 "4"
+set $tag5 "5"
 
 workspace_auto_back_and_forth yes
 
@@ -102,11 +97,9 @@ client.unfocused #666666 #666666 #ffffff
 client.urgent #aa0000 #990000 #ffffff
 
 # Gaps.
-# TODO: Install i3-gaps and uncomment this.
-#set $default_gaps_inner 12
-#set $default_gaps_outer 0
-#gaps inner $default_gaps_inner
-#gaps outer $default_gaps_outer
+# In order to use gaps, I need to disable window titlebars.
+for_window [class=".*"] border pixel 0
+gaps inner 12
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available).
@@ -130,8 +123,5 @@ bar {
 # Autostart.
 
 exec --no-startup-id compton -CGb
-exec --no-startup-id redshift &
 exec --no-startup-id setxkbmap -layout 'us,ru' -option grp:lctrl_lshift_toggle,grp_led:scroll,ctrl:nocaps -variant 'winkeys'
 exec --no-startup-id feh --bg-fill ~/.i3/wallpaper1.jpg
-exec --no-startup-id gnome-session-manager
-exec --no-startup-id /usr/bin/nm-applet
