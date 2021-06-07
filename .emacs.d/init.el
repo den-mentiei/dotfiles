@@ -498,8 +498,7 @@ _q_ disable                _k_ decrease
 
 (general-define-key
  :states 'insert
- ;;; TODO:  Live with electric-indent or "RET" 'newline-and-indent
-  "C-v" 'evil-paste-before)
+ "C-v" 'evil-paste-before)
 
 (my/leader-def
   :states 'normal
@@ -508,7 +507,8 @@ _q_ disable                _k_ decrease
   "i"   'imenu
   "e i" 'my/find-user-init-file
   "r"   'rg
-  "w"   'writeroom-mode)
+  "w"   'writeroom-mode
+  "p"   'counsel-fzf)
 
 (my/leader-def
   :states 'visual
