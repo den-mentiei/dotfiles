@@ -94,3 +94,5 @@ scoop bottom
 scoop install milton
 
 scoop install postman
+
+scoop install imhex
