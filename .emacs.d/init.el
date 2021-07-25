@@ -355,7 +355,7 @@ _q_ disable                _k_ decrease
 	("q" writeroom-mode :color blue)))
 
 (use-package web-mode
-  :mode ("\\.html?\\'" "\\.css\\'"))
+  :mode ("\\.html?\\'" "\\.css\\'" "\\.tsx\\'"))
 
 (use-package company
   :diminish 'company-mode
