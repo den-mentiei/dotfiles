@@ -6,6 +6,8 @@
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
 (load custom-file 'noerror)
 
+(setq comp-deferred-compilation t)
+
 ;;; Basic stuff
 
 (setq gc-cons-threshold (* 10 1024 1024))
