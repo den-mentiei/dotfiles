@@ -181,6 +181,7 @@
 
 ;;; Mode-line
 
+; Do not forget to call all-the-icons-install-fonts.
 (use-package all-the-icons)
 
 (use-package doom-modeline
