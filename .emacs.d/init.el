@@ -485,7 +485,17 @@ _q_ disable                _k_ decrease
   :mode ("\\.cs\\'"))
 
 (use-package kotlin-mode
-  :mode("\\.kt\\'"))
+  :mode ("\\.kt\\'"))
+
+(use-package solidity-mode
+  :mode ("\\.sol\\'")
+  :config
+  (setq solidity-comment-style 'slash))
+
+(use-package company-solidity
+  :after (company solidity-mode)
+  :config
+  (add-to-list 'company-backends 'company-solidity))
 
 ;;; Bindings
 
