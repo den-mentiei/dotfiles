@@ -492,6 +492,9 @@ _q_ disable                _k_ decrease
   :config
   (setq solidity-comment-style 'slash))
 
+(use-package php-mode
+  :mode ("\\.php\\'"))
+
 (use-package company-solidity
   :after (company solidity-mode)
   :config
