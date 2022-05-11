@@ -519,7 +519,6 @@ _q_ disable                _k_ decrease
 (my/leader-def
   :states 'normal
   "d"   'my/kill-current-buffer
-  "s"   'save-buffer
   "i"   'imenu
   "e i" 'my/find-user-init-file
   "r"   'rg
