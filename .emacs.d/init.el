@@ -500,6 +500,8 @@ _q_ disable                _k_ decrease
   :config
   (add-to-list 'company-backends 'company-solidity))
 
+(use-package eglot)
+
 ;;; Bindings
 
 (defconst my/leader "SPC")
