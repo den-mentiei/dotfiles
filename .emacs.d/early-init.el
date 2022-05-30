@@ -1,9 +1,12 @@
 ;; -*- lexical-binding: t; -*-
 
+;; A lot of this stuff has been taken from the Doom Emacs.
+
 ;; Increase the GC threshold for faster startup.
 ;; Measured in bytes.
-(setq gc-cons-threshold (* 10 1024 1024))
-;; (setq gc-cons-threshold most-positive-fixnum)
+(setq gc-cons-threshold most-positive-fixnum)
+
+(setq package-enable-at-startup nil)
 
 ;; Done to redirect custom generated code, not using it anyway.
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
@@ -39,7 +42,7 @@
   ;; times and in this case happens so early that Emacs may flash
   ;; white while starting up.
   (define-advice load-file (:override (file) silence)
-	(load file nil 'nomessage))
+    (load file nil 'nomessage))
   ;; Undo the `load-file' advice above, to limit the scope of any edge
   ;; cases it may introduce down the road.
   (define-advice startup--load-user-init-file (:before (&rest _) init-doom)

@@ -5,6 +5,9 @@
 		  (lambda ()
 			(message "Emacs loaded in %s." (emacs-init-time))))
 
+;; `early-init.el` set this to a very big number previously.
+(setq gc-cons-threshold (* 10 1024 1024))
+
 ;; That's me.
 (setq user-full-name "Denys Mentiei")
 (setq user-mail-address "endden@gmail.com")
@@ -274,6 +277,7 @@
   (which-key-mode 1))
 
 (use-package vertico
+  :diminish vertico-mode
   :config
   (setq vertico-resize nil)
   (setq vertico-count 16)
@@ -282,6 +286,7 @@
   (vertico-mode))
 
 (use-package vertico-posframe
+  :diminish vertico-posframe-mode
   :after vertico
   :config
   (setq vertico-posframe-parameters
@@ -506,31 +511,12 @@
 ;;   :init
 ;;   (use-package use-package-hydra))
 
-;; (use-package counsel
-;;   :after ivy
-;;   :diminish counsel-mode
-;;   :config
-;;   (setq counsel-fzf-cmd "rg --files . | fzf -f \"%s\"")
-;;   (setq counsel-fzf-dir-function 'vc-root-dir)
-;;   (counsel-mode 1))
-
 ;; (use-package swiper
 ;;   :after ivy
 ;;   :config
 ;;   (ivy-set-occur 'swiper-isearch 'swiper-occur)
 ;;   :general
 ;;   ("C-s" 'swiper-isearch))
-
-;; (use-package ivy
-;;   :diminish ivy-mode
-;;   :config
-;;   (setq enable-recursive-minibuffers t)
-;;   (setq ivy-height 16)
-;;   ;;; No regexes by default.
-;;   (setq ivy-initial-inputs-alist nil)
-;;   (setq ivy-count-format "(%d/%d) ")
-;;   (setq ivy-extra-directories nil)
-;;   (ivy-mode 1))
 
 ;; (use-package ivy-posframe
 ;;   :after ivy
