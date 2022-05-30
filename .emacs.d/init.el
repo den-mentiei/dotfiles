@@ -143,14 +143,6 @@
 		  (not (package-built-in-p x))))
 	  (mapcar 'car package-archive-contents))))
 
-(defun my/default-tab-settings ()
-  "Bunch of default settings valid for prog modes."
-  (interactive)
-  (setq tab-width 4)
-  (setq c-basic-offset 4)
-  (setq indent-tabs-mode t)
-  (modify-syntax-entry ?_ "w"))
-
 ;;; Packages.
 
 (require 'package)
@@ -281,6 +273,48 @@
   :config
   (which-key-mode 1))
 
+(use-package vertico
+  :config
+  (setq vertico-resize nil)
+  (setq vertico-count 16)
+  (setq vertico-cycle t)
+  :init
+  (vertico-mode))
+
+(use-package vertico-posframe
+  :after vertico
+  :config
+  (setq vertico-posframe-parameters
+		'((top-fringe    . 8)
+		  (bottom-fringe . 8)
+		  (left-fringe   . 8)
+		  (border-width . 0)
+		  ))
+  :init
+  (vertico-posframe-mode 1))
+
+(use-package consult
+  :defer t
+  :config
+  ;; Show real line numbers when narrowed.
+  (setq consult-line-numbers-widen t)
+  (setq consult-async-min-input 2)
+  (setq consult-async-refresh-delay 0.15)
+  (setq consult-async-input-throttle 0.2)
+  (setq consult-async-input-debounce 0.1)
+  (setq consult-narrow-key "<")
+  :init
+  (general-def
+	[remap goto-line]                      #'consult-goto-line
+	[remap imenu]                          #'consult-imenu
+	[remap imenu-multi]                    #'consult-imenu-multi
+	[remap load-theme]                     #'consult-theme
+	[remap switch-to-buffer]               #'consult-buffer
+	[remap switch-to-buffer-other-window]  #'consult-buffer-other-window
+	[remap xref-show-xrefs-function]       #'consult-xref
+	[remap xref-show-definitions-function] #'consult-xref)
+  (advice-add #'multi-occur :override #'consult-multi-occur))
+
 (use-package magit
   :config
   ; Disables the automatic diff show-off of the changes about to commit.
@@ -294,7 +328,7 @@
   ("C-x g" 'magit-status))
 
 (use-package org
-  :mode ("\\.org$" . org-mode)
+  :mode ("\\.org\\'" . org-mode)
   :commands (org-capture org-agenda)
   :diminish 'org-indent-mode
   :general
@@ -348,8 +382,16 @@
 ;; Rust.
 (use-package rust-mode
   :mode ("\\.rs\\'" . rust-mode)
+  :config
+  (defun my/rust-settings ()
+	"Bunch of default settings valid for rust-mode."
+	(interactive)
+	(setq tab-width 4)
+	(setq c-basic-offset 4)
+	(setq indent-tabs-mode t)
+	(modify-syntax-entry ?_ "w"))
   :hook
-  (rust-mode . my/default-tab-settings))
+  (rust-mode . my/rust-settings))
 
 ;; Haskell.
 (use-package haskell-mode
@@ -378,9 +420,8 @@
 (use-package kotlin-mode
   :mode ("\\.kt\\'"))
 
-
 (use-package anaconda-mode
-  :mode ("\\.py$" . python-mode)
+  :mode ("\\.py\\'" . python-mode)
   :diminish anaconda-mode
   :config
   (defun my/python-settings ()
@@ -446,6 +487,8 @@
 (my/leader-def
   :states 'normal
   "i"   'imenu
+  "I"   'imenu-multi
+  "r"   'consult-ripgrep
   "e i" 'my/find-user-init-file
   "w"   'writeroom-mode)
 
@@ -455,66 +498,66 @@
 
 ;; OLD =============================
 
-(use-package hydra
-  :config
-  ;;; TODO: Customize border/bg/fringes via
-  ;;; https://github.com/abo-abo/hydra/blob/master/hydra.el#L227
-  (setq hydra-hint-display-type 'posframe)
-  :init
-  (use-package use-package-hydra))
+;; (use-package hydra
+;;   :config
+;;   ;;; TODO: Customize border/bg/fringes via
+;;   ;;; https://github.com/abo-abo/hydra/blob/master/hydra.el#L227
+;;   (setq hydra-hint-display-type 'posframe)
+;;   :init
+;;   (use-package use-package-hydra))
 
-(use-package counsel
-  :after ivy
-  :diminish counsel-mode
-  :config
-  (setq counsel-fzf-cmd "rg --files . | fzf -f \"%s\"")
-  (setq counsel-fzf-dir-function 'vc-root-dir)
-  (counsel-mode 1))
+;; (use-package counsel
+;;   :after ivy
+;;   :diminish counsel-mode
+;;   :config
+;;   (setq counsel-fzf-cmd "rg --files . | fzf -f \"%s\"")
+;;   (setq counsel-fzf-dir-function 'vc-root-dir)
+;;   (counsel-mode 1))
 
-(use-package swiper
-  :after ivy
-  :config
-  (ivy-set-occur 'swiper-isearch 'swiper-occur)
-  :general
-  ("C-s" 'swiper-isearch))
+;; (use-package swiper
+;;   :after ivy
+;;   :config
+;;   (ivy-set-occur 'swiper-isearch 'swiper-occur)
+;;   :general
+;;   ("C-s" 'swiper-isearch))
 
-(use-package ivy
-  :diminish ivy-mode
-  :config
-  (setq enable-recursive-minibuffers t)
-  (setq ivy-height 16)
-  ;;; No regexes by default.
-  (setq ivy-initial-inputs-alist nil)
-  (setq ivy-count-format "(%d/%d) ")
-  (setq ivy-extra-directories nil)
-  (ivy-mode 1))
+;; (use-package ivy
+;;   :diminish ivy-mode
+;;   :config
+;;   (setq enable-recursive-minibuffers t)
+;;   (setq ivy-height 16)
+;;   ;;; No regexes by default.
+;;   (setq ivy-initial-inputs-alist nil)
+;;   (setq ivy-count-format "(%d/%d) ")
+;;   (setq ivy-extra-directories nil)
+;;   (ivy-mode 1))
 
-(use-package ivy-posframe
-  :after ivy
-  :config
-  (setq ivy-posframe-parameters
-		'((top-fringe    . 8)
-		  (bottom-fringe . 8)
-		  (left-fringe   . 8)))
-  (setq ivy-posframe-display-functions-alist '((t . ivy-posframe-display-at-window-center)))
-  (ivy-posframe-mode 1))
+;; (use-package ivy-posframe
+;;   :after ivy
+;;   :config
+;;   (setq ivy-posframe-parameters
+;; 		'((top-fringe    . 8)
+;; 		  (bottom-fringe . 8)
+;; 		  (left-fringe   . 8)))
+;;   (setq ivy-posframe-display-functions-alist '((t . ivy-posframe-display-at-window-center)))
+;;   (ivy-posframe-mode 1))
 
-(use-package writeroom-mode
-  :after hydra
-  :bind (:map writeroom-mode-map ("<f2>" . hydra/writeroom/body))
-  :hydra
-  (hydra/writeroom
-    (:color red :hint nil)
-"
-Welcome to writeroom!
----------------------
+;; (use-package writeroom-mode
+;;   :after hydra
+;;   :bind (:map writeroom-mode-map ("<f2>" . hydra/writeroom/body))
+;;   :hydra
+;;   (hydra/writeroom
+;;     (:color red :hint nil)
+;; "
+;; Welcome to writeroom!
+;; ---------------------
 
-^Toggles^                  ^Width^
+;; ^Toggles^                  ^Width^
 
-_m_ toggle mode-line       _j_ increase
-_q_ disable                _k_ decrease
-"
-	("m" writeroom-toggle-mode-line :color pink)
-	("j" writeroom-decrease-width :color pink)
-	("k" writeroom-increase-width :color pink)
-	("q" writeroom-mode :color blue)))
+;; _m_ toggle mode-line       _j_ increase
+;; _q_ disable                _k_ decrease
+;; "
+;; 	("m" writeroom-toggle-mode-line :color pink)
+;; 	("j" writeroom-decrease-width :color pink)
+;; 	("k" writeroom-increase-width :color pink)
+;; 	("q" writeroom-mode :color blue)))
