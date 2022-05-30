@@ -102,6 +102,11 @@
   ((find-font (font-spec :name "DejaVu Sans Mono"))
    (set-frame-font "DejaVu Sans Mono-11")))
 
+; Hello, 🐈
+; pacman -S noto-fonts-emoji
+(when (member "Noto Color Emoji" (font-family-list))
+  (set-fontset-font t 'symbol (font-spec :family "Noto Color Emoji") nil 'prepend))
+
 (require 'dired)
 (setq dired-recursive-deletes 'top)
 
@@ -502,10 +507,6 @@ _q_ disable                _k_ decrease
   (add-to-list 'company-backends 'company-solidity))
 
 (use-package eglot)
-
-;; Hello, 🐈
-(use-package emojify
-  :hook (after-init . global-emojify-mode))
 
 ;;; Bindings
 
