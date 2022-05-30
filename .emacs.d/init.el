@@ -7,6 +7,7 @@
 (load custom-file 'noerror)
 
 (setq comp-deferred-compilation t)
+(setq native-comp-async-report-warnings-errors 'silent)
 
 ;;; Basic stuff
 
@@ -501,6 +502,10 @@ _q_ disable                _k_ decrease
   (add-to-list 'company-backends 'company-solidity))
 
 (use-package eglot)
+
+;; Hello, 🐈
+(use-package emojify
+  :hook (after-init . global-emojify-mode))
 
 ;;; Bindings
 
