@@ -45,7 +45,7 @@
     (load file nil 'nomessage))
   ;; Undo the `load-file' advice above, to limit the scope of any edge
   ;; cases it may introduce down the road.
-  (define-advice startup--load-user-init-file (:before (&rest _) init-doom)
+  (define-advice startup--load-user-init-file (:before (&rest _) revert-load-file)
     (advice-remove #'load-file #'load-file@silence)))
 
 ;;; Bootstrap

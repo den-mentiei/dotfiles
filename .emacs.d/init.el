@@ -143,7 +143,7 @@
   (interactive)
   (package-refresh-contents)
   (package-show-package-list
-    (remove-if-not
+    (seq-filter
    	  (lambda (x)
 		(and
 		  (package-installed-p x)
@@ -287,11 +287,8 @@
   :init
   (setq vertico-posframe-border-width 1)
   (setq vertico-posframe-parameters
-		'((top-fringe    . 8)
-		  (bottom-fringe . 8)
-		  (left-fringe   . 8)
-		  (border-width . 0)
-		  ))
+		'((left-fringe   . 8)
+		  (right-fringe   . 8)))
   :config
   (vertico-posframe-mode 1))
 
