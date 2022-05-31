@@ -274,13 +274,36 @@
   :config
   (which-key-mode 1))
 
+(use-package orderless
+  :init
+  (setq completion-styles '(orderless basic)))
+
+;; TODO(dmi): @looks Setup highlighting of files vs directories akin
+;; to counsel.
+;; TODO(dmi): @feature Setup consult-ripgrep separate buffer display.
 (use-package vertico
   :init
+  ;; Limit the candidates list.
   (setq vertico-resize nil)
   (setq vertico-count 16)
   (setq vertico-cycle t)
+  ;; Verico integrates nicely!
+  (setq read-file-name-completion-ignore-case t)
+  (setq read-buffer-completion-ignore-case t)
+  (setq completion-ignore-case t)
+  ;; Custom sorting for `find-file'.
+  (defun my/sort-directories-first (files)
+	;; Sort by hsitory position, length and alphabetically.
+	(setq files (vertico-sort-history-alpha files))
+	;; And then move directories to be first.
+	(nconc (seq-filter (lambda (x) (string-suffix-p "/" x)) files)
+		   (seq-remove (lambda (x) (string-suffix-p "/" x)) files)))
+  ;; Configurations per command/completion category.
+  (setq vertico-multiform-categories
+		'((file (vertico-sort-function . my/sort-directories-first))))
   :config
-  (vertico-mode))
+  (vertico-mode)
+  (vertico-multiform-mode))
 
 (use-package vertico-posframe
   :after vertico
@@ -293,6 +316,7 @@
   (vertico-posframe-mode 1))
 
 (use-package consult
+  :after vertico
   :defer t
   :init
   ;; Show real line numbers when narrowed.
