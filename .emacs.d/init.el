@@ -72,6 +72,29 @@
 ;; Shows column number in the modeline.
 (column-number-mode t)
 
+;;; Scrolling
+
+;; 2 columns away and we automagically scroll further one by one.
+(setq hscroll-margin 2)
+(setq hscroll-step 1)
+;; Emacs spends too much effort recentering the screen if you scroll
+;; the cursor more than N lines past window edges (where N is the
+;; settings of `scroll-conservatively'). This is especially slow in
+;; larger files during large-scale scrolling commands. If kept over
+;; 100, the window is never automatically recentered.
+(setq scroll-conservatively 101)
+;; 2 rows away and we automagically scroll further.
+(setq scroll-margin 2)
+;; Point keeps its screen position if the scroll command moved it
+;; vertically out of the window, e.g. when scrolling by full screens.
+(setq scroll-preserve-screen-position t)
+;; Reduce cursor lag by a tiny bit by not auto-adjusting
+;; `window-vscroll' for tall lines.
+(setq auto-window-vscroll nil)
+;; Mouse!
+(setq mouse-wheel-scroll-amount '(2 ((shift) . hscroll)))
+(setq mouse-wheel-scroll-amount-horizontal 2)
+
 ;;; Minibuffer
 
 ;; Allow for minibuffer nesting.
@@ -334,7 +357,8 @@
    ([remap switch-to-buffer]               . consult-buffer)
    ([remap switch-to-buffer-other-window]  . consult-buffer-other-window)
    ([remap xref-show-xrefs-function]       . consult-xref)
-   ([remap xref-show-definitions-function] . consult-xref))
+   ([remap xref-show-definitions-function] . consult-xref)
+   ("C-s"                                  . consult-line))
   :config
   (advice-add #'multi-occur :override #'consult-multi-occur))
 
@@ -524,23 +548,6 @@
 ;;   (setq hydra-hint-display-type 'posframe)
 ;;   :init
 ;;   (use-package use-package-hydra))
-
-;; (use-package swiper
-;;   :after ivy
-;;   :config
-;;   (ivy-set-occur 'swiper-isearch 'swiper-occur)
-;;   :general
-;;   ("C-s" 'swiper-isearch))
-
-;; (use-package ivy-posframe
-;;   :after ivy
-;;   :config
-;;   (setq ivy-posframe-parameters
-;; 		'((top-fringe    . 8)
-;; 		  (bottom-fringe . 8)
-;; 		  (left-fringe   . 8)))
-;;   (setq ivy-posframe-display-functions-alist '((t . ivy-posframe-display-at-window-center)))
-;;   (ivy-posframe-mode 1))
 
 ;; (use-package writeroom-mode
 ;;   :after hydra
