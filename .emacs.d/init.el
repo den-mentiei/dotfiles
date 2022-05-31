@@ -55,6 +55,10 @@
 (setq-default show-paren-delay 0)
 (show-paren-mode t)
 
+;; Help buffer is automatically selected, so it is easier to read and
+;; quickly close it.
+(setq help-window-select t)
+
 ;;; Lines/Columns
 
 ;; Explicitly set to reduce the cost of on-the-fly computation.
@@ -163,6 +167,8 @@
   (package-install 'use-package))
 (eval-when-compile
   (require 'use-package))
+;; Uncomment this and then call `use-package-report'.
+;; (setq use-package-compute-statistics t)
 (setq use-package-always-ensure t)
 
 ;;; Built-ins.
@@ -170,7 +176,7 @@
 (use-package dired
   :ensure nil
   :commands (dired dired-jump)
-  :config
+  :init
   ;; Ask for any top folder to be on the safe side.
   (setq dired-recursive-deletes 'top))
 
@@ -184,27 +190,24 @@
 ;;; Mode-line.
 
 ;; Icons for major-modes, etc.
-;; Do not forget to call `all-the-icons-install-fonts`.
+;; Do not forget to call `all-the-icons-install-fonts'.
 (use-package all-the-icons)
 
 ;; I'm using Doom for now as it looks nice and is pretty lightweight.
 (use-package doom-modeline
-  :config
+  :init
   (setq doom-modeline-icon t)
   (setq doom-modeline-major-mode-icon t)
   (setq doom-modeline-major-mode-color-icon t)
   (setq doom-modeline-percent-position nil)
-
+  :config
   (doom-modeline-def-modeline 'my/mode-line
 	'(bar modals matches buffer-info buffer-position) '(buffer-encoding vcs lsp))
-
   (defun my/setup-custom-modeline ()
 	(doom-modeline-set-modeline 'my/mode-line 'default))
-
-  (add-hook 'doom-modeline-mode-hook 'my/setup-custom-modeline)
-
   :hook
-  (after-init . doom-modeline-mode))
+  ((doom-modeline-mode . my/setup-custom-modeline)
+   (after-init . doom-modeline-mode)))
 
 ;; Solarized theme thing.
 (setq my-solarized-faces
@@ -248,11 +251,6 @@
   (deftheme my-solarized-dark "The dark varian of the Solarized colour theme.")
   (solarized-with-color-variables 'dark 'my-solarized-dark solarized-dark-color-palette-alist my-solarized-faces))
 
-(use-package diminish
-  :config
-  (diminish 'eldoc-mode)
-  (diminish 'undo-tree-mode))
-
 ;; Vim once, Vim forever, dude.
 (use-package evil
   :init
@@ -262,6 +260,7 @@
   (setq evil-auto-indent t)
   (setq evil-echo-state nil)
   (setq evil-want-Y-yank-to-eol t)
+  (setq evil-symbol-word-search t)
   :config
   (evil-mode 1))
 
@@ -269,7 +268,6 @@
   :after evil)
 
 (use-package which-key
-  :diminish 'which-key-mode
   :init
   (setq which-key-separator " ")
   (setq which-key-prefix-prefix "+")
@@ -277,30 +275,29 @@
   (which-key-mode 1))
 
 (use-package vertico
-  :diminish vertico-mode
-  :config
+  :init
   (setq vertico-resize nil)
   (setq vertico-count 16)
   (setq vertico-cycle t)
-  :init
+  :config
   (vertico-mode))
 
 (use-package vertico-posframe
-  :diminish vertico-posframe-mode
   :after vertico
-  :config
+  :init
+  (setq vertico-posframe-border-width 1)
   (setq vertico-posframe-parameters
 		'((top-fringe    . 8)
 		  (bottom-fringe . 8)
 		  (left-fringe   . 8)
 		  (border-width . 0)
 		  ))
-  :init
+  :config
   (vertico-posframe-mode 1))
 
 (use-package consult
   :defer t
-  :config
+  :init
   ;; Show real line numbers when narrowed.
   (setq consult-line-numbers-widen t)
   (setq consult-async-min-input 2)
@@ -308,16 +305,16 @@
   (setq consult-async-input-throttle 0.2)
   (setq consult-async-input-debounce 0.1)
   (setq consult-narrow-key "<")
-  :init
-  (general-def
-	[remap goto-line]                      #'consult-goto-line
-	[remap imenu]                          #'consult-imenu
-	[remap imenu-multi]                    #'consult-imenu-multi
-	[remap load-theme]                     #'consult-theme
-	[remap switch-to-buffer]               #'consult-buffer
-	[remap switch-to-buffer-other-window]  #'consult-buffer-other-window
-	[remap xref-show-xrefs-function]       #'consult-xref
-	[remap xref-show-definitions-function] #'consult-xref)
+  :bind
+  (([remap goto-line]                      . consult-goto-line)
+   ([remap imenu]                          . consult-imenu)
+   ([remap imenu-multi]                    . consult-imenu-multi)
+   ([remap load-theme]                     . consult-theme)
+   ([remap switch-to-buffer]               . consult-buffer)
+   ([remap switch-to-buffer-other-window]  . consult-buffer-other-window)
+   ([remap xref-show-xrefs-function]       . consult-xref)
+   ([remap xref-show-definitions-function] . consult-xref))
+  :config
   (advice-add #'multi-occur :override #'consult-multi-occur))
 
 (use-package magit
@@ -329,19 +326,17 @@
   (setq magit-display-buffer-function #'magit-display-buffer-fullframe-status-v1)
   (evil-set-initial-state 'magit-log-edit-mode 'insert)
   (add-hook 'git-commit-mode-hook 'evil-insert-state)
-  :general
-  ("C-x g" 'magit-status))
+  :bind
+  ("C-x g" . magit-status))
 
 (use-package org
   :mode ("\\.org\\'" . org-mode)
   :commands (org-capture org-agenda)
-  :diminish 'org-indent-mode
-  :general
-  ("C-c c" 'org-capture)
-  :config
+  :bind
+  ("C-c c" . org-capture)
+  :init
   ;; A bit nicer than the default `...`.
   (setq org-ellipsis " ▾")
-  (setq org-default-notes-file (concat org-directory "/inbox.org"))
   (setq org-src-fontify-natively t)
   (setq org-M-RET-may-split-line nil)
   (setq org-hide-leading-stars t)
@@ -366,27 +361,27 @@
 
 ;; Typography things.
 (use-package typo
-  :diminish 'typo-mode
+  :after org-mode
   :hook
   (org-mode . typo-mode))
 
 ;;; Code completion.
 
 (use-package company
-  :diminish 'company-mode
   :custom
   (company-dabbrev-downcase nil)
   (company-idle-delay 0.1)
   :config
   (global-company-mode))
 
-(use-package eglot)
+(use-package eglot
+  :commands eglot)
 
 ;;; File format modes.
 
 ;; Rust.
 (use-package rust-mode
-  :mode ("\\.rs\\'" . rust-mode)
+  :mode ("\\.rs\\'")
   :config
   (defun my/rust-settings ()
 	"Bunch of default settings valid for rust-mode."
@@ -403,7 +398,6 @@
   :mode ("\\.hs\\'" "\\.lhs\\'" "\\.hsc\\'" "\\.cpphs\\'" "\\.c2hs\\'")
   :config
   (setq haskell-compile-cabal-build-command "stack build")
-  :config
   (defun my/haskell-settings ()
 	"Bunch of default settings valid for haskell-mode"
 	(interactive)
@@ -427,7 +421,6 @@
 
 (use-package anaconda-mode
   :mode ("\\.py\\'" . python-mode)
-  :diminish anaconda-mode
   :config
   (defun my/python-settings ()
 	(setq tab-width 4)
@@ -443,14 +436,14 @@
   (add-to-list 'company-backends 'company-anaconda))
 
 (use-package elm-mode
-  :mode ("\\.elm\\'" . elm-mode)
+  :mode ("\\.elm\\'")
   :after company
   :config
   (add-to-list 'company-backends 'company-elm))
 
 (use-package solidity-mode
   :mode ("\\.sol\\'")
-  :config
+  :init
   (setq solidity-comment-style 'slash))
 (use-package company-solidity
   :after (company solidity-mode)
@@ -471,7 +464,7 @@
   :mode ("Dockerfile\\'"))
 
 (use-package yaml-mode
-  :mode ("\\.yml\\'". yaml-mode))
+  :mode ("\\.yml\\'"))
 
 ;;; Bindings.
 
