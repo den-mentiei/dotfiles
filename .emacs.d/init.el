@@ -31,6 +31,14 @@
 (setq frame-title-format "%f - emacs")
 (setq icon-title-format frame-title-format)
 
+;; Defaults fringes.
+(fringe-mode nil)
+;; Leave space to other more important things.
+(setq-default fringes-outside-margins nil)
+(setq-default indicate-buffer-boundaries nil)
+(setq-default indicate-empty-lines nil)
+(setq-default overflow-newline-into-fringe t)
+
 ;; GUIs are inconsistent on different systems and Emacs can handle the
 ;; prompting just fine.
 (setq use-dialog-box nil)
