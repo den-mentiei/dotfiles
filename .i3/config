@@ -115,7 +115,7 @@ bar {
 		urgent_workspace   #aa0000 #990000 #ffffff
 	}
 
-	font pango:DejaVu Sans Mono 10
+	font pango:Fira Code 10
 	position top
 	status_command i3status
 }

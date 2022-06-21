@@ -1,97 +1,18 @@
-;; -*- no-byte-compile: t; lexical-binding: t; -*-
+;; -*- lexical-binding: t; -*-
 
-(require 'cl)
+;; Profile startup time
+(add-hook 'emacs-startup-hook
+		  (lambda ()
+			(message "Emacs loaded in %s." (emacs-init-time))))
 
-;; Done to redirect custom generated code, not using it anyway.
-(setq custom-file (expand-file-name "custom.el" user-emacs-directory))
-(load custom-file 'noerror)
-
-(setq comp-deferred-compilation t)
-
-;;; Basic stuff
-
+;; `early-init.el` set this to a very big number previously.
 (setq gc-cons-threshold (* 10 1024 1024))
 
+;; That's me.
 (setq user-full-name "Denys Mentiei")
 (setq user-mail-address "endden@gmail.com")
 
-(setq make-backup-files nil)
-(setq backup-by-copying t)
-(setq backup-directory-alist '(("." . "~/.emacs.d/backups")))
-(setq delete-old-versions t)
-(setq version-control t)
-(setq create-lockfiles nil)
-(setq auto-save-default nil)
-
-(define-coding-system-alias 'cp65001 'utf-8)
-(set-language-environment "UTF-8")
-(prefer-coding-system 'utf-8)
-(setq locale-coding-system 'utf-8)
-(set-terminal-coding-system 'utf-8)
-(set-keyboard-coding-system 'utf-8)
-(set-selection-coding-system 'utf-8)
-(prefer-coding-system 'utf-8)
-(when (display-graphic-p)
-   (setq x-select-request-type '(UTF8_STRING COMPOUND_TEXT TEXT STRING)))
-
-; ask "y"/"n" instead of "yes"/"no"
-(defalias 'yes-or-no-p 'y-or-n-p)
-
-(setq tags-revert-without-query 1)
-
-(setq initial-scratch-message "")
-(setq inhibit-splash-screen t)
-
-(setq frame-title-format "%f")
-
-(tooltip-mode -1)
-(tool-bar-mode -1)
-(menu-bar-mode -1)
-(scroll-bar-mode -1)
-
-(setq ring-bell-function 'ignore)
-
-(setq use-dialog-box nil)
-
-(setq help-window-select t)
-
-(setq-default show-paren-delay 0)
-(show-paren-mode t)
-
-(setq search-highlight t)
-
-(setq-default tab-width 4)
-(setq-default indent-tabs-mode t)
-(setq-default indent-line-function 'insert-tab)
-
-(setq mouse-wheel-scroll-amount '(1))
-(setq mouse-wheel-follow-mouse 't)
-(setq scroll-conservatively 101)
-(setq scroll-margin 10)
-
-(global-hl-line-mode t)
-(column-number-mode t)
-
-(global-superword-mode 1)
-
-;; Automatically update unmodified buffers whose files have changed.
-(global-auto-revert-mode 1)
-
-;; Enforces horizontal only splits.
-(setq split-height-threshold nil)
-(setq split-width-threshold 0)
-
-;; Do not warn about defadvice redefinitions.
-(setq ad-redefinition-action 'accept)
-
-(defadvice align-regexp (around align-regexp-with-spaces)
-  "Use spaces for aligning as opposed to tabs for indentation."
-  (let ((indent-tabs-mode nil))
-	ad-do-it))
-(ad-activate 'align-regexp)
-
-;; Do not resize the frame when font size is changed.
-(add-to-list 'frame-inhibit-implied-resize 'font)
+;;; General UI/UX
 
 ; 0123456789abcdefghijklmnopqrstuvwxyz [] () :;,. !@#$^&*
 ; 0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ {} <> "'`  ~-_/|\?
@@ -101,25 +22,142 @@
   ((find-font (font-spec :name "DejaVu Sans Mono"))
    (set-frame-font "DejaVu Sans Mono-11")))
 
-(require 'dired)
-(setq dired-recursive-deletes 'top)
+; Hello, 🐈
+; pacman -S noto-fonts-emoji
+(when (member "Noto Color Emoji" (font-family-list))
+  (set-fontset-font t 'symbol (font-spec :family "Noto Color Emoji") nil 'prepend))
 
-;; Trust all themes.
-(setq custom-safe-themes t)
+;; Filename is enough.
+(setq frame-title-format "%f - emacs")
+(setq icon-title-format frame-title-format)
 
-;;; Functions
+;; Defaults fringes.
+(fringe-mode nil)
+;; Leave space to other more important things.
+(setq-default fringes-outside-margins nil)
+(setq-default indicate-buffer-boundaries nil)
+(setq-default indicate-empty-lines nil)
+(setq-default overflow-newline-into-fringe t)
 
-(defun my/win-p ()
-  "Check if a system is running windows."
-  (eq system-type 'windows-nt))
+;; GUIs are inconsistent on different systems and Emacs can handle the
+;; prompting just fine.
+(setq use-dialog-box nil)
+(when (bound-and-true-p tooltip-mode)
+  (tooltip-mode -1))
+(when my/is-linux
+  (setq x-gtk-use-system-tooltips nil))
 
-(defun my/macos-p ()
-  "Check if a system is running macos."
-  (eq system-type 'darwin))
+;; Favor vertical splits over horizontal ones. Monitors are wide,
+;; dude!
+(setq split-width-threshold 0)
+(setq split-height-threshold nil)
 
-(defun my/linux-p ()
-  "Check if a system is running linux."
-  (eq system-type 'gnu/linux))
+;; Simpler buffer names for same base ones.
+(setq uniquify-buffer-name-style 'forward)
+
+;; No bells!
+(setq ring-bell-function #'ignore)
+(setq visual-bell nil)
+
+;; Shows matching parens immediately.
+(setq-default show-paren-delay 0)
+(show-paren-mode t)
+
+;; Help buffer is automatically selected, so it is easier to read and
+;; quickly close it.
+(setq help-window-select t)
+
+;;; Lines/Columns
+
+;; Explicitly set to reduce the cost of on-the-fly computation.
+(setq-default display-line-numbers-width 3)
+
+;; Show absolute numbers for narrowed regions, not to get lost.
+(setq-default display-line-numbers-widen t)
+
+;; Highlights the current line.
+(global-hl-line-mode t)
+;; Shows column number in the modeline.
+(column-number-mode t)
+
+;;; Scrolling
+
+;; 2 columns away and we automagically scroll further one by one.
+(setq hscroll-margin 2)
+(setq hscroll-step 1)
+;; Emacs spends too much effort recentering the screen if you scroll
+;; the cursor more than N lines past window edges (where N is the
+;; settings of `scroll-conservatively'). This is especially slow in
+;; larger files during large-scale scrolling commands. If kept over
+;; 100, the window is never automatically recentered.
+(setq scroll-conservatively 101)
+;; 2 rows away and we automagically scroll further.
+(setq scroll-margin 2)
+;; Point keeps its screen position if the scroll command moved it
+;; vertically out of the window, e.g. when scrolling by full screens.
+(setq scroll-preserve-screen-position t)
+;; Reduce cursor lag by a tiny bit by not auto-adjusting
+;; `window-vscroll' for tall lines.
+(setq auto-window-vscroll nil)
+;; Mouse!
+(setq mouse-wheel-scroll-amount '(2 ((shift) . hscroll)))
+(setq mouse-wheel-scroll-amount-horizontal 2)
+
+;;; Minibuffer
+
+;; Allow for minibuffer nesting.
+(setq enable-recursive-minibuffers t)
+
+;; Show current unfinished key-sequence to see what happens.
+(setq echo-keystrokes 0.02)
+
+;; Ask "y"/"n" instead of "yes"/"no".
+(setq use-short-answers t)
+
+;;; Editor.
+
+;; Disables the warning "X and Y are the same file". Emacs will
+;; redirect to thge existing buffer, anyway.
+(setq find-file-suppress-same-file-warnings t)
+
+;; Automatically update unmodified buffers whose files have changed.
+(global-auto-revert-mode 1)
+
+;; No backups, yolo.
+(setq make-backup-files nil)
+;; Some sensible defaults if backups are ever get enabled.
+(setq backup-by-copying t)
+(setq backup-directory-alist '(("." . "~/.emacs.d/backups")))
+(setq delete-old-versions t)
+(setq version-control t)
+(setq create-lockfiles nil)
+(setq auto-save-default nil)
+
+;;; Formatting.
+
+;; Tabs > spaces. It can be changed on a per-mode basis (or even via
+;; .dir-locals.el) anyway.
+(setq-default tab-width 4)
+(setq-default indent-tabs-mode t)
+(setq-default indent-line-function 'insert-tab)
+
+(defadvice align-regexp (around align-regexp-with-spaces)
+  "Use spaces for aligning as opposed to tabs for indentation."
+  (let ((indent-tabs-mode nil))
+	ad-do-it))
+(ad-activate 'align-regexp)
+
+;; Only indent the line when at the beginning or in existing
+;; indentation.
+(setq-default tab-always-indent nil)
+
+;; All the horizontal splits take the screen real-estate!
+(setq-default fill-column 70)
+
+;; Archaic thing that is no longer a thing.
+(setq sentence-end-double-space nil)
+
+;;; Utilities.
 
 (defun my/find-user-init-file ()
   "Edits the `user-init-file` in another window."
@@ -131,36 +169,19 @@
   (interactive)
   (mapc 'kill-buffer (buffer-list)))
 
-(defun my/kill-current-buffer ()
-  "Kills the current buffer."
-  (interactive)
-  (kill-buffer (buffer-name)))
-
 (defun my/show-installed-packages ()
   "Shows installed non-builtin packages."
   (interactive)
   (package-refresh-contents)
   (package-show-package-list
-    (remove-if-not
+    (seq-filter
    	  (lambda (x)
 		(and
 		  (package-installed-p x)
 		  (not (package-built-in-p x))))
 	  (mapcar 'car package-archive-contents))))
 
-(defun my/cc-settings ()
-  "Bunch of default settings valid for C-mode"
-  (interactive)
-  (setq tab-width 4)
-  (setq c-basic-offset 4)
-  (setq indent-tabs-mode t)
-  (modify-syntax-entry ?_ "w"))
-
-;; Trying to make win performance better :(
-(when (and (my/win-p) (boundp 'w32-pipe-read-delay))
-  (setq w32-pipe-read-delay 0))
-
-;;; Packages
+;;; Packages.
 
 (require 'package)
 
@@ -172,36 +193,54 @@
 (when (not package-archive-contents)
   (package-refresh-contents))
 
+;; Initialize use-package.
 (unless (package-installed-p 'use-package)
-  (package-refresh-contents)
   (package-install 'use-package))
 (eval-when-compile
   (require 'use-package))
+;; Uncomment this and then call `use-package-report'.
+;; (setq use-package-compute-statistics t)
 (setq use-package-always-ensure t)
 
-;;; Mode-line
+;;; Built-ins.
 
-; Do not forget to call all-the-icons-install-fonts.
+(use-package dired
+  :ensure nil
+  :commands (dired dired-jump)
+  :init
+  ;; Ask for any top folder to be on the safe side.
+  (setq dired-recursive-deletes 'top))
+
+;;; Etc.
+
+(use-package exec-path-from-shell
+  :if (memq window-system '(mac ns x))
+  :config
+  (exec-path-from-shell-initialize))
+
+;;; Mode-line.
+
+;; Icons for major-modes, etc.
+;; Do not forget to call `all-the-icons-install-fonts'.
 (use-package all-the-icons)
 
+;; I'm using Doom for now as it looks nice and is pretty lightweight.
 (use-package doom-modeline
-  :config
+  :init
   (setq doom-modeline-icon t)
   (setq doom-modeline-major-mode-icon t)
   (setq doom-modeline-major-mode-color-icon t)
   (setq doom-modeline-percent-position nil)
-
+  :config
   (doom-modeline-def-modeline 'my/mode-line
 	'(bar modals matches buffer-info buffer-position) '(buffer-encoding vcs lsp))
-
   (defun my/setup-custom-modeline ()
 	(doom-modeline-set-modeline 'my/mode-line 'default))
-
-  (add-hook 'doom-modeline-mode-hook 'my/setup-custom-modeline)
-
   :hook
-  (after-init . doom-modeline-mode))
+  ((doom-modeline-mode . my/setup-custom-modeline)
+   (after-init . doom-modeline-mode)))
 
+;; Solarized theme thing.
 (setq my-solarized-faces
 	  '("My solarized theme customization."
 		(custom-theme-set-faces
@@ -243,44 +282,116 @@
   (deftheme my-solarized-dark "The dark varian of the Solarized colour theme.")
   (solarized-with-color-variables 'dark 'my-solarized-dark solarized-dark-color-palette-alist my-solarized-faces))
 
-(use-package general)
-
-(use-package hydra
-  :config
-  ;;; TODO: Customize border/bg/fringes via
-  ;;; https://github.com/abo-abo/hydra/blob/master/hydra.el#L227
-  (setq hydra-hint-display-type 'posframe)
-  :init
-  (use-package use-package-hydra))
-
+;; Vim once, Vim forever, dude.
 (use-package evil
-  :config
+  :init
+  ;; TODO(dmi): @incomplete Use `evil-collection`.
+  ;; (setq evil-want-integration t)
+  (setq evil-want-C-i-jump nil)
   (setq evil-auto-indent t)
   (setq evil-echo-state nil)
   (setq evil-want-Y-yank-to-eol t)
+  (setq evil-symbol-word-search t)
+  :config
   (evil-mode 1))
 
-(use-package diminish
-  :config
-  (diminish 'eldoc-mode)
-  (diminish 'undo-tree-mode))
+(use-package general
+  :after evil)
 
 (use-package which-key
-  :diminish 'which-key-mode
-  :config
+  :init
   (setq which-key-separator " ")
   (setq which-key-prefix-prefix "+")
+  :config
   (which-key-mode 1))
 
-(use-package org
-  :mode ("\\.org$" . org-mode)
-  :diminish 'org-indent-mode
-  :general
-  ("C-c c" 'org-capture)
+(use-package orderless
+  :init
+  (setq completion-styles '(orderless basic)))
+
+;; TODO(dmi): @looks Setup highlighting of files vs directories akin
+;; to counsel.
+;; TODO(dmi): @feature Setup consult-ripgrep separate buffer display.
+(use-package vertico
+  :init
+  ;; Limit the candidates list.
+  (setq vertico-resize nil)
+  (setq vertico-count 16)
+  (setq vertico-cycle t)
+  ;; Verico integrates nicely!
+  (setq read-file-name-completion-ignore-case t)
+  (setq read-buffer-completion-ignore-case t)
+  (setq completion-ignore-case t)
+  ;; Custom sorting for `find-file'.
+  (defun my/sort-directories-first (files)
+	;; Sort by hsitory position, length and alphabetically.
+	(setq files (vertico-sort-history-alpha files))
+	;; And then move directories to be first.
+	(nconc (seq-filter (lambda (x) (string-suffix-p "/" x)) files)
+		   (seq-remove (lambda (x) (string-suffix-p "/" x)) files)))
+  ;; Configurations per command/completion category.
+  (setq vertico-multiform-categories
+		'((file (vertico-sort-function . my/sort-directories-first))))
   :config
-  (setq org-default-notes-file (concat org-directory "/inbox.org"))
+  (vertico-mode)
+  (vertico-multiform-mode))
+
+(use-package vertico-posframe
+  :after vertico
+  :init
+  (setq vertico-posframe-border-width 1)
+  (setq vertico-posframe-parameters
+		'((left-fringe   . 8)
+		  (right-fringe   . 8)))
+  :config
+  (vertico-posframe-mode 1))
+
+(use-package consult
+  :after vertico
+  :defer t
+  :init
+  ;; Show real line numbers when narrowed.
+  (setq consult-line-numbers-widen t)
+  (setq consult-async-min-input 2)
+  (setq consult-async-refresh-delay 0.15)
+  (setq consult-async-input-throttle 0.2)
+  (setq consult-async-input-debounce 0.1)
+  (setq consult-narrow-key "<")
+  :bind
+  (([remap goto-line]                      . consult-goto-line)
+   ([remap imenu]                          . consult-imenu)
+   ([remap imenu-multi]                    . consult-imenu-multi)
+   ([remap load-theme]                     . consult-theme)
+   ([remap switch-to-buffer]               . consult-buffer)
+   ([remap switch-to-buffer-other-window]  . consult-buffer-other-window)
+   ([remap xref-show-xrefs-function]       . consult-xref)
+   ([remap xref-show-definitions-function] . consult-xref)
+   ("C-s"                                  . consult-line))
+  :config
+  (advice-add #'multi-occur :override #'consult-multi-occur))
+
+(use-package magit
+  :config
+  ; Disables the automatic diff show-off of the changes about to commit.
+  (remove-hook 'server-switch-hook 'magit-commit-diff)
+  (add-to-list 'magit-no-confirm 'stage-all-changes)
+  (setq vc-handled-backends '(git))
+  (setq magit-display-buffer-function #'magit-display-buffer-fullframe-status-v1)
+  (evil-set-initial-state 'magit-log-edit-mode 'insert)
+  (add-hook 'git-commit-mode-hook 'evil-insert-state)
+  :bind
+  ("C-x g" . magit-status))
+
+(use-package org
+  :mode ("\\.org\\'" . org-mode)
+  :commands (org-capture org-agenda)
+  :bind
+  ("C-c c" . org-capture)
+  :init
+  ;; A bit nicer than the default `...`.
+  (setq org-ellipsis " ▾")
   (setq org-src-fontify-natively t)
-  (setq org-M-RET-may-split-line '((item . nil)))
+  (setq org-M-RET-may-split-line nil)
   (setq org-hide-leading-stars t)
   (setq org-startup-indented t)
   (setq org-indent-indentation-per-level 1)
@@ -301,179 +412,56 @@
   ;;; Time will be recorded after task completion.
   (setq org-log-done 'time))
 
-(use-package counsel
-  :after ivy
-  :diminish counsel-mode
-  :config
-  (setq counsel-fzf-cmd "rg --files . | fzf -f \"%s\"")
-  (setq counsel-fzf-dir-function 'vc-root-dir)
-  (counsel-mode 1))
+;; Typography things.
+(use-package typo
+  :after org-mode
+  :hook
+  (org-mode . typo-mode))
 
-(use-package swiper
-  :after ivy
-  :config
-  (ivy-set-occur 'swiper-isearch 'swiper-occur)
-  :general
-  ("C-s" 'swiper-isearch))
-
-(use-package ivy
-  :diminish ivy-mode
-  :config
-  (setq enable-recursive-minibuffers t)
-  (setq ivy-height 16)
-  ;;; No regexes by default.
-  (setq ivy-initial-inputs-alist nil)
-  (setq ivy-count-format "(%d/%d) ")
-  (setq ivy-extra-directories nil)
-  (ivy-mode 1))
-
-(use-package ivy-posframe
-  :after ivy
-  :config
-  (setq ivy-posframe-parameters
-		'((top-fringe    . 8)
-		  (bottom-fringe . 8)
-		  (left-fringe   . 8)))
-  (setq ivy-posframe-display-functions-alist '((t . ivy-posframe-display-at-window-center)))
-  (ivy-posframe-mode 1))
-
-(use-package writeroom-mode
-  :after hydra
-  :bind (:map writeroom-mode-map ("<f2>" . hydra/writeroom/body))
-  :hydra
-  (hydra/writeroom
-    (:color red :hint nil)
-"
-Welcome to writeroom!
----------------------
-
-^Toggles^                  ^Width^
-
-_m_ toggle mode-line       _j_ increase
-_q_ disable                _k_ decrease
-"
-	("m" writeroom-toggle-mode-line :color pink)
-	("j" writeroom-decrease-width :color pink)
-	("k" writeroom-increase-width :color pink)
-	("q" writeroom-mode :color blue)))
-
-(use-package web-mode
-  :mode ("\\.html?\\'" "\\.css\\'" "\\.tsx\\'"))
+;;; Code completion.
 
 (use-package company
-  :diminish 'company-mode
   :custom
   (company-dabbrev-downcase nil)
   (company-idle-delay 0.1)
   :config
   (global-company-mode))
 
-(use-package magit
-  :config
-  ; Disables the automatic diff show-off of the changes about to commit.
-  (remove-hook 'server-switch-hook 'magit-commit-diff)
-  (add-to-list 'magit-no-confirm 'stage-all-changes)
-  (setq vc-handled-backends '(git))
-  (setq magit-display-buffer-function #'magit-display-buffer-fullframe-status-v1)
-  (evil-set-initial-state 'magit-log-edit-mode 'insert)
-  (add-hook 'git-commit-mode-hook 'evil-insert-state)
-  :general
-  ("C-x g" 'magit-status))
+(use-package eglot
+  :commands eglot)
 
-;; Elm
+;;; File format modes.
 
-(use-package elm-mode
-  :mode ("\\.elm$" . elm-mode)
-  :after company
-  :config
-  (add-to-list 'company-backends 'company-elm))
-
-;; Python
-
-(defun my/python-mode ()
-  (setq tab-width 4)
-  (setq indent-tabs-mode t)
-  (setq indent-line-function 'insert-tab))
-
-(use-package anaconda-mode
-  :mode ("\\.py$" . python-mode)
-  :diminish anaconda-mode
-  :config
-  (add-hook 'python-mode-hook 'anaconda-mode)
-  (add-hook 'python-mode-hook 'my/python-mode))
-
-(use-package company-anaconda
-  :after (company anaconda-mode)
-  :config
-  (add-to-list 'company-backends 'company-anaconda))
-
-;; Lua
-
-(defun my/lua-mode ()
-  (setq tab-width 4)
-  (setq indent-tabs-mode t)
-  (setq indent-line-function 'insert-tab)
-  (setq lua-indent-level 4))
-
-(use-package lua-mode
-  :mode ("\\.lua$" . lua-mode)
-  :config
-  (add-hook 'lua-mode-hook 'my/lua-mode))
-
-(use-package exec-path-from-shell
-  :if (memq window-system '(mac ns x))
-  :config
-  (exec-path-from-shell-initialize))
-
-(use-package markdown-mode
-  :mode ("\\.md\\'"))
-
-(use-package rg
-  :config
-  (setq rg-hide-command t)
-  (setq rg-group-result t)
-  (rg-define-toggle "--context 3" (kbd "C-c c")))
-
-(use-package typo
-  :diminish 'typo-mode
-  :init
-  (add-hook 'org-mode-hook 'typo-mode))
-
-(use-package yaml-mode
-  :mode ("\\.yml$". yaml-mode))
-
-;; Rust
-
-(defun my/rust-settings ()
-  "Bunch of default settings valid for rust-mode"
-  (interactive)
-  (setq tab-width 4)
-  (setq c-basic-offset 4)
-  (setq indent-tabs-mode t)
-  (modify-syntax-entry ?_ "w"))
-
+;; Rust.
 (use-package rust-mode
-  :mode ("\\.rs$" . rust-mode)
+  :mode ("\\.rs\\'")
   :config
-  (add-hook 'rust-mode-hook 'my/rust-settings))
+  (defun my/rust-settings ()
+	"Bunch of default settings valid for rust-mode."
+	(interactive)
+	(setq tab-width 4)
+	(setq c-basic-offset 4)
+	(setq indent-tabs-mode t)
+	(modify-syntax-entry ?_ "w"))
+  :hook
+  (rust-mode . my/rust-settings))
 
-;; Haskell
-
-(defun my/haskell-settings ()
-  "Bunch of default settings valid for haskell-mode"
-  (interactive)
-  (setq tab-width 2)
-  (setq c-basic-offset 2)
-  (setq indent-tabs-mode nil))
-
+;; Haskell.
 (use-package haskell-mode
   :mode ("\\.hs\\'" "\\.lhs\\'" "\\.hsc\\'" "\\.cpphs\\'" "\\.c2hs\\'")
   :config
   (setq haskell-compile-cabal-build-command "stack build")
-  (add-hook 'haskell-mode 'my/haskell-settings))
+  (defun my/haskell-settings ()
+	"Bunch of default settings valid for haskell-mode"
+	(interactive)
+	(setq tab-width 2)
+	(setq c-basic-offset 2)
+	(setq indent-tabs-mode nil))
+  :hook
+  (haskell . my/haskell-settings))
 
-(use-package dockerfile-mode
-  :mode ("Dockerfile\\'"))
+(use-package csharp-mode
+  :mode ("\\.cs\\'"))
 
 (use-package typescript-mode
   :mode ("\\.ts\\'"))
@@ -481,26 +469,57 @@ _q_ disable                _k_ decrease
 (use-package swift-mode
   :mode ("\\.swift\\'"))
 
-(use-package csharp-mode
-  :mode ("\\.cs\\'"))
-
 (use-package kotlin-mode
   :mode ("\\.kt\\'"))
 
+(use-package anaconda-mode
+  :mode ("\\.py\\'" . python-mode)
+  :config
+  (defun my/python-settings ()
+	(setq tab-width 4)
+	(setq indent-tabs-mode t)
+	(setq indent-line-function 'insert-tab))
+  :hook
+  ((python-mode . anaconda-mode)
+   (python-mode . my/python-settings)))
+
+(use-package company-anaconda
+  :after (company anaconda-mode)
+  :config
+  (add-to-list 'company-backends 'company-anaconda))
+
+(use-package elm-mode
+  :mode ("\\.elm\\'")
+  :after company
+  :config
+  (add-to-list 'company-backends 'company-elm))
+
 (use-package solidity-mode
   :mode ("\\.sol\\'")
-  :config
+  :init
   (setq solidity-comment-style 'slash))
-
-(use-package php-mode
-  :mode ("\\.php\\'"))
-
 (use-package company-solidity
   :after (company solidity-mode)
   :config
   (add-to-list 'company-backends 'company-solidity))
 
-;;; Bindings
+;; Oh, god.
+(use-package php-mode
+  :mode ("\\.php\\'"))
+
+(use-package web-mode
+  :mode ("\\.html\\'" "\\.css\\'" "\\.tsx\\'"))
+
+(use-package markdown-mode
+  :mode ("\\.md\\'"))
+
+(use-package dockerfile-mode
+  :mode ("Dockerfile\\'"))
+
+(use-package yaml-mode
+  :mode ("\\.yml\\'"))
+
+;;; Bindings.
 
 (defconst my/leader "SPC")
 (general-create-definer my/leader-def :prefix my/leader)
@@ -518,14 +537,42 @@ _q_ disable                _k_ decrease
 
 (my/leader-def
   :states 'normal
-  "d"   'my/kill-current-buffer
-  "s"   'save-buffer
   "i"   'imenu
+  "I"   'imenu-multi
+  "r"   'consult-ripgrep
   "e i" 'my/find-user-init-file
-  "r"   'rg
-  "w"   'writeroom-mode
-  "p"   'counsel-fzf)
+  "w"   'writeroom-mode)
 
 (my/leader-def
   :states 'visual
   "c" 'comment-or-uncomment-region)
+
+;; OLD =============================
+
+;; (use-package hydra
+;;   :config
+;;   ;;; TODO: Customize border/bg/fringes via
+;;   ;;; https://github.com/abo-abo/hydra/blob/master/hydra.el#L227
+;;   (setq hydra-hint-display-type 'posframe)
+;;   :init
+;;   (use-package use-package-hydra))
+
+;; (use-package writeroom-mode
+;;   :after hydra
+;;   :bind (:map writeroom-mode-map ("<f2>" . hydra/writeroom/body))
+;;   :hydra
+;;   (hydra/writeroom
+;;     (:color red :hint nil)
+;; "
+;; Welcome to writeroom!
+;; ---------------------
+
+;; ^Toggles^                  ^Width^
+
+;; _m_ toggle mode-line       _j_ increase
+;; _q_ disable                _k_ decrease
+;; "
+;; 	("m" writeroom-toggle-mode-line :color pink)
+;; 	("j" writeroom-decrease-width :color pink)
+;; 	("k" writeroom-increase-width :color pink)
+;; 	("q" writeroom-mode :color blue)))
