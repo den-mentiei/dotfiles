@@ -282,6 +282,24 @@
   (deftheme my-solarized-dark "The dark varian of the Solarized colour theme.")
   (solarized-with-color-variables 'dark 'my-solarized-dark solarized-dark-color-palette-alist my-solarized-faces))
 
+; TODO(dmi): Switch to straight and get it from https://github.com/mickeynp/ligature.el
+;; Ligatures! != => <-
+(use-package ligature
+  :load-path "packages"
+  :config
+  (ligature-set-ligatures 'prog-mode '("www" "**" "***" "**/" "*>" "*/" "\\\\" "\\\\\\" "{-" "::"
+									   ":::" ":=" "!!" "!=" "!==" "-}" "----" "-->" "->" "->>"
+									   "-<" "-<<" "-~" "#{" "#[" "##" "###" "####" "#(" "#?" "#_"
+									   "#_(" ".-" ".=" ".." "..<" "..." "?=" "??" ";;" "/*" "/**"
+									   "/=" "/==" "/>" "//" "///" "&&" "||" "||=" "|=" "|>" "^=" "$>"
+									   "++" "+++" "+>" "=:=" "==" "===" "==>" "=>" "=>>" "<="
+									   "=<<" "=/=" ">-" ">=" ">=>" ">>" ">>-" ">>=" ">>>" "<*"
+									   "<*>" "<|" "<|>" "<$" "<$>" "<!--" "<-" "<--" "<->" "<+"
+									   "<+>" "<=" "<==" "<=>" "<=<" "<>" "<<" "<<-" "<<=" "<<<"
+									   "<~" "<~~" "</" "</>" "~@" "~-" "~>" "~~" "~~>" "%%"))
+  (global-ligature-mode t))
+  
+
 ;; Vim once, Vim forever, dude.
 (use-package evil
   :init
