@@ -24,8 +24,11 @@
 
 ; Hello, 🐈
 ; pacman -S noto-fonts-emoji
-(when (member "Noto Color Emoji" (font-family-list))
-  (set-fontset-font t 'symbol (font-spec :family "Noto Color Emoji") nil 'prepend))
+(cond
+ ((member "Noto Color Emoji" (font-family-list))
+		  (set-fontset-font t 'symbol (font-spec :family "Noto Color Emoji") nil 'prepend))
+ ((member "Segoe UI Emoji" (font-family-list))
+		  (set-fontset-font t 'symbol (font-spec :family "Segoe UI Emoji") nil 'prepend)))
 
 ;; Filename is enough.
 (setq frame-title-format "%f - emacs")
