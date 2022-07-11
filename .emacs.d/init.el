@@ -567,33 +567,3 @@
 (my/leader-def
   :states 'visual
   "c" 'comment-or-uncomment-region)
-
-;; OLD =============================
-
-;; (use-package hydra
-;;   :config
-;;   ;;; TODO: Customize border/bg/fringes via
-;;   ;;; https://github.com/abo-abo/hydra/blob/master/hydra.el#L227
-;;   (setq hydra-hint-display-type 'posframe)
-;;   :init
-;;   (use-package use-package-hydra))
-
-;; (use-package writeroom-mode
-;;   :after hydra
-;;   :bind (:map writeroom-mode-map ("<f2>" . hydra/writeroom/body))
-;;   :hydra
-;;   (hydra/writeroom
-;;     (:color red :hint nil)
-;; "
-;; Welcome to writeroom!
-;; ---------------------
-
-;; ^Toggles^                  ^Width^
-
-;; _m_ toggle mode-line       _j_ increase
-;; _q_ disable                _k_ decrease
-;; "
-;; 	("m" writeroom-toggle-mode-line :color pink)
-;; 	("j" writeroom-decrease-width :color pink)
-;; 	("k" writeroom-increase-width :color pink)
-;; 	("q" writeroom-mode :color blue)))
