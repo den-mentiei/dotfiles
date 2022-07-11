@@ -361,6 +361,7 @@
   (setq vertico-posframe-parameters
 		'((left-fringe   . 8)
 		  (right-fringe   . 8)))
+  (setq vertico-posframe-truncate-lines t)
   :config
   (vertico-posframe-mode 1))
 
@@ -447,6 +448,9 @@
 
 (use-package eglot
   :commands eglot)
+
+(use-package consult-eglot
+  :after (eglot consult))
 
 ;;; File format modes.
 
@@ -555,11 +559,10 @@
 
 (my/leader-def
   :states 'normal
-  "i"   'imenu
-  "I"   'imenu-multi
-  "r"   'consult-ripgrep
   "e i" 'my/find-user-init-file
-  "w"   'writeroom-mode)
+  "i"   'consult-imenu
+  "t"   'consult-eglot-symbols
+  "r"   'consult-ripgrep)
 
 (my/leader-def
   :states 'visual
