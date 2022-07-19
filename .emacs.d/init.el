@@ -205,6 +205,9 @@
 ;; (setq use-package-compute-statistics t)
 (setq use-package-always-ensure t)
 
+;; If something goes wrong with JIT, reset everything via:
+;; M-: (byte-recompile-directory package-user-dir nil 'force)
+
 ;;; Built-ins.
 
 (use-package dired
