@@ -22,7 +22,7 @@
   ((find-font (font-spec :name "DejaVu Sans Mono"))
    (set-frame-font "DejaVu Sans Mono-11")))
 
-; Hello, 🐈
+;; Hello, 🐈
 ; pacman -S noto-fonts-emoji
 (cond
  ((member "Noto Color Emoji" (font-family-list))
@@ -453,7 +453,9 @@
   (global-company-mode))
 
 (use-package eglot
-  :commands eglot)
+  :commands eglot
+  :bind (:map eglot-mode-map
+			  ("M-RET" . eglot-code-actions)))
 
 (use-package consult-eglot
   :after (eglot consult))
