@@ -184,6 +184,11 @@
 		  (not (package-built-in-p x))))
 	  (mapcar 'car package-archive-contents))))
 
+(defun my/scratch ()
+  "Opens a scratch buffer."
+  (interactive)
+  (switch-to-buffer-other-window (get-buffer-create "*scratch*")))
+
 ;;; Packages.
 
 (require 'package)
