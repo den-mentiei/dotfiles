@@ -246,7 +246,9 @@
   (doom-modeline-def-modeline 'my/mode-line
 	'(bar modals matches buffer-info buffer-position) '(buffer-encoding vcs lsp))
   (defun my/setup-custom-modeline ()
-	(doom-modeline-set-modeline 'my/mode-line 'default))
+	(doom-modeline-set-modeline 'my/mode-line 'default)
+	(set-face-attribute 'mode-line nil :height 100)
+	(set-face-attribute 'mode-line-inactive nil :height 100))
   :hook
   ((doom-modeline-mode . my/setup-custom-modeline)
    (after-init . doom-modeline-mode)))
