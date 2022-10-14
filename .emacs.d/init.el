@@ -18,7 +18,7 @@
 ; 0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ {} <> "'`  ~-_/|\?
 (cond
   ((find-font (font-spec :name "Fira Code"))
-   (set-frame-font "Fira Code Light-11"))
+   (set-frame-font (font-spec :family "Fira Code" :size 22)))
   ((find-font (font-spec :name "DejaVu Sans Mono"))
    (set-frame-font "DejaVu Sans Mono-11")))
 
@@ -246,9 +246,7 @@
   (doom-modeline-def-modeline 'my/mode-line
 	'(bar modals matches buffer-info buffer-position) '(buffer-encoding vcs lsp))
   (defun my/setup-custom-modeline ()
-	(doom-modeline-set-modeline 'my/mode-line 'default)
-	(set-face-attribute 'mode-line nil :height 100)
-	(set-face-attribute 'mode-line-inactive nil :height 100))
+	(doom-modeline-set-modeline 'my/mode-line 'default))
   :hook
   ((doom-modeline-mode . my/setup-custom-modeline)
    (after-init . doom-modeline-mode)))
