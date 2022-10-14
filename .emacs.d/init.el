@@ -353,7 +353,7 @@
   (setq completion-ignore-case t)
   ;; Custom sorting for `find-file'.
   (defun my/sort-directories-first (files)
-	;; Sort by hsitory position, length and alphabetically.
+	;; Sort by history position, length and alphabetically.
 	(setq files (vertico-sort-history-alpha files))
 	;; And then move directories to be first.
 	(nconc (seq-filter (lambda (x) (string-suffix-p "/" x)) files)
