@@ -554,6 +554,9 @@
 (use-package yaml-mode
   :mode ("\\.yml\\'"))
 
+(use-package pine-script-mode
+  :mode ("\\.pine"))
+
 ;;; Bindings.
 
 (defconst my/leader "SPC")
