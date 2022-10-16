@@ -557,6 +557,9 @@
 (use-package pine-script-mode
   :mode ("\\.pine"))
 
+(use-package fish-mode
+  :mode ("\\.fish"))
+
 ;;; Bindings.
 
 (defconst my/leader "SPC")
