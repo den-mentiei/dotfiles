@@ -18,7 +18,7 @@
 ; 0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ {} <> "'`  ~-_/|\?
 (cond
   ((find-font (font-spec :name "Fira Code"))
-   (set-frame-font (font-spec :family "Fira Code" :size 22)))
+   (set-frame-font (font-spec :family "Fira Code" :size 11)))
   ((find-font (font-spec :name "DejaVu Sans Mono"))
    (set-frame-font "DejaVu Sans Mono-11")))
 
