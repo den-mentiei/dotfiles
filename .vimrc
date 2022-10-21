@@ -130,11 +130,6 @@ nnoremap <leader>z zA
 if has("gui_running")
 	" hides menus, toolbars, widgets and use console dialog promts
 	set guioptions=c
-	if has("gui_win32") || has("gui_win64")
-		set guifont=Fira_Mono_for_Powerline:h10:cRUSSIAN
-	else
-		set guifont=Fira\ Mono\ Medium\ for\ Powerline\ Medium\ 10
-	endif
 endif
 
 " \\\ AUTOCMD \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
