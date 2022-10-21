@@ -16,19 +16,16 @@
 
 ; 0123456789abcdefghijklmnopqrstuvwxyz [] () :;,. !@#$^&*
 ; 0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ {} <> "'`  ~-_/|\?
-(cond
-  ((find-font (font-spec :name "Fira Code"))
-   (set-frame-font (font-spec :family "Fira Code" :size 11)))
-  ((find-font (font-spec :name "DejaVu Sans Mono"))
-   (set-frame-font "DejaVu Sans Mono-11")))
+(when (member "Fira Code" (font-family-list))
+  (set-frame-font (font-spec :family "Fira Code" :size 11)))
 
 ;; Hello, 🐈
 ; pacman -S noto-fonts-emoji
 (cond
  ((member "Noto Color Emoji" (font-family-list))
-		  (set-fontset-font t 'symbol (font-spec :family "Noto Color Emoji") nil 'prepend))
+  (set-fontset-font t 'symbol (font-spec :family "Noto Color Emoji") nil 'prepend))
  ((member "Segoe UI Emoji" (font-family-list))
-		  (set-fontset-font t 'symbol (font-spec :family "Segoe UI Emoji") nil 'prepend)))
+  (set-fontset-font t 'symbol (font-spec :family "Segoe UI Emoji") nil 'prepend)))
 
 ;; Filename is enough.
 (setq frame-title-format "%f - emacs")
