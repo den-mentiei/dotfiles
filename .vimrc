@@ -123,11 +123,6 @@ nnoremap } }zz
 nnoremap { {zz
 nnoremap * *zz
 
-nnoremap <F5> :silent make <bar> copen<cr>
-nnoremap <F6> :make<cr>
-
-nnoremap <leader>m :marks<cr>
-
 nnoremap <leader>z zA
 
 " \\\ GUI \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
@@ -139,11 +134,6 @@ if has("gui_running")
 		set guifont=Fira_Mono_for_Powerline:h10:cRUSSIAN
 	else
 		set guifont=Fira\ Mono\ Medium\ for\ Powerline\ Medium\ 10
-	endif
-else
-	if $COLORTERM == 'gnome-terminal'
-		" gnome-terminal doesn't tell the correct number of colors
-		set t_Co=256
 	endif
 endif
 
@@ -161,8 +151,3 @@ endif
 " \\\ THEME \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
 set background=dark
-
-" for some secret non-committable stuff
-if filereadable("~/.vimrc_local")
-	source ~/.vimrc_local
-endif
