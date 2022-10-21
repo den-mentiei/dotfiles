@@ -215,6 +215,8 @@
 (use-package dired
   :ensure nil
   :commands (dired dired-jump)
+  :config
+  (put 'dired-find-alternate-file 'disabled nil)
   :init
   ;; Ask for any top folder to be on the safe side.
   (setq dired-recursive-deletes 'top))
