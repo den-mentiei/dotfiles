@@ -232,7 +232,10 @@
   (interactive)
   (delete-trailing-whitespace))
 
+;; Hooks.
+
 (add-hook 'before-save-hook 'my/cleanup-buffer)
+(add-hook 'text-mode-hook 'turn-on-auto-fill)
 
 ;;; Packages.
 
