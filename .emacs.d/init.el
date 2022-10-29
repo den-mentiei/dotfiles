@@ -186,22 +186,21 @@
   (interactive)
   (switch-to-buffer-other-window (get-buffer-create "*scratch*")))
 
-(defun my/rename-file-and-buffer (new-name)
+(defun my/rename-current-buffer-file ()
   "Renames both current fike and buffer visiting it."
-  ;; `s` prefix stays for an arbitrary string as specified
-  ;; in https://www.gnu.org/software/emacs/manual/html_node/elisp/Interactive-Codes.html
-  (interactive "sNew name:")
+  (interactive)
   (let ((name (buffer-name))
 		(filename (buffer-file-name)))
-	(if (not filename)
+	(if (not (and filename (file-exists-p filename)))
 		(message "Buffer '%s' is not visiting a file!" name)
-	  (if (get-buffer new-name)
-		  (message "A buffer named '%s' already exists!" new-name)
-		(progn
-		  (rename-file name new-name 1)
-		  (rename-buffer new-name)
-		  (set-visited-file-name new-name)
-		  (set-buffer-modified-p nil))))))
+	  (let ((new-name (read-file-name "New name: " filename)))
+		(if (get-buffer new-name)
+			(message "A buffer named '%s' already exists!" new-name)
+		  (progn
+			(rename-file filename new-name 1)
+			(rename-buffer new-name)
+			(set-visited-file-name new-name)
+			(set-buffer-modified-p nil)))))))
 
 (defun my/delete-current-buffer-file ()
   "Deletes the file visited by current buffer and kills buffer too."
@@ -611,6 +610,10 @@
   :mode ("\\.fish"))
 
 ;;; Bindings.
+
+(general-define-key
+ "C-x C-r" 'my/rename-current-buffer-file
+ "C-x C-k" 'my/delete-current-buffer-file)
 
 (defconst my/leader "SPC")
 (general-create-definer my/leader-def :prefix my/leader)
