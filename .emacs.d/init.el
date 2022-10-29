@@ -634,8 +634,10 @@
   "e i" 'my/find-user-init-file
   "i"   'consult-imenu
   "t"   'consult-eglot-symbols
-  "r"   'consult-ripgrep)
+  "r"   'consult-ripgrep
+  "g"   'my/google)
 
 (my/leader-def
   :states 'visual
-  "c" 'comment-or-uncomment-region)
+  "c" 'comment-or-uncomment-region
+  "g" 'my/google)
