@@ -186,6 +186,54 @@
   (interactive)
   (switch-to-buffer-other-window (get-buffer-create "*scratch*")))
 
+(defun my/rename-file-and-buffer (new-name)
+  "Renames both current fike and buffer visiting it."
+  ;; `s` prefix stays for an arbitrary string as specified
+  ;; in https://www.gnu.org/software/emacs/manual/html_node/elisp/Interactive-Codes.html
+  (interactive "sNew name:")
+  (let ((name (buffer-name))
+		(filename (buffer-file-name)))
+	(if (not filename)
+		(message "Buffer '%s' is not visiting a file!" name)
+	  (if (get-buffer new-name)
+		  (message "A buffer named '%s' already exists!" new-name)
+		(progn
+		  (rename-file name new-name 1)
+		  (rename-buffer new-name)
+		  (set-visited-file-name new-name)
+		  (set-buffer-modified-p nil))))))
+
+(defun my/delete-current-buffer-file ()
+  "Deletes the file visited by current buffer and kills buffer too."
+  (interactive)
+  (let ((filename (buffer-file-name))
+		(buffer (current-buffer))
+		(name (buffer-name)))
+	(if (not (and filename (file-exists-p filename)))
+		(ido-kill-buffer)
+	  (when (yes-or-no-p "Are you sure you want to delete this file?")
+		(delete-file filename)
+		(kill-buffer buffer)
+		(message "File '%s' has been deleted!" filename)))))
+
+(defun my/google ()
+  "Googles the selected region if any, displays a query prompt otherwise."
+  (interactive)
+  (browse-url
+   (concat
+	"https://google.com/search?q="
+	(url-hexify-string
+	 (if mark-active
+		 (buffer-substring (region-beginning) (region-end))
+	   (read-string "Google: "))))))
+
+(defun my/cleanup-buffer ()
+  "Cleanups the current buffer."
+  (interactive)
+  (delete-trailing-whitespace))
+
+(add-hook 'before-save-hook 'my/cleanup-buffer)
+
 ;;; Packages.
 
 (require 'package)
@@ -308,7 +356,7 @@
 									   "<+>" "<=" "<==" "<=>" "<=<" "<>" "<<" "<<-" "<<=" "<<<"
 									   "<~" "<~~" "</" "</>" "~@" "~-" "~>" "~~" "~~>" "%%"))
   (global-ligature-mode t))
-  
+
 
 ;; Vim once, Vim forever, dude.
 (use-package evil
