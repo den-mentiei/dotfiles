@@ -592,7 +592,9 @@
   :mode ("\\.php\\'"))
 
 (use-package web-mode
-  :mode ("\\.html\\'" "\\.css\\'" "\\.tsx\\'"))
+  :mode ("\\.html\\'" "\\.css\\'" "\\.tsx\\'")
+  :init
+  (setq web-mode-enable-auto-quoting nil))
 
 (use-package markdown-mode
   :mode ("\\.md\\'"))
