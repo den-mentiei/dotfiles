@@ -26,7 +26,7 @@ function setup_git_abbr -d "Sets up git abbreviations."
 	create_abbr grm   git rm
 	create_abbr grmc  git rm --cached
 
-	create_abbr gc    git commit -v
+	create_abbr gc    git commit -v -m
 	create_abbr gc!   git commit -v --amend
 	create_abbr gcn!  git commit -v --amend --no-edit
 	create_abbr gca   git commit -v -a
