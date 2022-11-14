@@ -39,7 +39,7 @@ function setup_git_abbr -d "Sets up git abbreviations."
 	create_abbr gf    git fetch
 	create_abbr gfa   git fetch --all --prune
 
-	create_abbr gl    git pull
+	create_abbr gl    git pull -ff
 
 	create_abbr gm    git merge
 
