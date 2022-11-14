@@ -19,6 +19,7 @@ function setup_git_abbr -d "Sets up git abbreviations."
 	create_abbr gba   git branch -vv -a
 
 	create_abbr gd    git diff
+	create_abbr gdc   git diff --cached
 
 	create_abbr ga    git add
 	create_abbr gaa   git add --all
