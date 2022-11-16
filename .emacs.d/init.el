@@ -17,7 +17,7 @@
 ; 0123456789abcdefghijklmnopqrstuvwxyz [] () :;,. !@#$^&*
 ; 0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ {} <> "'`  ~-_/|\?
 (when (member "Fira Code" (font-family-list))
-  (set-frame-font (font-spec :family "Fira Code" :size 11)))
+  (set-frame-font (font-spec :family "Fira Code" :size 13)))
 
 ;; Hello, 🐈
 ; pacman -S noto-fonts-emoji
