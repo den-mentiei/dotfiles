@@ -37,8 +37,7 @@ function setup_git_abbr -d "Sets up git abbreviations."
 	create_abbr gp    git push
 	create_abbr gp!   git push --force-with-lease
 
-	create_abbr gf    git fetch
-	create_abbr gfa   git fetch --all --prune
+	create_abbr gf    git fetch --all --prune
 
 	create_abbr gl    git pull -ff
 
