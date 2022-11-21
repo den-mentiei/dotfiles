@@ -463,7 +463,7 @@
 
 (use-package org
   :mode ("\\.org\\'" . org-mode)
-  :commands (org-agenda)
+  :commands org-agenda
   :init
   ;; A bit nicer than the default `...`.
   (setq org-ellipsis " ▾")
@@ -511,6 +511,9 @@
 
 (use-package consult-eglot
   :after (eglot consult))
+
+(use-package expand-region
+  :bind ("C-=" . 'er/expand-region))
 
 ;;; File format modes.
 
