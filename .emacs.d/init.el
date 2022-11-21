@@ -463,9 +463,7 @@
 
 (use-package org
   :mode ("\\.org\\'" . org-mode)
-  :commands (org-capture org-agenda)
-  :bind
-  ("C-c c" . org-capture)
+  :commands (org-agenda)
   :init
   ;; A bit nicer than the default `...`.
   (setq org-ellipsis " ▾")
