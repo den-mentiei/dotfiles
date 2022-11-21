@@ -67,6 +67,9 @@
 ;; quickly close it.
 (setq help-window-select t)
 
+;; Stops the cursor from blinking.
+(blink-cursor-mode 0)
+
 ;;; Lines/Columns
 
 ;; Explicitly set to reduce the cost of on-the-fly computation.
@@ -363,8 +366,6 @@
 ;; Vim once, Vim forever, dude.
 (use-package evil
   :init
-  ;; TODO(dmi): @incomplete Use `evil-collection`.
-  ;; (setq evil-want-integration t)
   (setq evil-want-C-i-jump nil)
   (setq evil-auto-indent t)
   (setq evil-echo-state nil)
@@ -630,10 +631,11 @@
 (my/leader-def
   :states 'normal
   "e i" 'my/find-user-init-file
+  "g"   'my/google
   "i"   'consult-imenu
+  "s"   'my/scratch
   "t"   'consult-eglot-symbols
-  "r"   'consult-ripgrep
-  "g"   'my/google)
+  "r"   'consult-ripgrep)
 
 (my/leader-def
   :states 'visual
