@@ -495,6 +495,9 @@
   :hook
   (org-mode . typo-mode))
 
+(use-package expand-region
+  :bind ("S-SPC" . 'er/expand-region))
+
 ;;; Code completion.
 
 (use-package company
@@ -511,9 +514,6 @@
 
 (use-package consult-eglot
   :after (eglot consult))
-
-(use-package expand-region
-  :bind ("C-=" . 'er/expand-region))
 
 ;;; File format modes.
 
