@@ -535,7 +535,7 @@
 (use-package haskell-mode
   :mode ("\\.hs\\'" "\\.lhs\\'" "\\.hsc\\'" "\\.cpphs\\'" "\\.c2hs\\'")
   :config
-  (setq haskell-compile-cabal-build-command "stack build")
+  (setq haskell-compile-cabal-build-command "cabal build")
   (defun my/haskell-settings ()
 	"Bunch of default settings valid for haskell-mode"
 	(interactive)
@@ -573,12 +573,6 @@
   :config
   (add-to-list 'company-backends 'company-anaconda))
 
-(use-package elm-mode
-  :mode ("\\.elm\\'")
-  :after company
-  :config
-  (add-to-list 'company-backends 'company-elm))
-
 (use-package solidity-mode
   :mode ("\\.sol\\'")
   :init
@@ -590,6 +584,7 @@
 
 ;; Oh, god.
 (use-package php-mode
+  :disabled
   :mode ("\\.php\\'"))
 
 (use-package web-mode
