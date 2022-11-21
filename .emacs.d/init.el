@@ -172,18 +172,6 @@
   (interactive)
   (mapc 'kill-buffer (buffer-list)))
 
-(defun my/show-installed-packages ()
-  "Shows installed non-builtin packages."
-  (interactive)
-  (package-refresh-contents)
-  (package-show-package-list
-    (seq-filter
-   	  (lambda (x)
-		(and
-		  (package-installed-p x)
-		  (not (package-built-in-p x))))
-	  (mapcar 'car package-archive-contents))))
-
 (defun my/scratch ()
   "Opens a scratch buffer."
   (interactive)
@@ -241,24 +229,32 @@
 
 ;;; Packages.
 
-(require 'package)
+;; Bootstrap the package manager, straight.el, if needed.
+(defvar bootstrap-version)
+(let ((bootstrap-file
+	   (expand-file-name "straight/repos/straight.el/bootstrap.el" user-emacs-directory))
+	  (bootstrap-version 5))
+  (unless (file-exists-p bootstrap-file)
+	(if
+		(y-or-n-p "Do you want to bootstrap Straight.el?")
+		(with-current-buffer
+			(url-retrieve-synchronously
+			 "https://raw.githubusercontent.com/raxod502/straight.el/develop/install.el"
+			 'silent 'inhibit-cookies)
+		  (goto-char (point-max))
+		  (eval-print-last-sexp))
+	  (error "Can not continue without Straight.el :(")))
+  (load bootstrap-file nil 'nomessage))
 
-(setq package-enable-at-startup nil)
-(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
-(add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/") t)
-(package-initialize)
+(setq straight-vc-git-default-clone-depth '(1 single-branch))
 
-(when (not package-archive-contents)
-  (package-refresh-contents))
+;; use-package
+(straight-use-package 'use-package)
 
-;; Initialize use-package.
-(unless (package-installed-p 'use-package)
-  (package-install 'use-package))
-(eval-when-compile
-  (require 'use-package))
-;; Uncomment this and then call `use-package-report'.
-;; (setq use-package-compute-statistics t)
-(setq use-package-always-ensure t)
+(setq straight-use-package-by-default t)
+;; Logs packages which took longer than 0.1s to load.
+(setq use-package-verbose 1)
+(setq use-package-always-defer t)
 
 ;; If something goes wrong with JIT, reset everything via:
 ;; M-: (byte-recompile-directory package-user-dir nil 'force)
@@ -266,8 +262,11 @@
 ;;; Built-ins.
 
 (use-package dired
-  :ensure nil
+  :straight (:type built-in)
   :commands (dired dired-jump)
+  :custom
+  (dired-recursive-copies 'always)
+  (dired-recursive-deletes 'always)
   :config
   (put 'dired-find-alternate-file 'disabled nil)
   :init
@@ -362,7 +361,6 @@
 									   "<~" "<~~" "</" "</>" "~@" "~-" "~>" "~~" "~~>" "%%"))
   (global-ligature-mode t))
 
-
 ;; Vim once, Vim forever, dude.
 (use-package evil
   :init
@@ -377,12 +375,12 @@
 (use-package general
   :after evil)
 
-(use-package which-key
-  :init
-  (setq which-key-separator " ")
-  (setq which-key-prefix-prefix "+")
-  :config
-  (which-key-mode 1))
+;; (use-package which-key
+;;   :init
+;;   (setq which-key-separator " ")
+;;   (setq which-key-prefix-prefix "+")
+;;   :config
+;;   (which-key-mode 1))
 
 (use-package orderless
   :init
@@ -397,7 +395,7 @@
   (setq vertico-resize nil)
   (setq vertico-count 16)
   (setq vertico-cycle t)
-  ;; Verico integrates nicely!
+  ;; Vertico integrates nicely!
   (setq read-file-name-completion-ignore-case t)
   (setq read-buffer-completion-ignore-case t)
   (setq completion-ignore-case t)
@@ -412,19 +410,18 @@
   (setq vertico-multiform-categories
 		'((file (vertico-sort-function . my/sort-directories-first))))
   :config
-  (vertico-mode)
-  (vertico-multiform-mode))
+  (vertico-mode))
 
-(use-package vertico-posframe
-  :after vertico
-  :init
-  (setq vertico-posframe-border-width 1)
-  (setq vertico-posframe-parameters
-		'((left-fringe   . 8)
-		  (right-fringe   . 8)))
-  (setq vertico-posframe-truncate-lines t)
-  :config
-  (vertico-posframe-mode 1))
+;; (use-package vertico-posframe
+;;   :after vertico
+;;   :init
+;;   (setq vertico-posframe-border-width 1)
+;;   (setq vertico-posframe-parameters
+;; 		'((left-fringe   . 8)
+;; 		  (right-fringe  . 8)))
+;;   (setq vertico-posframe-truncate-lines t)
+;;   :config
+;;   (vertico-posframe-mode 1))
 
 (use-package consult
   :after vertico
@@ -462,151 +459,151 @@
   :bind
   ("C-x g" . magit-status))
 
-(use-package org
-  :mode ("\\.org\\'" . org-mode)
-  :commands org-agenda
-  :init
-  ;; A bit nicer than the default `...`.
-  (setq org-ellipsis " ▾")
-  (setq org-src-fontify-natively t)
-  (setq org-M-RET-may-split-line nil)
-  (setq org-hide-leading-stars t)
-  (setq org-startup-indented t)
-  (setq org-indent-indentation-per-level 1)
-  (setq org-startup-folded 'content)
-  (setq org-export-backends '(ascii html latex md))
-  ;;; Display entities like \alpha, \tilde, etc. via corresponding UTF-8 symbols.
-  (setq org-pretty-entities t)
-  ;;; Display sub/super-scripts, as well.
-  (setq org-pretty-entities-include-sub-superscripts t)
-  ;;; Blocks entries from going to DONE, if there are not-DONE children.
-  (setq org-enforce-todo-dependencies t)
-  ;;; Same goes for nested checkbox lists.
-  (setq org-enforce-todo-checkbox-dependencies t)
-  ;;; Should help preventing errorous edits.
-  (setq org-catch-invisible-edits 'smart)
-  ;;; Show *foo* and /foo/ without org markers, just the formatting.
-  (setq org-hide-emphasis-markers t)
-  ;;; Time will be recorded after task completion.
-  (setq org-log-done 'time))
+;; (use-package org
+;;   :mode ("\\.org\\'" . org-mode)
+;;   :commands org-agenda
+;;   :init
+;;   ;; A bit nicer than the default `...`.
+;;   (setq org-ellipsis " ▾")
+;;   (setq org-src-fontify-natively t)
+;;   (setq org-M-RET-may-split-line nil)
+;;   (setq org-hide-leading-stars t)
+;;   (setq org-startup-indented t)
+;;   (setq org-indent-indentation-per-level 1)
+;;   (setq org-startup-folded 'content)
+;;   (setq org-export-backends '(ascii html latex md))
+;;   ;;; Display entities like \alpha, \tilde, etc. via corresponding UTF-8 symbols.
+;;   (setq org-pretty-entities t)
+;;   ;;; Display sub/super-scripts, as well.
+;;   (setq org-pretty-entities-include-sub-superscripts t)
+;;   ;;; Blocks entries from going to DONE, if there are not-DONE children.
+;;   (setq org-enforce-todo-dependencies t)
+;;   ;;; Same goes for nested checkbox lists.
+;;   (setq org-enforce-todo-checkbox-dependencies t)
+;;   ;;; Should help preventing errorous edits.
+;;   (setq org-catch-invisible-edits 'smart)
+;;   ;;; Show *foo* and /foo/ without org markers, just the formatting.
+;;   (setq org-hide-emphasis-markers t)
+;;   ;;; Time will be recorded after task completion.
+;;   (setq org-log-done 'time))
 
-;; Typography things.
-(use-package typo
-  :after org-mode
-  :hook
-  (org-mode . typo-mode))
+;; ;; Typography things.
+;; (use-package typo
+;;   :after org-mode
+;;   :hook
+;;   (org-mode . typo-mode))
 
-(use-package expand-region
-  :bind ("S-SPC" . 'er/expand-region))
+;; (use-package expand-region
+;;   :bind ("S-SPC" . 'er/expand-region))
 
-;;; Code completion.
+;; ;;; Code completion.
 
-(use-package company
-  :custom
-  (company-dabbrev-downcase nil)
-  (company-idle-delay 0.1)
-  :config
-  (global-company-mode))
+;; (use-package company
+;;   :custom
+;;   (company-dabbrev-downcase nil)
+;;   (company-idle-delay 0.1)
+;;   :config
+;;   (global-company-mode))
 
-(use-package eglot
-  :commands eglot
-  :bind (:map eglot-mode-map
-			  ("M-RET" . eglot-code-actions)))
+;; (use-package eglot
+;;   :commands eglot
+;;   :bind (:map eglot-mode-map
+;; 			  ("M-RET" . eglot-code-actions)))
 
-(use-package consult-eglot
-  :after (eglot consult))
+;; (use-package consult-eglot
+;;   :after (eglot consult))
 
-;;; File format modes.
+;; ;;; File format modes.
 
-;; Rust.
-(use-package rust-mode
-  :mode ("\\.rs\\'")
-  :config
-  (defun my/rust-settings ()
-	"Bunch of default settings valid for rust-mode."
-	(interactive)
-	(setq tab-width 4)
-	(setq c-basic-offset 4)
-	(setq indent-tabs-mode t)
-	(modify-syntax-entry ?_ "w"))
-  :hook
-  (rust-mode . my/rust-settings))
+;; ;; Rust.
+;; (use-package rust-mode
+;;   :mode ("\\.rs\\'")
+;;   :config
+;;   (defun my/rust-settings ()
+;; 	"Bunch of default settings valid for rust-mode."
+;; 	(interactive)
+;; 	(setq tab-width 4)
+;; 	(setq c-basic-offset 4)
+;; 	(setq indent-tabs-mode t)
+;; 	(modify-syntax-entry ?_ "w"))
+;;   :hook
+;;   (rust-mode . my/rust-settings))
 
-;; Haskell.
-(use-package haskell-mode
-  :mode ("\\.hs\\'" "\\.lhs\\'" "\\.hsc\\'" "\\.cpphs\\'" "\\.c2hs\\'")
-  :config
-  (setq haskell-compile-cabal-build-command "cabal build")
-  (defun my/haskell-settings ()
-	"Bunch of default settings valid for haskell-mode"
-	(interactive)
-	(setq tab-width 2)
-	(setq c-basic-offset 2)
-	(setq indent-tabs-mode nil))
-  :hook
-  (haskell . my/haskell-settings))
+;; ;; Haskell.
+;; (use-package haskell-mode
+;;   :mode ("\\.hs\\'" "\\.lhs\\'" "\\.hsc\\'" "\\.cpphs\\'" "\\.c2hs\\'")
+;;   :config
+;;   (setq haskell-compile-cabal-build-command "cabal build")
+;;   (defun my/haskell-settings ()
+;; 	"Bunch of default settings valid for haskell-mode"
+;; 	(interactive)
+;; 	(setq tab-width 2)
+;; 	(setq c-basic-offset 2)
+;; 	(setq indent-tabs-mode nil))
+;;   :hook
+;;   (haskell . my/haskell-settings))
 
-(use-package csharp-mode
-  :mode ("\\.cs\\'"))
+;; (use-package csharp-mode
+;;   :mode ("\\.cs\\'"))
 
-(use-package typescript-mode
-  :mode ("\\.ts\\'"))
+;; (use-package typescript-mode
+;;   :mode ("\\.ts\\'"))
 
-(use-package swift-mode
-  :mode ("\\.swift\\'"))
+;; (use-package swift-mode
+;;   :mode ("\\.swift\\'"))
 
-(use-package kotlin-mode
-  :mode ("\\.kt\\'"))
+;; (use-package kotlin-mode
+;;   :mode ("\\.kt\\'"))
 
-(use-package anaconda-mode
-  :mode ("\\.py\\'" . python-mode)
-  :config
-  (defun my/python-settings ()
-	(setq tab-width 4)
-	(setq indent-tabs-mode t)
-	(setq indent-line-function 'insert-tab))
-  :hook
-  ((python-mode . anaconda-mode)
-   (python-mode . my/python-settings)))
+;; (use-package anaconda-mode
+;;   :mode ("\\.py\\'" . python-mode)
+;;   :config
+;;   (defun my/python-settings ()
+;; 	(setq tab-width 4)
+;; 	(setq indent-tabs-mode t)
+;; 	(setq indent-line-function 'insert-tab))
+;;   :hook
+;;   ((python-mode . anaconda-mode)
+;;    (python-mode . my/python-settings)))
 
-(use-package company-anaconda
-  :after (company anaconda-mode)
-  :config
-  (add-to-list 'company-backends 'company-anaconda))
+;; (use-package company-anaconda
+;;   :after (company anaconda-mode)
+;;   :config
+;;   (add-to-list 'company-backends 'company-anaconda))
 
-(use-package solidity-mode
-  :mode ("\\.sol\\'")
-  :init
-  (setq solidity-comment-style 'slash))
-(use-package company-solidity
-  :after (company solidity-mode)
-  :config
-  (add-to-list 'company-backends 'company-solidity))
+;; (use-package solidity-mode
+;;   :mode ("\\.sol\\'")
+;;   :init
+;;   (setq solidity-comment-style 'slash))
+;; (use-package company-solidity
+;;   :after (company solidity-mode)
+;;   :config
+;;   (add-to-list 'company-backends 'company-solidity))
 
-;; Oh, god.
-(use-package php-mode
-  :disabled
-  :mode ("\\.php\\'"))
+;; ;; Oh, god.
+;; (use-package php-mode
+;;   :disabled
+;;   :mode ("\\.php\\'"))
 
-(use-package web-mode
-  :mode ("\\.html\\'" "\\.css\\'" "\\.tsx\\'")
-  :init
-  (setq web-mode-enable-auto-quoting nil))
+;; (use-package web-mode
+;;   :mode ("\\.html\\'" "\\.css\\'" "\\.tsx\\'")
+;;   :init
+;;   (setq web-mode-enable-auto-quoting nil))
 
-(use-package markdown-mode
-  :mode ("\\.md\\'"))
+;; (use-package markdown-mode
+;;   :mode ("\\.md\\'"))
 
-(use-package dockerfile-mode
-  :mode ("Dockerfile\\'"))
+;; (use-package dockerfile-mode
+;;   :mode ("Dockerfile\\'"))
 
-(use-package yaml-mode
-  :mode ("\\.yml\\'"))
+;; (use-package yaml-mode
+;;   :mode ("\\.yml\\'"))
 
-(use-package pine-script-mode
-  :mode ("\\.pine"))
+;; (use-package pine-script-mode
+;;   :mode ("\\.pine"))
 
-(use-package fish-mode
-  :mode ("\\.fish"))
+;; (use-package fish-mode
+;;   :mode ("\\.fish"))
 
 ;;; Bindings.
 
