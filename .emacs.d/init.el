@@ -230,10 +230,12 @@
 ;;; Packages.
 
 ;; Bootstrap the package manager, straight.el, if needed.
+(setq straight-repository-branch "develop")
+
 (defvar bootstrap-version)
 (let ((bootstrap-file
 	   (expand-file-name "straight/repos/straight.el/bootstrap.el" user-emacs-directory))
-	  (bootstrap-version 5))
+	  (bootstrap-version 6))
   (unless (file-exists-p bootstrap-file)
 	(if
 		(y-or-n-p "Do you want to bootstrap Straight.el?")
@@ -344,9 +346,14 @@
   (deftheme my-solarized-dark "The dark varian of the Solarized colour theme.")
   (solarized-with-color-variables 'dark 'my-solarized-dark solarized-dark-color-palette-alist my-solarized-faces))
 
+(use-package writeroom-mode)
+
+(use-package olivetti)
+
 ; TODO(dmi): Switch to straight and get it from https://github.com/mickeynp/ligature.el
 ;; Ligatures! != => <-
 (use-package ligature
+  :demand t
   :load-path "packages"
   :config
   (ligature-set-ligatures 'prog-mode '("www" "**" "***" "**/" "*>" "*/" "\\\\" "\\\\\\" "{-" "::"
@@ -361,26 +368,32 @@
 									   "<~" "<~~" "</" "</>" "~@" "~-" "~>" "~~" "~~>" "%%"))
   (global-ligature-mode t))
 
+(use-package undo-fu)
+
 ;; Vim once, Vim forever, dude.
 (use-package evil
+  :demand t
   :init
   (setq evil-want-C-i-jump nil)
   (setq evil-auto-indent t)
   (setq evil-echo-state nil)
   (setq evil-want-Y-yank-to-eol t)
   (setq evil-symbol-word-search t)
+  (setq evil-undo-system 'undo-fu)
   :config
   (evil-mode 1))
 
 (use-package general
   :after evil)
 
-;; (use-package which-key
-;;   :init
-;;   (setq which-key-separator " ")
-;;   (setq which-key-prefix-prefix "+")
-;;   :config
-;;   (which-key-mode 1))
+(use-package which-key
+  :disabled
+  :init
+  (setq which-key-separator " ")
+  (setq which-key-prefix-prefix "+")
+  :config
+  (which-key-setup-side-window-right)
+  (which-key-mode 1))
 
 (use-package orderless
   :init
@@ -390,6 +403,7 @@
 ;; to counsel.
 ;; TODO(dmi): @feature Setup consult-ripgrep separate buffer display.
 (use-package vertico
+  :demand t
   :init
   ;; Limit the candidates list.
   (setq vertico-resize nil)
@@ -425,7 +439,6 @@
 
 (use-package consult
   :after vertico
-  :defer t
   :init
   ;; Show real line numbers when narrowed.
   (setq consult-line-numbers-widen t)
@@ -487,16 +500,16 @@
 ;;   ;;; Time will be recorded after task completion.
 ;;   (setq org-log-done 'time))
 
-;; ;; Typography things.
-;; (use-package typo
-;;   :after org-mode
-;;   :hook
-;;   (org-mode . typo-mode))
+;; Typography things.
+(use-package typo
+  :after org-mode
+  :hook
+  (org-mode . typo-mode))
 
-;; (use-package expand-region
-;;   :bind ("S-SPC" . 'er/expand-region))
+(use-package expand-region
+  :bind ("S-SPC" . 'er/expand-region))
 
-;; ;;; Code completion.
+;;; Code completion.
 
 ;; (use-package company
 ;;   :custom
@@ -505,114 +518,86 @@
 ;;   :config
 ;;   (global-company-mode))
 
-;; (use-package eglot
-;;   :commands eglot
-;;   :bind (:map eglot-mode-map
-;; 			  ("M-RET" . eglot-code-actions)))
+(use-package eglot
+  :commands eglot
+  :bind (:map eglot-mode-map
+			  ("M-RET" . eglot-code-actions)))
 
 ;; (use-package consult-eglot
 ;;   :after (eglot consult))
 
-;; ;;; File format modes.
+;;; File format modes.
 
-;; ;; Rust.
-;; (use-package rust-mode
-;;   :mode ("\\.rs\\'")
-;;   :config
-;;   (defun my/rust-settings ()
-;; 	"Bunch of default settings valid for rust-mode."
-;; 	(interactive)
-;; 	(setq tab-width 4)
-;; 	(setq c-basic-offset 4)
-;; 	(setq indent-tabs-mode t)
-;; 	(modify-syntax-entry ?_ "w"))
-;;   :hook
-;;   (rust-mode . my/rust-settings))
+;; Rust.
+(use-package rust-mode
+  :mode ("\\.rs\\'")
+  :config
+  (defun my/rust-settings ()
+	"Bunch of default settings valid for rust-mode."
+	(interactive)
+	(setq tab-width 4)
+	(setq c-basic-offset 4)
+	(setq indent-tabs-mode t)
+	(modify-syntax-entry ?_ "w"))
+  :hook
+  (rust-mode . my/rust-settings))
 
-;; ;; Haskell.
-;; (use-package haskell-mode
-;;   :mode ("\\.hs\\'" "\\.lhs\\'" "\\.hsc\\'" "\\.cpphs\\'" "\\.c2hs\\'")
-;;   :config
-;;   (setq haskell-compile-cabal-build-command "cabal build")
-;;   (defun my/haskell-settings ()
-;; 	"Bunch of default settings valid for haskell-mode"
-;; 	(interactive)
-;; 	(setq tab-width 2)
-;; 	(setq c-basic-offset 2)
-;; 	(setq indent-tabs-mode nil))
-;;   :hook
-;;   (haskell . my/haskell-settings))
+;; Haskell.
+(use-package haskell-mode
+  :mode ("\\.hs\\'" "\\.lhs\\'" "\\.hsc\\'" "\\.cpphs\\'" "\\.c2hs\\'")
+  :config
+  (setq haskell-compile-cabal-build-command "cabal build")
+  (defun my/haskell-settings ()
+	"Bunch of default settings valid for haskell-mode"
+	(interactive)
+	(setq tab-width 2)
+	(setq c-basic-offset 2)
+	(setq indent-tabs-mode nil))
+  :hook
+  (haskell . my/haskell-settings))
 
-;; (use-package csharp-mode
-;;   :mode ("\\.cs\\'"))
+(use-package csharp-mode
+  :mode ("\\.cs\\'"))
 
-;; (use-package typescript-mode
-;;   :mode ("\\.ts\\'"))
+(use-package typescript-mode
+  :mode ("\\.ts\\'"))
 
-;; (use-package swift-mode
-;;   :mode ("\\.swift\\'"))
+(use-package swift-mode
+  :mode ("\\.swift\\'"))
 
-;; (use-package kotlin-mode
-;;   :mode ("\\.kt\\'"))
+(use-package kotlin-mode
+  :mode ("\\.kt\\'"))
 
-;; (use-package anaconda-mode
-;;   :mode ("\\.py\\'" . python-mode)
-;;   :config
-;;   (defun my/python-settings ()
-;; 	(setq tab-width 4)
-;; 	(setq indent-tabs-mode t)
-;; 	(setq indent-line-function 'insert-tab))
-;;   :hook
-;;   ((python-mode . anaconda-mode)
-;;    (python-mode . my/python-settings)))
+(use-package solidity-mode
+  :mode ("\\.sol\\'")
+  :init
+  (setq solidity-comment-style 'slash))
 
-;; (use-package company-anaconda
-;;   :after (company anaconda-mode)
-;;   :config
-;;   (add-to-list 'company-backends 'company-anaconda))
+(use-package web-mode
+  :mode ("\\.html\\'" "\\.css\\'" "\\.tsx\\'")
+  :init
+  (setq web-mode-enable-auto-quoting nil))
 
-;; (use-package solidity-mode
-;;   :mode ("\\.sol\\'")
-;;   :init
-;;   (setq solidity-comment-style 'slash))
-;; (use-package company-solidity
-;;   :after (company solidity-mode)
-;;   :config
-;;   (add-to-list 'company-backends 'company-solidity))
+(use-package markdown-mode
+  :mode ("\\.md\\'"))
 
-;; ;; Oh, god.
-;; (use-package php-mode
-;;   :disabled
-;;   :mode ("\\.php\\'"))
+(use-package dockerfile-mode
+  :mode ("Dockerfile\\'"))
 
-;; (use-package web-mode
-;;   :mode ("\\.html\\'" "\\.css\\'" "\\.tsx\\'")
-;;   :init
-;;   (setq web-mode-enable-auto-quoting nil))
+(use-package yaml-mode
+  :mode ("\\.yml\\'"))
 
-;; (use-package markdown-mode
-;;   :mode ("\\.md\\'"))
+(use-package pine-script-mode
+  :mode ("\\.pine"))
 
-;; (use-package dockerfile-mode
-;;   :mode ("Dockerfile\\'"))
-
-;; (use-package yaml-mode
-;;   :mode ("\\.yml\\'"))
-
-;; (use-package pine-script-mode
-;;   :mode ("\\.pine"))
-
-;; (use-package fish-mode
-;;   :mode ("\\.fish"))
+(use-package fish-mode
+  :mode ("\\.fish"))
 
 ;;; Bindings.
 
 (general-define-key
  "C-x C-r" 'my/rename-current-buffer-file
  "C-x C-k" 'my/delete-current-buffer-file)
-
-(defconst my/leader "SPC")
-(general-create-definer my/leader-def :prefix my/leader)
 
 (general-define-key
   :states 'normal
@@ -624,6 +609,9 @@
 (general-define-key
  :states 'insert
  "C-v" 'evil-paste-before)
+
+(defconst my/leader "SPC")
+(general-create-definer my/leader-def :prefix my/leader)
 
 (my/leader-def
   :states 'normal
