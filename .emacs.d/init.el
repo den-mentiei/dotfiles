@@ -17,7 +17,7 @@
 ; 0123456789abcdefghijklmnopqrstuvwxyz [] () :;,. !@#$^&*
 ; 0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ {} <> "'`  ~-_/|\?
 (when (member "Fira Code" (font-family-list))
-  (set-frame-font (font-spec :family "Fira Code" :size 13)))
+  (set-frame-font (font-spec :family "Fira Code" :size 23)))
 
 ;; Hello, 🐈
 ; pacman -S noto-fonts-emoji
@@ -222,6 +222,37 @@
   (interactive)
   (delete-trailing-whitespace))
 
+(defun my/transparency-ensure ()
+  "Ensures we have the initial alpha parameter for the current frame."
+  (interactive)
+  (when (equal (frame-parameter nil 'alpha) nil)
+	  (set-frame-parameter nil 'alpha 100)))
+
+(defun my/transparency-increase ()
+  "Increases level of transparency for the current frame."
+  (interactive)
+  (my/transparency-ensure)
+  (if (< (frame-parameter nil 'alpha) 100)
+	  (let ((new-alpha (1+ (frame-parameter nil 'alpha))))
+		(set-frame-parameter nil 'alpha new-alpha)
+		(message "Frame transparency is now %s" new-alpha))
+	(message "Frame transparency is at maximum.")))
+
+(defun my/transparency-decrease ()
+  "Decreases level of transparency for the current frame."
+  (interactive)
+  (my/transparency-ensure)
+  (if (> (frame-parameter nil 'alpha) 0)
+	  (let ((new-alpha (1- (frame-parameter nil 'alpha))))
+		(set-frame-parameter nil 'alpha new-alpha)
+		(message "Frame transparency is now %s" new-alpha))
+	(message "Frame transparency is at minimum.")))
+
+(defun my/transparency-reset ()
+  "Resets level of transparency for the current frame."
+  (interactive)
+  (set-frame-parameter nil 'alpha 100))
+
 ;; Hooks.
 
 (add-hook 'before-save-hook 'my/cleanup-buffer)
@@ -231,7 +262,6 @@
 
 ;; Bootstrap the package manager, straight.el, if needed.
 (setq straight-repository-branch "develop")
-
 (defvar bootstrap-version)
 (let ((bootstrap-file
 	   (expand-file-name "straight/repos/straight.el/bootstrap.el" user-emacs-directory))
@@ -256,6 +286,7 @@
 (setq straight-use-package-by-default t)
 ;; Logs packages which took longer than 0.1s to load.
 (setq use-package-verbose 1)
+;; We are lazy.
 (setq use-package-always-defer t)
 
 ;; If something goes wrong with JIT, reset everything via:
@@ -620,7 +651,10 @@
   "i"   'consult-imenu
   "s"   'my/scratch
   "t"   'consult-eglot-symbols
-  "r"   'consult-ripgrep)
+  "r"   'consult-ripgrep
+  "a u"  'my/transparency-increase
+  "a d"  'my/transparency-decrease
+  "a r"  'my/transparency-reset)
 
 (my/leader-def
   :states 'visual
