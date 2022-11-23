@@ -441,7 +441,16 @@
 ;; TODO(dmi): @feature Setup consult-ripgrep separate buffer display.
 (use-package vertico
   :demand t
-  :straight (vertico :files (:defaults "extensions/*.el"))
+  :straight (:host github :repo "minad/vertico"
+             :files (:defaults "extensions/*")
+             :includes (vertico-buffer
+                        vertico-directory
+                        vertico-flat
+                        vertico-indexed
+                        vertico-mouse
+                        vertico-quick
+                        vertico-repeat
+                        vertico-reverse))
   :init
   ;; Limit the candidates list.
   (setq vertico-resize nil)
@@ -463,6 +472,14 @@
 		'((file (vertico-sort-function . my/sort-directories-first))))
   :config
   (vertico-mode))
+
+(use-package vertico-directory
+  :after vertico
+  ;; Tidy shadowed file names.
+  :hook (rfn-eshadow-update-overlay . vertico-directory-tidy)
+  :bind (:map vertico-map
+			  ("RET" . vertico-directory-enter)
+			  ("DEL" . vertico-directory-delete-char)))
 
 ;; (use-package vertico-posframe
 ;;   :after vertico
