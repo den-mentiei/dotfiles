@@ -28,7 +28,7 @@
   (set-fontset-font t 'symbol (font-spec :family "Segoe UI Emoji") nil 'prepend)))
 
 ;; Filename is enough.
-(setq frame-title-format "%f - emacs")
+(setq frame-title-format "%b - emacs")
 (setq icon-title-format frame-title-format)
 
 ;; Defaults fringes.
