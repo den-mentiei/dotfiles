@@ -253,6 +253,11 @@
   (interactive)
   (set-frame-parameter nil 'alpha 100))
 
+(defun my/align-region-to-equals (begin end)
+  "Aligns region to equal sign."
+  (interactive "r")
+  (align-regexp begin end "\\(\\s-*\\)=" 1 1))
+
 ;; Hooks.
 
 (add-hook 'before-save-hook 'my/cleanup-buffer)
