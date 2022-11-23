@@ -444,6 +444,7 @@
   :straight (:host github :repo "minad/vertico"
              :files (:defaults "extensions/*")
              :includes (vertico-buffer
+						vertico-multiform
                         vertico-directory
                         vertico-flat
                         vertico-indexed
@@ -472,6 +473,14 @@
 		'((file (vertico-sort-function . my/sort-directories-first))))
   :config
   (vertico-mode))
+
+;; TODO(dmi): @vertico Setup commands/categories.
+(use-package vertico-multiform
+  :disabled
+  :commands vertico-multiform-mode
+  :after vertico
+  :init
+  (vertico-multiform-mode 1))
 
 (use-package vertico-directory
   :after vertico
