@@ -150,9 +150,10 @@
 	ad-do-it))
 (ad-activate 'align-regexp)
 
-;; Only indent the line when at the beginning or in existing
-;; indentation.
-(setq-default tab-always-indent nil)
+;; Enables indentation+completion using TAB key.
+(setq-default tab-always-indent 'complete)
+;; TAB cycles only if there are only few candidates.
+(setq-default completion-cycle-threshold 3)
 
 ;; All the horizontal splits take the screen real-estate!
 (setq-default fill-column 70)
@@ -440,6 +441,7 @@
 ;; TODO(dmi): @feature Setup consult-ripgrep separate buffer display.
 (use-package vertico
   :demand t
+  :straight (vertico :files (:defaults "extensions/*.el"))
   :init
   ;; Limit the candidates list.
   (setq vertico-resize nil)
@@ -539,28 +541,31 @@
 ;; Typography things.
 (use-package typo
   :after org-mode
-  :hook
-  (org-mode . typo-mode))
+  :hook (org-mode . typo-mode))
 
 (use-package expand-region
   :bind ("S-SPC" . 'er/expand-region))
 
 ;;; Code completion.
 
-;; (use-package company
-;;   :custom
-;;   (company-dabbrev-downcase nil)
-;;   (company-idle-delay 0.1)
-;;   :config
-;;   (global-company-mode))
+(use-package corfu
+  :hook (prog-mode . corfu-mode)
+  :custom
+  (corfu-cycle t)
+  (corfu-auto t)
+  (corfu-auto-prefix 2)
+  (corfu-auto-delay 0.15)
+  (corfu-scroll-margin 2)
+  ;; Orderless field separator.
+  (corfu-separator ?\s))
 
 (use-package eglot
   :commands eglot
   :bind (:map eglot-mode-map
 			  ("M-RET" . eglot-code-actions)))
 
-;; (use-package consult-eglot
-;;   :after (eglot consult))
+(use-package consult-eglot
+  :after (eglot consult))
 
 ;;; File format modes.
 
