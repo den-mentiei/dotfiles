@@ -14,18 +14,25 @@
 
 ;;; General UI/UX
 
+(defun my/font-installed-p (name)
+  "Checks if the specified font is installed."
+  (find-font (font-spec :name name)))
+
 ; 0123456789abcdefghijklmnopqrstuvwxyz [] () :;,. !@#$^&*
 ; 0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ {} <> "'`  ~-_/|\?
-(when (member "Fira Code" (font-family-list))
+(when (my/font-installed-p "Fira Code")
   (set-frame-font (font-spec :family "Fira Code" :size 23)))
+
+(when (my/font-installed-p "Segoe UI Symbol")
+  (set-fontset-font t 'symbol (font-spec :family "Segoe UI Symbol") nil 'prepend))
 
 ;; Hello, 🐈
 ; pacman -S noto-fonts-emoji
 (cond
- ((member "Noto Color Emoji" (font-family-list))
-  (set-fontset-font t 'symbol (font-spec :family "Noto Color Emoji") nil 'prepend))
- ((member "Segoe UI Emoji" (font-family-list))
-  (set-fontset-font t 'symbol (font-spec :family "Segoe UI Emoji") nil 'prepend)))
+ ((my/font-installed-p "Noto Color Emoji")
+  (set-fontset-font t 'emoji (font-spec :family "Noto Color Emoji") nil 'prepend))
+ ((my/font-installed-p "Segoe UI Emoji")
+  (set-fontset-font t 'emoji (font-spec :family "Segoe UI Emoji") nil 'prepend)))
 
 ;; Filename is enough.
 (setq frame-title-format "%b - emacs")
