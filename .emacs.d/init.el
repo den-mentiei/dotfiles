@@ -717,5 +717,4 @@
 
 (my/leader-def
   :states 'visual
-  "c" 'comment-or-uncomment-region
   "g" 'my/google)
