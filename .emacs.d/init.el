@@ -577,11 +577,15 @@
 (use-package corfu
   :hook (prog-mode . corfu-mode)
   :custom
-  (corfu-cycle t)
   (corfu-auto t)
   (corfu-auto-prefix 2)
   (corfu-auto-delay 0.15)
+  (corfu-count 16)
+  (corfu-cycle t)
   (corfu-scroll-margin 2)
+  (corfu-min-width 60)
+  (corfu-max-width corfu-min-width)
+  (corfu-preselect-first t)
   ;; Orderless field separator.
   (corfu-separator ?\s))
 
@@ -589,9 +593,13 @@
   :after corfu
   :hook (corfu-mode . corfu-doc-mode)
   :bind (:map corfu-map
-			  ("M-d" . corfu-doc-toggle))
+			  ("M-d" . corfu-doc-toggle)
+			  ("M-k" . corfu-doc-scroll-down)
+			  ("M-j" . corfu-doc-scroll-up))
   :custom
-  (corfu-doc-delay 0.5))
+  (corfu-doc-delay 0.5)
+  (corfu-doc-max-width 70)
+  (corfu-doc-max-height 20))
 
 (use-package eglot
   :commands eglot
