@@ -3,6 +3,7 @@
  ("consult" . "a3937825b5e5e27c7d6f82c204f28d41a2cd8053")
  ("consult-eglot" . "0da8801dd8435160ce1f62ad8066bd52e38f5cbd")
  ("corfu" . "8168f439d0a4219c3808b992aeb004cdd24ce072")
+ ("corfu-doc" . "da931367802d01e87e1e496ba5b51aa9126a705d")
  ("csharp-mode" . "33a74ff25610153d7e262a1d4c6bb5f3d95be493")
  ("dash.el" . "3df46d7d9fe74f52a661565888e4d31fd760f0df")
  ("dockerfile-mode" . "52c6c00da1d31c0b6c29c74335b3af63ed6bf06c")
