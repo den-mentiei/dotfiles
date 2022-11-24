@@ -595,7 +595,7 @@
   (corfu-count 16)
   (corfu-cycle t)
   (corfu-scroll-margin 2)
-  (corfu-min-width 60)
+  (corfu-min-width 30)
   (corfu-max-width corfu-min-width)
   (corfu-preselect-first t)
   ;; Orderless field separator.
