@@ -1,25 +1,19 @@
-/.cache/
-/elpa/
-/eshel/
-/server/
-/auto-save-list/
-/anaconda-mode/
-/irony/
-/transient/
-/url/
+.cache/
+elpa/
+server/
+auto-save-list/
+transient/
+url/
 /eln-cache/
-/emojis/
-/games/
-/straight/
+emojis/
+games/
 recentf
+bookmarks
+straight/*
+!straight/versions/
 custom.el
 *.elc
 network-security.data
-bookmarks
 .emacs.desktop
 .emacs.desktop.lock
-# It is usually symlinked to the original repo.
-# Init file handles its absense well.
-ra-emacs-lsp.el
-
 .lsp-session-*
