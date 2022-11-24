@@ -585,6 +585,14 @@
   ;; Orderless field separator.
   (corfu-separator ?\s))
 
+(use-package corfu-doc
+  :after corfu
+  :hook (corfu-mode . corfu-doc-mode)
+  :bind (:map corfu-map
+			  ("M-d" . corfu-doc-toggle))
+  :custom
+  (corfu-doc-delay 0.5))
+
 (use-package eglot
   :commands eglot
   :bind (:map eglot-mode-map
