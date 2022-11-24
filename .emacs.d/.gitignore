@@ -4,7 +4,7 @@ server/
 auto-save-list/
 transient/
 url/
-/eln-cache/
+eln-cache/
 emojis/
 games/
 recentf
@@ -16,4 +16,3 @@ custom.el
 network-security.data
 .emacs.desktop
 .emacs.desktop.lock
-.lsp-session-*
