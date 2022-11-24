@@ -9,7 +9,7 @@
  ("dockerfile-mode" . "52c6c00da1d31c0b6c29c74335b3af63ed6bf06c")
  ("doom-modeline" . "440fd160b4dff530465938bed40094a0d413fc11")
  ("eglot" . "e501275e06952889056268dabe08ccd0dbaf23e5")
- ("el-get" . "ecd4347373fe3e00e42c2ddc37791d2fb6524caa")
+ ("el-get" . "caf80e20bc966c4036f293e1966370fe650240c5")
  ("eldoc" . "192bcd5571a84e4b4084a840565f40fbec0b0abc")
  ("emacs-fish" . "d04478c0aba018cb789d77d591bfe315cb25132a")
  ("emacs-solidity" . "ddb4a901c33bd29ba2eefff3b7f7461849c6e833")
