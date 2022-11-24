@@ -1,5 +1,10 @@
 ;; -*- lexical-binding: t; -*-
 
+;; Configuring Emacs is more of a lifestyle choice than a task that
+;; one completes.
+;;
+;; – Stephen A. Ramsey
+
 ;; Profile startup time
 (add-hook 'emacs-startup-hook
 		  (lambda ()
