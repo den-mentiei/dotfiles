@@ -280,6 +280,7 @@
 
 ;; Bootstrap the package manager, straight.el, if needed.
 (setq straight-repository-branch "develop")
+(setq straight-check-for-modifications 'live-with-find)
 (defvar bootstrap-version)
 (let ((bootstrap-file
 	   (expand-file-name "straight/repos/straight.el/bootstrap.el" user-emacs-directory))
