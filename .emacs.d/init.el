@@ -26,7 +26,7 @@
 ; 0123456789abcdefghijklmnopqrstuvwxyz [] () :;,. !@#$^&*
 ; 0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ {} <> "'`  ~-_/|\?
 (when (my/font-installed-p "Fira Code")
-  (set-frame-font (font-spec :family "Fira Code" :size 23)))
+  (set-frame-font (font-spec :family "Fira Code" :size 13)))
 
 (when (my/font-installed-p "Segoe UI Symbol")
   (set-fontset-font t 'symbol (font-spec :family "Segoe UI Symbol") nil 'prepend))
