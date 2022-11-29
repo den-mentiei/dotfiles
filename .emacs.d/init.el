@@ -456,7 +456,7 @@
   :demand t
   :straight (:host github :repo "minad/vertico"
              :files (:defaults "extensions/*")
-             :includes (vertico-buffer
+             :includes (vertico-buffer-mode
 						vertico-multiform
                         vertico-directory
                         vertico-flat
@@ -588,6 +588,9 @@
 ;;; Code completion.
 
 (use-package corfu
+  :straight (:host github :repo "minad/corfu"
+				   :files (:defaults "extensions/*")
+				   :includes (corfu-popupinfo))
   :hook (prog-mode . corfu-mode)
   :custom
   (corfu-auto t)
@@ -602,22 +605,25 @@
   ;; Orderless field separator.
   (corfu-separator ?\s))
 
-(use-package corfu-doc
+(use-package corfu-popupinfo
   :after corfu
   :hook (corfu-mode . corfu-doc-mode)
   :bind (:map corfu-map
-			  ("M-d" . corfu-doc-toggle)
-			  ("M-k" . corfu-doc-scroll-down)
-			  ("M-j" . corfu-doc-scroll-up))
+			  ("M-d" . corfu-popupinfo-toggle)
+			  ("M-k" . corfu-popupinfo-scroll-down)
+			  ("M-j" . corfu-popupinfo-scroll-up))
   :custom
-  (corfu-doc-delay 0.5)
-  (corfu-doc-max-width 70)
-  (corfu-doc-max-height 20))
+  (corfu-popupinfo-delay 0.5)
+  (corfu-popupinfo-max-width 70)
+  (corfu-popupinfo-max-height 20)
+  (corfu-popupinfo-direction 'always-right))
 
 (use-package eglot
   :commands eglot
   :bind (:map eglot-mode-map
-			  ("M-RET" . eglot-code-actions)))
+			  ("M-RET" . eglot-code-actions))
+  :custom
+  (setq eglot-autoshutdown t))
 
 (use-package consult-eglot
   :after (eglot consult))
