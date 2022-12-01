@@ -607,7 +607,7 @@
 
 (use-package corfu-popupinfo
   :after corfu
-  :hook (corfu-mode . corfu-doc-mode)
+  :hook (corfu-mode . corfu-popupinfo-mode)
   :bind (:map corfu-map
 			  ("M-d" . corfu-popupinfo-toggle)
 			  ("M-k" . corfu-popupinfo-scroll-down)
