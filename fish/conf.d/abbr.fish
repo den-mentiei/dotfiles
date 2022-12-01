@@ -22,7 +22,6 @@ function setup_git_abbr -d "Sets up git abbreviations."
 	create_abbr g     git
 
 	create_abbr gcl   git clone --recurse-submodules
-	create_abbr gr    git remote
 
 	create_abbr gst   git status
 
@@ -57,8 +56,7 @@ function setup_git_abbr -d "Sets up git abbreviations."
 
 	create_abbr gm    git merge
 
-	# TODO(dmi): @bug Fails due to invalid substitution.
-	# create_abbr glog  git log --pretty=format:'%C(yellow)%h %Cred%ad %Cblue%an%Cgreen%d %Creset%s' --date=short
+	create_abbr glog  git log --pretty=format:'"%C(yellow)%h %Cred%ad %Cblue%an%Cgreen%d %Creset%s"' --date=short
 end
 
 function setup_all_abbr -d "Sets up all the abbreviations."
@@ -69,8 +67,15 @@ function setup_all_abbr -d "Sets up all the abbreviations."
 	end
 end
 
+function remove_all_abbr -d "Removes all the abbreviations."
+	for a in (abbr --list)
+		abbr -e $a
+	end
+end
+
 function reset_all_abbr -d "Resets all the abbreviations."
 	set -U -e MY_ABBR_SET
+	remove_all_abbr
 	setup_all_abbr
 end
 
