@@ -14,10 +14,10 @@
         "revision": "5216bbdd9d47b1cb01c0d2cb656de32540ada95d"
       },
       "homebrew/cask": {
-        "revision": "b1131eb82c403fc1ad3dda03a5e58ded1ebca27f"
+        "revision": "7b2e823c2939fe05cbdf2c0144b257aca89c177b"
       },
       "homebrew/core": {
-        "revision": "05395e49c86ab3095c8ffafd7ad22181a572c510"
+        "revision": "9578524487463e7c51cff3d144af33a73d95b506"
       },
       "homebrew/services": {
         "revision": "88788e6314506b662f971f43af119c641190a4c8"
@@ -1502,6 +1502,12 @@
         "options": {
           "full_name": "transmission"
         }
+      },
+      "karabiner-elements": {
+        "version": "14.10.0",
+        "options": {
+          "full_name": "karabiner-elements"
+        }
       }
     }
   },
@@ -1510,7 +1516,7 @@
       "ventura": {
         "HOMEBREW_VERSION": "3.6.13",
         "HOMEBREW_PREFIX": "/usr/local",
-        "Homebrew/homebrew-core": "05395e49c86ab3095c8ffafd7ad22181a572c510",
+        "Homebrew/homebrew-core": "9578524487463e7c51cff3d144af33a73d95b506",
         "CLT": "14.1.0.0.1.1666437224",
         "Xcode": "14.1",
         "macOS": "13.0.1"
