@@ -4,6 +4,20 @@ function create_abbr -d "Creates an abbreviation."
 	abbr -a $name $body
 end
 
+function setup_cargo_abbr -d "Sets up cargo abbreviations."
+	create_abbr c    cargo
+
+	create_abbr cb   cargo build
+	create_abbr cbr  cargo build --release
+	create_abbr cbrm cargo build --release --target=x86_64-unknown-linux-musl
+
+	create_abbr cck  cargo check
+	create_abbr ccl  cargo clean
+	create_abbr cu   cargo update
+	create_abbr cr   cargo run
+	create_abbr ct   cargo test
+end
+
 function setup_git_abbr -d "Sets up git abbreviations."
 	create_abbr g     git
 
@@ -43,12 +57,21 @@ function setup_git_abbr -d "Sets up git abbreviations."
 
 	create_abbr gm    git merge
 
-	# TODO(dmi): @bug Fails due to invalud substitution.
+	# TODO(dmi): @bug Fails due to invalid substitution.
 	# create_abbr glog  git log --pretty=format:'%C(yellow)%h %Cred%ad %Cblue%an%Cgreen%d %Creset%s' --date=short
 end
 
-if not set -q MY_ABBR_SET
-	setup_git_abbr
-
-	set -U MY_ABBR_SET true
+function setup_all_abbr -d "Sets up all the abbreviations."
+	if not set -q MY_ABBR_SET
+		setup_git_abbr
+		setup_cargo_abbr
+		set -U MY_ABBR_SET true
+	end
 end
+
+function reset_all_abbr -d "Resets all the abbreviations."
+	set -U -e MY_ABBR_SET
+	setup_all_abbr
+end
+
+setup_all_abbr
