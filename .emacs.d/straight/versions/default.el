@@ -6,7 +6,7 @@
  ("csharp-mode" . "1f8616a02d41233684fabfd3a23f37154b5c9ddf")
  ("dash.el" . "3df46d7d9fe74f52a661565888e4d31fd760f0df")
  ("dockerfile-mode" . "52c6c00da1d31c0b6c29c74335b3af63ed6bf06c")
- ("doom-modeline" . "29ae31c1a31057eb5042c6bfdc511a4610477bbc")
+ ("doom-modeline" . "d0cb6de14a712f3e0ccc479d8040251bfc3c87d1")
  ("eglot" . "e501275e06952889056268dabe08ccd0dbaf23e5")
  ("el-get" . "caf80e20bc966c4036f293e1966370fe650240c5")
  ("eldoc" . "192bcd5571a84e4b4084a840565f40fbec0b0abc")
