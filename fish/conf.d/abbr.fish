@@ -56,6 +56,7 @@ function setup_git_abbr -d "Sets up git abbreviations."
 
 	create_abbr gm    git merge
 
+	create_abbr glg   git log --pretty=format:'"%C(yellow)%h %Cred%ad %Cblue%an%Cgreen%d %Creset%s"' --date=short --graph
 	create_abbr glog  git log --pretty=format:'"%C(yellow)%h %Cred%ad %Cblue%an%Cgreen%d %Creset%s"' --date=short
 end
 
