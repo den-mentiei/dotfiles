@@ -16,6 +16,9 @@ function setup_cargo_abbr -d "Sets up cargo abbreviations."
 	create_abbr cu   cargo update
 	create_abbr cr   cargo run
 	create_abbr ct   cargo test
+
+	create_abbr cwc  cargo watch -x '"check"'
+	create_abbr cwt  cargo watch -x '"test"'
 end
 
 function setup_git_abbr -d "Sets up git abbreviations."
