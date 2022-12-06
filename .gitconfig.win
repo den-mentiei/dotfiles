@@ -13,6 +13,7 @@
 	cmd = \"C:/apps/apps/p4v/current/p4merge.exe\" \"$LOCAL\" \"$REMOTE\"
 [core]
 	editor = \"C:/apps/apps/gitextensions/current/GitExtensions.exe\" fileeditor
+	autocrlf = input
 [credential]
 	helper = manager-core
 [filter "lfs"]
