@@ -32,7 +32,7 @@
  ("nongnu-elpa" . "ddfb68cf9fa55823d815d426910e07ea3a2a5130")
  ("olivetti" . "8d287a80c5e3d72ac01b56c8afe60b01f18500b4")
  ("orderless" . "004cee6b8e01f8eb0cb1c683d0a637b14890600f")
- ("org" . "c59d6d82e6146a076b14ae2b394eb8e5ea8a34c2")
+ ("org" . "1ad16ffb95ee1434ccc49ac553b895b37471f3cb")
  ("pine-script-mode" . "d8ce5dc595a053e80debf6c1e330995c739a8b05")
  ("project" . "4e4ba367ecd05520fa1ba25a7a2dbcddd743af25")
  ("rust-mode" . "ac374550a8d0a8066534c57ba46137256608015a")
