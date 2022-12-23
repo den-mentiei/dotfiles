@@ -14,10 +14,10 @@
         "revision": "3ca2fcf25d10b2974e09c5fe057ec7d312aec097"
       },
       "homebrew/cask": {
-        "revision": "69fd66159ef7455dabc48feed2bfd3436ff801bd"
+        "revision": "db7ae77675e3b17d9bbc7defa40426c23210a12c"
       },
       "homebrew/core": {
-        "revision": "d0befea5025acac52ece7e6c67966708f025c2af"
+        "revision": "4d2d44c451b5af5c431126ec0d0469717560f32f"
       },
       "homebrew/services": {
         "revision": "5aaabd01f249f0d04d2d4a746431f6c3e17accb5"
@@ -875,7 +875,7 @@
         }
       },
       "llvm": {
-        "version": "15.0.6.reinstall",
+        "version": "15.0.6",
         "bottle": {
           "rebuild": 0,
           "root_url": "https://ghcr.io/v2/homebrew/core",
@@ -1438,7 +1438,7 @@
     },
     "cask": {
       "cyberduck": {
-        "version": "8.5.2,38799",
+        "version": "8.5.3,38959",
         "options": {
           "full_name": "cyberduck"
         }
@@ -1462,7 +1462,7 @@
         }
       },
       "microsoft-remote-desktop": {
-        "version": "10.7.10",
+        "version": "10.8.0",
         "options": {
           "full_name": "microsoft-remote-desktop"
         }
@@ -1484,9 +1484,9 @@
   "system": {
     "macos": {
       "ventura": {
-        "HOMEBREW_VERSION": "3.6.15",
+        "HOMEBREW_VERSION": "3.6.16",
         "HOMEBREW_PREFIX": "/usr/local",
-        "Homebrew/homebrew-core": "d0befea5025acac52ece7e6c67966708f025c2af",
+        "Homebrew/homebrew-core": "4d2d44c451b5af5c431126ec0d0469717560f32f",
         "CLT": "14.1.0.0.1.1666437224",
         "Xcode": "14.1",
         "macOS": "13.0.1"
