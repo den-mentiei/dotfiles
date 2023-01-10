@@ -271,6 +271,13 @@
   (interactive "r")
   (align-regexp begin end "\\(\\s-*\\)=" 1 1))
 
+(defun my/update-all-packages ()
+  "Update and freeze all Straight packages."
+  (interactive)
+  (straight-normalize-all)
+  (straight-pull-all 'from-upstream)
+  (straight-freeze-versions))
+
 ;; Hooks.
 
 (add-hook 'before-save-hook 'my/cleanup-buffer)

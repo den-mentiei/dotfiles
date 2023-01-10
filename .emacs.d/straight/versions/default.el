@@ -14,7 +14,7 @@
  ("emacs-solidity" . "ddb4a901c33bd29ba2eefff3b7f7461849c6e833")
  ("emacs-undo-fu" . "d59bba01de48a808a42d6e29e011ef641cdb6a77")
  ("emacsmirror-mirror" . "80e6f99bb1628501743c32eda3841b43a8fd2bbf")
- ("evil" . "24c9c4255a27f9d87b880d2ba4fd1d7df4502075")
+ ("evil" . "f003ca28a9691d24a17866e5dce3e7866c9bb257")
  ("exec-path-from-shell" . "ddd24dc823de9a94435b4d8ea7569161657f31e2")
  ("expand-region.el" . "b70feaa644310dc2d599dc277cd20a1f2b6446ac")
  ("f.el" . "eccb51da6825b5d87bd9222d8d1dd616d22fb5f7")
