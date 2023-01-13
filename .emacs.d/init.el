@@ -276,6 +276,7 @@
   (interactive)
   (straight-normalize-all)
   (straight-pull-all 'from-upstream)
+  (straight-prune-build)
   (straight-freeze-versions))
 
 ;; Hooks.
