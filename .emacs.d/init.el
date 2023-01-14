@@ -558,7 +558,7 @@
   ("C-x g" . magit-status))
 
 (use-package org
-  :mode ("\\.org\\'" . org-mode)
+  :mode ("\\.org$" . org-mode)
   :commands org-agenda
   :init
   ;; A bit nicer than the default `...`.
@@ -640,7 +640,7 @@
 
 ;; Rust.
 (use-package rust-mode
-  :mode ("\\.rs\\'")
+  :mode ("\\.rs$")
   :config
   (defun my/rust-settings ()
 	"Bunch of default settings valid for rust-mode."
@@ -654,7 +654,7 @@
 
 ;; Haskell.
 (use-package haskell-mode
-  :mode ("\\.hs\\'" "\\.lhs\\'" "\\.hsc\\'" "\\.cpphs\\'" "\\.c2hs\\'")
+  :mode ("\\.hs$" "\\.lhs$" "\\.hsc$" "\\.cpphs$" "\\.c2hs$")
   :config
   (setq haskell-compile-cabal-build-command "cabal build")
   (defun my/haskell-settings ()
@@ -667,24 +667,24 @@
   (haskell . my/haskell-settings))
 
 (use-package csharp-mode
-  :mode ("\\.cs\\'"))
+  :mode ("\\.cs$"))
 
 (use-package typescript-mode
-  :mode ("\\.ts\\'"))
+  :mode ("\\.ts$"))
 
 (use-package swift-mode
-  :mode ("\\.swift\\'"))
+  :mode ("\\.swift$"))
 
 (use-package kotlin-mode
-  :mode ("\\.kt\\'"))
+  :mode ("\\.kt$"))
 
 (use-package solidity-mode
-  :mode ("\\.sol\\'")
+  :mode ("\\.sol$")
   :init
   (setq solidity-comment-style 'slash))
 
 (use-package web-mode
-  :mode ("\\.html\\'" "\\.css\\'" "\\.tsx\\'")
+  :mode ("\\.html$" "\\.css$" "\\.tsx$")
   :init
   (setq web-mode-enable-auto-quoting nil))
 
@@ -695,16 +695,16 @@
   (setq markdown-fontify-code-blocks-natively t))
 
 (use-package dockerfile-mode
-  :mode ("Dockerfile\\'"))
+  :mode ("Dockerfile$"))
 
 (use-package yaml-mode
-  :mode ("\\.yml\\'"))
+  :mode ("\\.yml$"))
 
 (use-package pine-script-mode
-  :mode ("\\.pine"))
+  :mode ("\\.pine$"))
 
 (use-package fish-mode
-  :mode ("\\.fish"))
+  :mode ("\\.fish$"))
 
 ;;; Bindings.
 
