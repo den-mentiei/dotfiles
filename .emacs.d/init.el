@@ -591,7 +591,7 @@
   :hook (org-mode . typo-mode))
 
 (use-package expand-region
-  :bind ("S-SPC" . 'er/expand-region))
+  :bind ("M-SPC" . 'er/expand-region))
 
 ;;; Code completion.
 
