@@ -689,7 +689,10 @@
   (setq web-mode-enable-auto-quoting nil))
 
 (use-package markdown-mode
-  :mode ("\\.md\\'"))
+  :mode (("\\.md$" . markdown-mode)
+		 ("README\\.md$" . gfm-mode))
+  :config
+  (setq markdown-fontify-code-blocks-natively t))
 
 (use-package dockerfile-mode
   :mode ("Dockerfile\\'"))
