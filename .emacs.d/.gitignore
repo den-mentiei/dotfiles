@@ -7,10 +7,11 @@ url/
 eln-cache/
 emojis/
 games/
-recentf
-bookmarks
+org-persist/
 straight/*
 !straight/versions/
+recentf
+bookmarks
 custom.el
 *.elc
 network-security.data
