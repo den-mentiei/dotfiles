@@ -188,7 +188,7 @@
 (defun my/scratch ()
   "Opens a scratch buffer."
   (interactive)
-  (switch-to-buffer-other-window (get-buffer-create "*scratch*")))
+  (switch-to-buffer (get-buffer-create "*scratch*")))
 
 (defun my/rename-current-buffer-file ()
   "Renames both current fike and buffer visiting it."
