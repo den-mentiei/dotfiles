@@ -547,7 +547,7 @@
 
 (use-package magit
   :config
-  ; Disables the automatic diff show-off of the changes about to commit.
+  ;; Disables the automatic diff show-off of the changes about to commit.
   (remove-hook 'server-switch-hook 'magit-commit-diff)
   (add-to-list 'magit-no-confirm 'stage-all-changes)
   (setq vc-handled-backends '(git))
@@ -570,19 +570,19 @@
   (setq org-indent-indentation-per-level 1)
   (setq org-startup-folded 'content)
   (setq org-export-backends '(ascii html latex md))
-  ;;; Display entities like \alpha, \tilde, etc. via corresponding UTF-8 symbols.
+  ;; Display entities like \alpha, \tilde, etc. via corresponding UTF-8 symbols.
   (setq org-pretty-entities t)
-  ;;; Display sub/super-scripts, as well.
+  ;; Display sub/super-scripts, as well.
   (setq org-pretty-entities-include-sub-superscripts t)
-  ;;; Blocks entries from going to DONE, if there are not-DONE children.
+  ;; Blocks entries from going to DONE, if there are not-DONE children.
   (setq org-enforce-todo-dependencies t)
-  ;;; Same goes for nested checkbox lists.
+  ;; Same goes for nested checkbox lists.
   (setq org-enforce-todo-checkbox-dependencies t)
-  ;;; Should help preventing errorous edits.
+  ;; Should help preventing errorous edits.
   (setq org-catch-invisible-edits 'smart)
-  ;;; Show *foo* and /foo/ without org markers, just the formatting.
+  ;; Show *foo* and /foo/ without org markers, just the formatting.
   (setq org-hide-emphasis-markers t)
-  ;;; Time will be recorded after task completion.
+  ;; Time will be recorded after task completion.
   (setq org-log-done 'time))
 
 ;; Typography things.
@@ -667,6 +667,7 @@
   (haskell . my/haskell-settings))
 
 (use-package csharp-mode
+  :straight (:type built-in)
   :mode ("\\.cs$"))
 
 (use-package typescript-mode
