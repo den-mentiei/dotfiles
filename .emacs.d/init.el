@@ -722,7 +722,7 @@
 
 (general-define-key
  :states 'insert
- "C-v" 'evil-paste-before)
+ "C-v" 'evil-paste-after-cursor-after)
 
 (defconst my/leader "SPC")
 (general-create-definer my/leader-def :prefix my/leader)
