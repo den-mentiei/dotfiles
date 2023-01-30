@@ -284,6 +284,16 @@
 (add-hook 'before-save-hook 'my/cleanup-buffer)
 (add-hook 'text-mode-hook 'turn-on-auto-fill)
 
+(defun my/cc-settings ()
+  "Bunch of default settings valid for cc-mode."
+  (interactive)
+  (setq tab-width 4)
+  (setq c-basic-offset 4)
+  (setq indent-tabs-mode t)
+  (modify-syntax-entry ?_ "w"))
+(add-hook 'c-mode-hook 'my/cc-settings)
+(add-hook 'cpp-mode-hook 'my/cc-settings)
+
 ;;; Packages.
 
 ;; Bootstrap the package manager, straight.el, if needed.
