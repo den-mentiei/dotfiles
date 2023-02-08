@@ -14,13 +14,13 @@
         "revision": "65bde84265a3e9726d18323e390a15c45cdc8499"
       },
       "homebrew/cask": {
-        "revision": "9da035cce5f43a7a91305908c919cda2d1643571"
+        "revision": "b69d2bf867caa0e715e347d16402a6d59c744167"
       },
       "homebrew/core": {
-        "revision": "deb1fd1f4212dfbfb26cd668d6aa49a17a3f9445"
+        "revision": "c26f1c8714c231ee6796915f033ba229c89af3d6"
       },
       "homebrew/services": {
-        "revision": "3f97853a2c7bc27eba94076cb08ab93d90bc2211"
+        "revision": "a5998baa7cd6f4729d548456f37d202eed7767a4"
       }
     },
     "brew": {
@@ -1558,7 +1558,7 @@
         }
       },
       "kitty": {
-        "version": "0.27.0",
+        "version": "0.27.1",
         "options": {
           "full_name": "kitty"
         }
@@ -1570,7 +1570,7 @@
         }
       },
       "transmission": {
-        "version": "3.00",
+        "version": "4.0.0",
         "options": {
           "full_name": "transmission"
         }
@@ -1586,9 +1586,9 @@
   "system": {
     "macos": {
       "ventura": {
-        "HOMEBREW_VERSION": "3.6.20",
+        "HOMEBREW_VERSION": "3.6.21",
         "HOMEBREW_PREFIX": "/usr/local",
-        "Homebrew/homebrew-core": "deb1fd1f4212dfbfb26cd668d6aa49a17a3f9445",
+        "Homebrew/homebrew-core": "c26f1c8714c231ee6796915f033ba229c89af3d6",
         "CLT": "14.2.0.0.1.1668646533",
         "Xcode": "14.1",
         "macOS": "13.2"
