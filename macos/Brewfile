@@ -39,7 +39,7 @@ brew "tree"
 brew "wget"
 brew "xsv"
 brew "armmbed/formulae/arm-none-eabi-gcc"
-brew "d12frosted/emacs-plus/emacs-plus@29", args: ["with-imagemagick", "with-native-comp"]
+brew "d12frosted/emacs-plus/emacs-plus@30", args: ["with-imagemagick", "with-native-comp"]
 brew "filosottile/musl-cross/musl-cross"
 cask "cyberduck"
 cask "discord"

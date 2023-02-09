@@ -14,7 +14,7 @@
         "revision": "65bde84265a3e9726d18323e390a15c45cdc8499"
       },
       "homebrew/cask": {
-        "revision": "916d1597c1681552e360822496a2c4058454aa79"
+        "revision": "a7285d9619583e0899cc39a26ffaf336661c9cb3"
       },
       "homebrew/core": {
         "revision": "e724a19598ac7e8774a5608197a17cbfa60beaad"
@@ -1535,6 +1535,16 @@
               "sha256": "27b2151a3a9a943e626e84581d76c073137b17af2c7a6a81b0e7502f58f835f9"
             }
           }
+        }
+      },
+      "d12frosted/emacs-plus/emacs-plus@30": {
+        "version": "30.0.50",
+        "bottle": false,
+        "options": {
+          "args": [
+            "with-imagemagick",
+            "with-native-comp"
+          ]
         }
       }
     },
