@@ -455,15 +455,6 @@
 (use-package general
   :after evil)
 
-(use-package which-key
-  :disabled
-  :init
-  (setq which-key-separator " ")
-  (setq which-key-prefix-prefix "+")
-  :config
-  (which-key-setup-side-window-right)
-  (which-key-mode 1))
-
 (use-package orderless
   :init
   (setq completion-styles '(orderless basic)))
