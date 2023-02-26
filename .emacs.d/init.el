@@ -709,6 +709,9 @@
 (use-package fish-mode
   :mode ("\\.fish$"))
 
+(use-package clojure-mode
+  :mode ("\\.clj$"))
+
 ;;; Bindings.
 
 (general-define-key
