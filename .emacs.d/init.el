@@ -31,6 +31,8 @@
 (when (my/font-installed-p "Segoe UI Symbol")
   (set-fontset-font t 'symbol (font-spec :family "Segoe UI Symbol") nil 'prepend))
 
+(setq frame-resize-pixelwise t)
+
 ;; Hello, 🐈
 ; pacman -S noto-fonts-emoji
 (cond
