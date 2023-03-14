@@ -748,9 +748,10 @@
   "s"   'my/scratch
   "t"   'consult-eglot-symbols
   "r"   'consult-ripgrep
-  "a u"  'my/transparency-increase
-  "a d"  'my/transparency-decrease
-  "a r"  'my/transparency-reset)
+  "p"   'consult-find
+  "a u" 'my/transparency-increase
+  "a d" 'my/transparency-decrease
+  "a r" 'my/transparency-reset)
 
 (my/leader-def
   :states 'visual
