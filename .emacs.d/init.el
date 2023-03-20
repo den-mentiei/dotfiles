@@ -23,10 +23,36 @@
   "Checks if the specified font is installed."
   (find-font (font-spec :name name)))
 
+(defun my/dpi ()
+  "Gets the display DPI."
+  (let* ((attrs (car (display-monitor-attributes-list)))
+         (size (assoc 'mm-size attrs))
+         (sizex (cadr size))
+         (res (cdr (assoc 'geometry attrs)))
+         (resx (- (caddr res) (car res)))
+         dpi)
+    (catch 'exit
+      ;; in terminal
+      (unless sizex
+        (throw 'exit 10))
+      ;; on big screen
+      (when (> sizex 1000)
+        (throw 'exit 10))
+      (* (/ (float resx) sizex) 17.2))))
+
+(defun my/nice-font-size ()
+  "Picks a nice font size, which suits the current DPI."
+  (let ((dpi (my/dpi)))
+	(cond
+	 ((> dpi 160) 23)
+	 (t 23))))
+
+(my/nice-font-size)
+
 ; 0123456789abcdefghijklmnopqrstuvwxyz [] () :;,. !@#$^&*
 ; 0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ {} <> "'`  ~-_/|\?
 (when (my/font-installed-p "Fira Code")
-  (set-frame-font (font-spec :family "Fira Code" :size 13)))
+  (set-frame-font (font-spec :family "Fira Code" :size (my/nice-font-size))))
 
 (when (my/font-installed-p "Segoe UI Symbol")
   (set-fontset-font t 'symbol (font-spec :family "Segoe UI Symbol") nil 'prepend))
