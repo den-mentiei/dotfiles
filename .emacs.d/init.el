@@ -44,10 +44,9 @@
   "Picks a nice font size, which suits the current DPI."
   (let ((dpi (my/dpi)))
 	(cond
+	 ((< dpi 100) 13)
 	 ((> dpi 160) 23)
 	 (t 23))))
-
-(my/nice-font-size)
 
 ; 0123456789abcdefghijklmnopqrstuvwxyz [] () :;,. !@#$^&*
 ; 0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ {} <> "'`  ~-_/|\?
