@@ -262,37 +262,6 @@
   (interactive)
   (delete-trailing-whitespace))
 
-(defun my/transparency-ensure ()
-  "Ensures we have the initial alpha parameter for the current frame."
-  (interactive)
-  (when (equal (frame-parameter nil 'alpha) nil)
-	  (set-frame-parameter nil 'alpha 100)))
-
-(defun my/transparency-increase ()
-  "Increases level of transparency for the current frame."
-  (interactive)
-  (my/transparency-ensure)
-  (if (< (frame-parameter nil 'alpha) 100)
-	  (let ((new-alpha (1+ (frame-parameter nil 'alpha))))
-		(set-frame-parameter nil 'alpha new-alpha)
-		(message "Frame transparency is now %s" new-alpha))
-	(message "Frame transparency is at maximum.")))
-
-(defun my/transparency-decrease ()
-  "Decreases level of transparency for the current frame."
-  (interactive)
-  (my/transparency-ensure)
-  (if (> (frame-parameter nil 'alpha) 0)
-	  (let ((new-alpha (1- (frame-parameter nil 'alpha))))
-		(set-frame-parameter nil 'alpha new-alpha)
-		(message "Frame transparency is now %s" new-alpha))
-	(message "Frame transparency is at minimum.")))
-
-(defun my/transparency-reset ()
-  "Resets level of transparency for the current frame."
-  (interactive)
-  (set-frame-parameter nil 'alpha 100))
-
 (defun my/align-region-to-equals (begin end)
   "Aligns region to equal sign."
   (interactive "r")
