@@ -487,11 +487,27 @@
 	;; And then move directories to be first.
 	(nconc (seq-filter (lambda (x) (string-suffix-p "/" x)) files)
 		   (seq-remove (lambda (x) (string-suffix-p "/" x)) files)))
+  ;; Custom highlightings.
+  (defface my/vertico-subdir '((t :inherit dired-directory))
+	"Face used for highlighting subdirs in the alternatives.")
+  (defun my/vertico-highlight-directory (path)
+	"Highlights PATH if it is a directory name."
+	(if (directory-name-p path)
+		(propertize path 'face 'my/vertico-subdir)
+	  path))
+  (defvar +vertico-transform-functions nil)
+  (cl-defmethod vertico--format-candidate :around
+	(cand prefix suffix index start &context ((not +vertico-transform-functions) null))
+	(dolist (fun (ensure-list +vertico-transform-functions))
+	  (setq cand (funcall fun cand)))
+	(cl-call-next-method cand prefix suffix index start))
   ;; Configurations per command/completion category.
   (setq vertico-multiform-categories
-		'((file (vertico-sort-function . my/sort-directories-first))))
+		'((file (vertico-sort-function . my/sort-directories-first)
+				 (+vertico-transform-functions . my/vertico-highlight-directory))))
   :config
-  (vertico-mode))
+  (vertico-mode)
+  (vertico-multiform-mode))
 
 ;; TODO(dmi): @vertico Setup commands/categories.
 (use-package vertico-multiform
