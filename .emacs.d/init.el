@@ -521,6 +521,7 @@
 ;;   (vertico-posframe-mode 1))
 
 (use-package consult
+  :commands consult-fd
   :after vertico
   :init
   ;; Show real line numbers when narrowed.
@@ -541,7 +542,27 @@
    ([remap xref-show-definitions-function] . consult-xref)
    ("C-s"                                  . consult-line))
   :config
-  (advice-add #'multi-occur :override #'consult-multi-occur))
+  (advice-add #'multi-occur :override #'consult-multi-occur)
+  (defvar consult--fd-command "fd")
+  (defun consult--fd-builder (input)
+	(pcase-let*
+		((`(,arg . ,opts) (consult--command-split input))
+		 (`(,re . ,hl) (funcall consult--regexp-compiler
+								arg 'extended t)))
+	  (when re
+		(cons (append
+			   (list consult--fd-command
+					 "--color=never" "--full-path"
+					 (consult--join-regexps re 'extended))
+			   opts)
+			  hl))))
+  (defun consult-fd (&optional dir initial)
+	(interactive "P")
+	(if (not (executable-find consult--fd-command))
+		(message "Fd executable `%s` is not available!" consult--fd-command)
+	  (pcase-let*
+		  ((`(,prompt ,paths ,dir) (consult--directory-prompt "Fd" dir)))
+		(find-file (consult--find prompt #'consult--fd-builder initial))))))
 
 (use-package magit
   :config
@@ -742,7 +763,7 @@
   "s"   'my/scratch
   "t"   'consult-eglot-symbols
   "r"   'consult-ripgrep
-  "p"   'consult-find
+  "p"   'consult-fd
   "a u" 'my/transparency-increase
   "a d" 'my/transparency-decrease
   "a r" 'my/transparency-reset)
