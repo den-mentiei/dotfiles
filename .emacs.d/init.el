@@ -544,6 +544,7 @@
   :config
   (advice-add #'multi-occur :override #'consult-multi-occur)
   (defvar consult--fd-command "fd")
+  (defconst consult--fd-is-available (executable-find consult--fd-command))
   (defun consult--fd-builder (input)
 	(pcase-let*
 		((`(,arg . ,opts) (consult--command-split input))
@@ -558,7 +559,7 @@
 			  hl))))
   (defun consult-fd (&optional dir initial)
 	(interactive "P")
-	(if (not (executable-find consult--fd-command))
+	(if (not consult--fd-is-available)
 		(message "Fd executable `%s` is not available!" consult--fd-command)
 	  (pcase-let*
 		  ((`(,prompt ,paths ,dir) (consult--directory-prompt "Fd" dir)))
