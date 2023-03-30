@@ -488,7 +488,7 @@
 	(nconc (seq-filter (lambda (x) (string-suffix-p "/" x)) files)
 		   (seq-remove (lambda (x) (string-suffix-p "/" x)) files)))
   ;; Custom highlightings.
-  (defface my/vertico-subdir '((t :inherit dired-directory))
+  (defface my/vertico-subdir '((t :inherit font-lock-function-name-face))
 	"Face used for highlighting subdirs in the alternatives.")
   (defun my/vertico-highlight-directory (path)
 	"Highlights PATH if it is a directory name."
@@ -501,10 +501,17 @@
 	(dolist (fun (ensure-list +vertico-transform-functions))
 	  (setq cand (funcall fun cand)))
 	(cl-call-next-method cand prefix suffix index start))
-  ;; Configurations per command/completion category.
+  ;; Per command category.
+  (setq vertico-multiform-commands
+		'((consult-line buffer)
+		  (consult-imenu buffer)
+		  (execute-extended-command reverse)))
+  ;; Per completion category.
   (setq vertico-multiform-categories
-		'((file (vertico-sort-function . my/sort-directories-first)
-				 (+vertico-transform-functions . my/vertico-highlight-directory))))
+		'((file
+		   (vertico-sort-function . my/sort-directories-first)
+		   (+vertico-transform-functions . my/vertico-highlight-directory))
+		  (consult-grep buffer)))
   :config
   (vertico-mode)
   (vertico-multiform-mode))
@@ -574,11 +581,13 @@
 			   opts)
 			  hl))))
   (defun consult-fd (&optional dir initial)
+	"Search for files akin to `consult-find` but with `fd`."
 	(interactive "P")
 	(if (not consult--fd-is-available)
 		(message "Fd executable `%s` is not available!" consult--fd-command)
 	  (pcase-let*
-		  ((`(,prompt ,paths ,dir) (consult--directory-prompt "Fd" dir)))
+		  ((`(,prompt ,paths ,dir) (consult--directory-prompt "Fd" dir))
+		   (default-directory dir))
 		(find-file (consult--find prompt #'consult--fd-builder initial))))))
 
 (use-package magit
