@@ -503,7 +503,7 @@
 	(cl-call-next-method cand prefix suffix index start))
   ;; Per command category.
   (setq vertico-multiform-commands
-		'((consult-line buffer)
+		'((consult-line reverse)
 		  (consult-imenu buffer)
 		  (execute-extended-command reverse)))
   ;; Per completion category.
