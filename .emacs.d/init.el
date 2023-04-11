@@ -455,9 +455,6 @@
   :init
   (setq completion-styles '(orderless basic)))
 
-;; TODO(dmi): @looks Setup highlighting of files vs directories akin
-;; to counsel.
-;; TODO(dmi): @feature Setup consult-ripgrep separate buffer display.
 (use-package vertico
   :demand t
   :straight (:host github :repo "minad/vertico"
@@ -503,8 +500,7 @@
 	(cl-call-next-method cand prefix suffix index start))
   ;; Per command category.
   (setq vertico-multiform-commands
-		'((consult-line reverse)
-		  (consult-imenu buffer)
+		'((consult-imenu buffer)
 		  (execute-extended-command reverse)))
   ;; Per completion category.
   (setq vertico-multiform-categories
@@ -516,9 +512,7 @@
   (vertico-mode)
   (vertico-multiform-mode))
 
-;; TODO(dmi): @vertico Setup commands/categories.
 (use-package vertico-multiform
-  :disabled
   :commands vertico-multiform-mode
   :after vertico
   :init
