@@ -668,12 +668,37 @@
 (use-package eglot
   :commands eglot
   :bind (:map eglot-mode-map
-			  ("M-RET" . eglot-code-actions))
+			  ("M-RET" . eglot-code-actions)
+			  ("C-c r" . eglot-rename)
+			  ("C-c i" . eglot-code-actions-organize-imports)
+			  ("C-c h" . eldoc))
   :custom
   (setq eglot-autoshutdown t))
 
 (use-package consult-eglot
   :after (eglot consult))
+
+;;
+;; TODO(dmi): Configure this to be a side windows which
+;; can be toggled.
+;;
+;; (setq display-buffer-alist
+;;       `(("*eldoc*"
+;;          (display-buffer-in-side-window)
+;;          (side . bottom)
+;;          (window-height . 0.16)
+;;          (slot . 0))))
+;;
+;; https://www.gnu.org/software/emacs/manual/html_node/elisp/The-Zen-of-Buffer-Display.html
+;;
+;; (defun jao-eldoc-toggle ()
+;;   "Toggle eldoc's documentation buffer."
+;;   (interactive)
+;;   (let ((buffer (eldoc-doc-buffer)))
+;;     (if-let (w (and buffer (get-buffer-window buffer)))
+;;         (delete-window w)
+;;       (eldoc-doc-buffer t))))
+;;
 
 ;;; File format modes.
 
@@ -778,12 +803,14 @@
 (my/leader-def
   :states 'normal
   "e i" 'my/find-user-init-file
+  "e p" 'flymake-show-project-diagnostics
   "g"   'my/google
   "i"   'consult-imenu
   "s"   'my/scratch
   "t"   'consult-eglot-symbols
   "r"   'consult-ripgrep
   "p"   'consult-fd
+  "f"   'consult-flymake
   "a u" 'my/transparency-increase
   "a d" 'my/transparency-decrease
   "a r" 'my/transparency-reset)
