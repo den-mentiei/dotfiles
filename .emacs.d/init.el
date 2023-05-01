@@ -289,7 +289,7 @@
   (setq indent-tabs-mode t)
   (modify-syntax-entry ?_ "w"))
 (add-hook 'c-mode-hook 'my/cc-settings)
-(add-hook 'cpp-mode-hook 'my/cc-settings)
+(add-hook 'c++-mode-hook 'my/cc-settings)
 
 ;;; Packages.
 
@@ -672,6 +672,8 @@
 			  ("C-c r" . eglot-rename)
 			  ("C-c i" . eglot-code-actions-organize-imports)
 			  ("C-c h" . eldoc))
+  :hook
+  (eglot-managed-mode . (lambda () (eglot-inlay-hints-mode -1)))
   :custom
   (setq eglot-autoshutdown t))
 
