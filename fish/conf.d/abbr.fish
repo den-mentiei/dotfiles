@@ -64,11 +64,8 @@ function setup_git_abbr -d "Sets up git abbreviations."
 end
 
 function setup_all_abbr -d "Sets up all the abbreviations."
-	if not set -q MY_ABBR_SET
-		setup_git_abbr
-		setup_cargo_abbr
-		set -U MY_ABBR_SET true
-	end
+	setup_git_abbr
+	setup_cargo_abbr
 end
 
 function remove_all_abbr -d "Removes all the abbreviations."
@@ -78,7 +75,6 @@ function remove_all_abbr -d "Removes all the abbreviations."
 end
 
 function reset_all_abbr -d "Resets all the abbreviations."
-	set -U -e MY_ABBR_SET
 	remove_all_abbr
 	setup_all_abbr
 end
