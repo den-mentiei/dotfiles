@@ -334,6 +334,7 @@
   :custom
   (dired-recursive-copies 'always)
   (dired-recursive-deletes 'always)
+  (dired-dired-target t)
   :config
   (put 'dired-find-alternate-file 'disabled nil)
   :init
