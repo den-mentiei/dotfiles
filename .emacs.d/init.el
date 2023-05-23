@@ -267,6 +267,11 @@
   (interactive "r")
   (align-regexp begin end "\\(\\s-*\\)=" 1 1))
 
+(defun my/align-region-to-whitespace (begin end)
+  "Aligns region by whitespace."
+  (interactive "r")
+  (align-regexp begin end "\\(\\s-*\\)\\s-" 1 0 t))
+
 (defun my/update-all-packages ()
   "Update and freeze all Straight packages."
   (interactive)
