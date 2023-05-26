@@ -366,6 +366,7 @@
   (setq doom-modeline-major-mode-icon t)
   (setq doom-modeline-major-mode-color-icon t)
   (setq doom-modeline-percent-position nil)
+  (setq doom-modeline-height 40)
   :config
   (doom-modeline-def-modeline 'my/mode-line
 	'(bar modals matches buffer-info buffer-position) '(buffer-encoding vcs lsp))
