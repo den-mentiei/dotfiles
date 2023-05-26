@@ -356,8 +356,8 @@
 ;;; Mode-line.
 
 ;; Icons for major-modes, etc.
-;; Do not forget to call `all-the-icons-install-fonts'.
-(use-package all-the-icons)
+;; Do not forget to call `nerd-icons-install-fonts'.
+(use-package nerd-icons)
 
 ;; I'm using Doom for now as it looks nice and is pretty lightweight.
 (use-package doom-modeline
