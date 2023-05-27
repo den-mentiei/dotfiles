@@ -48,6 +48,14 @@
 	 ((> dpi 160) 23)
 	 (t 23))))
 
+(defun my/nice-modeline-height ()
+  "Picks a nice modeline height, which suits the current DPI."
+  (let ((dpi (my/dpi)))
+	(cond
+	 ((< dpi 100) 22)
+	 ((> dpi 160) 40)
+	 (t 40))))
+
 ; 0123456789abcdefghijklmnopqrstuvwxyz [] () :;,. !@#$^&*
 ; 0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ {} <> "'`  ~-_/|\?
 (when (my/font-installed-p "Fira Code")
@@ -366,7 +374,7 @@
   (setq doom-modeline-major-mode-icon t)
   (setq doom-modeline-major-mode-color-icon t)
   (setq doom-modeline-percent-position nil)
-  (setq doom-modeline-height 40)
+  (setq doom-modeline-height (my/nice-modeline-height))
   :config
   (doom-modeline-def-modeline 'my/mode-line
 	'(bar modals matches buffer-info buffer-position) '(buffer-encoding vcs lsp))
