@@ -44,7 +44,7 @@
   "Picks a nice font size, which suits the current DPI."
   (let ((dpi (my/dpi)))
 	(cond
-	 ((< dpi 100) 13)
+	 ((< dpi 100) 14)
 	 ((> dpi 160) 23)
 	 (t 23))))
 
