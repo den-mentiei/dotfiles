@@ -11,7 +11,7 @@ set -g TERM screen-256color
 # All hail, unicode!
 set -x LANG en_US.UTF-8
 
-set -x SSH_AUTH_SOCK $XDG_RUNTIME_DIR/ssh-agent.socket
+set -Ux SSH_AUTH_SOCK $XDG_RUNTIME_DIR/ssh-agent.socket
 
 # Loads all my ssh keys in to the agent.
 load_keys
