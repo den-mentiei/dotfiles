@@ -19,6 +19,9 @@ bindsym $mod+q kill
 # Start a program launcher.
 bindsym $mod+d exec --no-startup-id rofi -fuzzy -show run
 
+# Start Emacs.
+bindsym $mod+e exec emacs
+
 # Change focus.
 bindsym $mod+h focus left
 bindsym $mod+j focus down
