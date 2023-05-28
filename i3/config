@@ -122,6 +122,5 @@ bar {
 
 # Autostart.
 
-exec --no-startup-id compton -CGb
 exec --no-startup-id setxkbmap -layout 'us,ru' -option grp:lctrl_lshift_toggle,grp_led:scroll,ctrl:nocaps -variant 'winkeys'
-exec --no-startup-id feh --bg-max ~/wallpapers/1.jpg
+exec --no-startup-id feh --bg-max ~/dotfiles/wallpapers/1.jpg
