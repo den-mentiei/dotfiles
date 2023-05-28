@@ -15,26 +15,12 @@ function source {
 	}
 }
 
-function explorer {
-	explorer.exe .
-}
-
 function limit-HomeDirectory($Path) {
 	$Path.Replace("$home", "~")
 }
 
 ## Prompt
 
-function prompt {
-	$prompt = ""
-
-	$prompt += $(limit-HomeDirectory("$pwd")) + "`n"
-	$prompt += "$ "
-
-	$prompt
-}
+Invoke-Expression (&starship init powershell)
 
 ## Aliases
-
-# TODO: Check if git is available.
-Set-Alias -Name gst -Value "git status"
