@@ -15,10 +15,6 @@ function source {
 	}
 }
 
-function limit-HomeDirectory($Path) {
-	$Path.Replace("$home", "~")
-}
-
 ## Prompt
 
 Invoke-Expression (&starship init powershell)
@@ -62,3 +58,6 @@ function gp! { git push --force-with-lease $args }
 
 function gf { git fetch --all --prune $args }
 function gl { git pull -ff $args }
+
+Remove-Alias ls -Force -ErrorAction SilentlyContinue
+function la { ls -lah --color=auto --group-directories-first $args }
