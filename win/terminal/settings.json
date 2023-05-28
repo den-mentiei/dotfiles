@@ -1,22 +1,22 @@
 {
     "$help": "https://aka.ms/terminal-documentation",
     "$schema": "https://aka.ms/terminal-profiles-schema",
-    "actions": 
+    "actions":
     [
         {
-            "command": 
-            {
-                "action": "commandPalette"
-            },
-            "keys": "ctrl+p"
-        },
-        {
-            "command": 
+            "command":
             {
                 "action": "copy",
                 "singleLine": false
             },
             "keys": "ctrl+c"
+        },
+        {
+            "command":
+            {
+                "action": "commandPalette"
+            },
+            "keys": "ctrl+p"
         },
         {
             "command": "paste",
@@ -25,6 +25,15 @@
         {
             "command": "find",
             "keys": "ctrl+shift+f"
+        },
+        {
+            "command":
+            {
+                "action": "splitPane",
+                "split": "auto",
+                "splitMode": "duplicate"
+            },
+            "keys": "alt+shift+d"
         },
         {
             "command": "unbound",
@@ -39,20 +48,11 @@
             "keys": "ctrl+shift+p"
         },
         {
-            "command": 
-            {
-                "action": "splitPane",
-                "split": "auto",
-                "splitMode": "duplicate"
-            },
-            "keys": "alt+shift+d"
-        },
-        {
             "command": "closePane",
             "keys": "ctrl+w"
         },
         {
-            "command": 
+            "command":
             {
                 "action": "newTab"
             },
@@ -63,14 +63,14 @@
     "copyOnSelect": false,
     "defaultProfile": "{61c54bbd-c2c6-5271-96e7-009a87ff44bf}",
     "launchMode": "maximized",
-    "profiles": 
+    "profiles":
     {
-        "defaults": 
+        "defaults":
         {
             "colorScheme": "Solarized Dark",
             "cursorShape": "vintage",
             "experimental.retroTerminalEffect": false,
-            "font": 
+            "font":
             {
                 "face": "Fira Code",
                 "size": 11.0
@@ -79,13 +79,13 @@
             "useAcrylic": false,
             "useAtlasEngine": true
         },
-        "list": 
+        "list":
         [
             {
                 "colorScheme": "Solarized Dark",
                 "commandline": "%SystemRoot%\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
                 "cursorShape": "vintage",
-                "font": 
+                "font":
                 {
                     "face": "Fira Code"
                 },
@@ -101,26 +101,20 @@
                 "name": "Command Prompt"
             },
             {
-                "guid": "{b453ae62-4e3d-5e58-b989-0a998ec441b8}",
+                "guid": "{016784f5-ad1d-58c2-83a4-1ec42bfbf4a7}",
                 "hidden": false,
-                "name": "Azure Cloud Shell",
-                "source": "Windows.Terminal.Azure"
-            },
-            {
-                "guid": "{b78aa20c-3e4a-50c1-802a-61f30e913ef5}",
-                "hidden": false,
-                "name": "Developer Command Prompt for VS 2022 [4]",
+                "name": "Developer Command Prompt for VS 2022",
                 "source": "Windows.Terminal.VisualStudio"
             },
             {
-                "guid": "{fbfd4780-bcef-562d-b485-0d569f60ec6b}",
+                "guid": "{47960902-0e0d-5d32-b567-56faace1c929}",
                 "hidden": false,
-                "name": "Developer PowerShell for VS 2022 [4]",
+                "name": "Developer PowerShell for VS 2022",
                 "source": "Windows.Terminal.VisualStudio"
             }
         ]
     },
-    "schemes": 
+    "schemes":
     [
         {
             "background": "#0C0C0C",
