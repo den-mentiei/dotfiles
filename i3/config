@@ -5,7 +5,7 @@ set $mod Mod4
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
-font pango:DejaVu Sans Mono 9
+font pango:Fira Code 10
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -95,7 +95,9 @@ client.urgent #aa0000 #990000 #ffffff
 
 # Gaps.
 # In order to use gaps, I need to disable window titlebars.
-for_window [class=".*"] border pixel 0
+for_window [class=".*"] border none
+default_border none
+gaps outer 8
 gaps inner 12
 
 # Start i3bar to display a workspace bar (plus the system information i3status
@@ -115,9 +117,10 @@ bar {
 	font pango:Fira Code 10
 	position top
 	status_command i3status
+	separator_symbol "·"
 }
 
 # Autostart.
 
-exec --no-startup-id setxkbmap -layout 'us,ru' -option grp:lctrl_lshift_toggle,grp_led:scroll,ctrl:nocaps -variant 'winkeys'
+exec --no-startup-id setxkbmap -layout 'us,ua' -option grp:lctrl_lshift_toggle,grp_led:scroll,ctrl:nocaps -variant 'winkeys'
 exec --no-startup-id feh --bg-fill ~/dotfiles/wallpapers/3.jpg
