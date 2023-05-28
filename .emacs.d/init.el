@@ -428,8 +428,6 @@
 
 (use-package writeroom-mode)
 
-(use-package olivetti)
-
 ; TODO(dmi): Switch to straight and get it from https://github.com/mickeynp/ligature.el
 ;; Ligatures! != => <-
 (use-package ligature
