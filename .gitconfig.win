@@ -6,14 +6,15 @@
 [diff]
 	guitool = p4merge
 [mergetool "p4merge"]
-	path = C:/scp/apps/p4v/current/p4merge.exe
-	cmd = \"C:/scp/apps/p4v/current/p4merge.exe\" \"$BASE\" \"$LOCAL\" \"$REMOTE\" \"$MERGED\"
+	path = \"$SCOOP/apps/p4v/current/p4merge.exe\"
+	cmd = \"$SCOOP/apps/p4v/current/p4merge.exe\" \"$BASE\" \"$LOCAL\" \"$REMOTE\" \"$MERGED\"
 [difftool "p4merge"]
-	path = C:/scp/apps/p4v/current/p4merge.exe
-	cmd = \"C:/scp/apps/p4v/current/p4merge.exe\" \"$LOCAL\" \"$REMOTE\"
+	path = \"$SCOOP/apps/p4v/current/p4merge.exe\"
+	cmd = \"$SCOOP/apps/p4v/current/p4merge.exe\" \"$LOCAL\" \"$REMOTE\"
 [core]
-	editor = \"C:/scp/apps/gitextensions/current/GitExtensions.exe\" fileeditor
+	editor = emacs
 	autocrlf = input
+    sshcommand = C:/Windows/System32/OpenSSH/ssh.exe
 [credential]
 	helper = manager-core
 [filter "lfs"]
