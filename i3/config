@@ -120,4 +120,4 @@ bar {
 # Autostart.
 
 exec --no-startup-id setxkbmap -layout 'us,ru' -option grp:lctrl_lshift_toggle,grp_led:scroll,ctrl:nocaps -variant 'winkeys'
-exec --no-startup-id feh --bg-max ~/dotfiles/wallpapers/1.jpg
+exec --no-startup-id feh --bg-max ~/dotfiles/wallpapers/2.jpg
