@@ -60,4 +60,4 @@ function gf { git fetch --all --prune $args }
 function gl { git pull -ff $args }
 
 Remove-Alias ls -Force -ErrorAction SilentlyContinue
-function la { ls -lah --color=auto --group-directories-first $args }
+function la { ls -lah --color=auto $args }
