@@ -8,8 +8,10 @@ eln-cache/
 emojis/
 games/
 org-persist/
+projects/
 straight/*
 !straight/versions/
+tramp
 recentf
 bookmarks
 custom.el
@@ -17,4 +19,3 @@ custom.el
 network-security.data
 .emacs.desktop
 .emacs.desktop.lock
-projects
