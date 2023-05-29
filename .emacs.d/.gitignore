@@ -9,6 +9,7 @@ emojis/
 games/
 org-persist/
 projects/
+tree-sitter/
 straight/*
 !straight/versions/
 tramp
