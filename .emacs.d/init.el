@@ -183,6 +183,14 @@
 (setq create-lockfiles nil)
 (setq auto-save-default nil)
 
+;; Only care about Git.
+(setq vc-handled-backends '(Git))
+;; Speeds up TRAMP, not caring about vc on remote hosts for now.
+(setq vc-ignore-dir-regexp
+	  (format "\\(%s\\)\\|\\(%s\\)"
+			  vc-ignore-dir-regexp
+			  tramp-file-name-regexp))
+
 ;;; Formatting.
 
 ;; Tabs > spaces. It can be changed on a per-mode basis (or even via
@@ -602,7 +610,6 @@
   ;; Disables the automatic diff show-off of the changes about to commit.
   (remove-hook 'server-switch-hook 'magit-commit-diff)
   (add-to-list 'magit-no-confirm 'stage-all-changes)
-  (setq vc-handled-backends '(Git))
   (setq magit-display-buffer-function #'magit-display-buffer-fullframe-status-v1)
   (evil-set-initial-state 'magit-log-edit-mode 'insert)
   (add-hook 'git-commit-mode-hook 'evil-insert-state)
