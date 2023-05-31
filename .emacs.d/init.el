@@ -52,7 +52,7 @@
   "Picks a nice modeline height, which suits the current DPI."
   (let ((dpi (my/dpi)))
 	(cond
-	 ((< dpi 100) 22)
+	 ((< dpi 100) 25)
 	 ((> dpi 160) 40)
 	 (t 40))))
 
