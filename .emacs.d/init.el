@@ -454,8 +454,6 @@
 									   "<~" "<~~" "</" "</>" "~@" "~-" "~>" "~~" "~~>" "%%"))
   (global-ligature-mode t))
 
-(use-package undo-fu)
-
 ;; Vim once, Vim forever, dude.
 (use-package evil
   :demand t
@@ -465,7 +463,7 @@
   (setq evil-echo-state nil)
   (setq evil-want-Y-yank-to-eol t)
   (setq evil-symbol-word-search t)
-  (setq evil-undo-system 'undo-fu)
+  (setq evil-undo-system 'undo-redo)
   :config
   (evil-mode 1))
 
