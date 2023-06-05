@@ -28,6 +28,9 @@ bindsym $mod+j focus down
 bindsym $mod+k focus up
 bindsym $mod+l focus right
 
+# Focus should be managed manually and not with the mouse.
+focus_follows_mouse no
+
 # Move containers around.
 bindsym $mod+Shift+h move left
 bindsym $mod+Shift+j move down
