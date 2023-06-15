@@ -130,6 +130,12 @@
 ;; Shows column number in the modeline.
 (column-number-mode t)
 
+;; Truncate lines instead of doing the visual line breaking and such.
+(setq-default truncate-lines t)
+;; Always truncate lines for the window splits, not depending on the
+;; split width.
+(setq-default truncate-partial-width-windows t)
+
 ;;; Scrolling
 
 ;; 2 columns away and we automagically scroll further one by one.
