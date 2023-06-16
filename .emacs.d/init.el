@@ -804,7 +804,7 @@
   :mode ("\\.groovy$"))
 
 (use-package powershell
-  :mode ("\\.ps1$"))
+  :mode ("\\.ps1$" . powershell-mode))
 
 ;;; Bindings.
 
