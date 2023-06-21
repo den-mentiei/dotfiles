@@ -471,7 +471,8 @@
   (setq evil-symbol-word-search t)
   (setq evil-undo-system 'undo-redo)
   :config
-  (evil-mode 1))
+  (evil-mode 1)
+  (evil-set-initial-state 'compilation-mode 'emacs))
 
 (use-package general
   :after evil)
