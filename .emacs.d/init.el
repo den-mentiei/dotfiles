@@ -807,6 +807,9 @@
 (use-package powershell
   :mode ("\\.ps1$" . powershell-mode))
 
+(use-package glsl-mode
+  :mode ("\\.glsl$"))
+
 ;;; Bindings.
 
 (general-define-key
