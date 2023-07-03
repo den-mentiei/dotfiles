@@ -819,6 +819,9 @@
   :hook
   (glsl-mode . my/glsl-settings))
 
+(use-package zig-mode
+  :mode ("\\.zig$"))
+
 ;;; Bindings.
 
 (general-define-key
