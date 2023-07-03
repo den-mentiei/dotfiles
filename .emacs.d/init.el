@@ -808,7 +808,16 @@
   :mode ("\\.ps1$" . powershell-mode))
 
 (use-package glsl-mode
-  :mode ("\\.glsl$"))
+  :mode ("\\.glsl$")
+  :config
+  (defun my/glsl-settings ()
+	"Bunch of default settings valid for glsl-mode."
+	(interactive)
+	(setq tab-width 4)
+	(setq c-basic-offset 4)
+	(setq indent-tabs-mode t))
+  :hook
+  (glsl-mode . my/glsl-settings))
 
 ;;; Bindings.
 
