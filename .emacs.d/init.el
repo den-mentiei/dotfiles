@@ -627,7 +627,8 @@
   (evil-set-initial-state 'magit-log-edit-mode 'insert)
   (add-hook 'git-commit-mode-hook 'evil-insert-state)
   :bind
-  ("C-x g" . magit-status))
+  ("C-x g" . magit-status)
+  ("C-c g" . magit-file-dispatch))
 
 (use-package org
   :mode ("\\.org$" . org-mode)
