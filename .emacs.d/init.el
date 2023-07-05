@@ -230,6 +230,8 @@
 ;; Archaic thing that is no longer a thing.
 (setq sentence-end-double-space nil)
 
+(setq calendar-week-start-day 1)
+
 ;;; Utilities.
 
 (defun my/find-user-init-file ()
