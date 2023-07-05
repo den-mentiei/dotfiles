@@ -10,15 +10,13 @@ font pango:Fira Code 10
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
-# Start a terminal.
-bindsym $mod+Return exec i3-sensible-terminal
-
 # Kill focused window.
 bindsym $mod+q kill
 
+# Start a terminal.
+bindsym $mod+Return exec i3-sensible-terminal
 # Start a program launcher.
 bindsym $mod+d exec --no-startup-id rofi -fuzzy -show run
-
 # Start Emacs.
 bindsym $mod+e exec emacs
 
@@ -50,11 +48,10 @@ bindsym $mod+f fullscreen
 bindsym $mod+Shift+space floating toggle
 
 # Workspaces.
-set $tag1 "1"
-set $tag2 "2"
-set $tag3 "3"
-set $tag4 "4"
-set $tag5 "5"
+set $tag1 "1:🔨"
+set $tag2 "2:📨"
+set $tag3 "3:🕸"
+set $tag4 "4:✨"
 
 workspace_auto_back_and_forth yes
 
@@ -63,14 +60,12 @@ bindsym $mod+1 workspace $tag1
 bindsym $mod+2 workspace $tag2
 bindsym $mod+3 workspace $tag3
 bindsym $mod+4 workspace $tag4
-bindsym $mod+5 workspace $tag5
 
 # Move focused container to workspace.
 bindsym $mod+Shift+1 move container to workspace $tag1
 bindsym $mod+Shift+2 move container to workspace $tag2
 bindsym $mod+Shift+3 move container to workspace $tag3
 bindsym $mod+Shift+4 move container to workspace $tag4
-bindsym $mod+Shift+5 move container to workspace $tag5
 
 # Reload the configuration file.
 bindsym $mod+Shift+c reload
