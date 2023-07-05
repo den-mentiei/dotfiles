@@ -56,15 +56,30 @@
 	 ((> dpi 160) 40)
 	 (t 40))))
 
-; 0123456789abcdefghijklmnopqrstuvwxyz [] () :;,. !@#$^&*
-; 0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ {} <> "'`  ~-_/|\?
-(when (my/font-installed-p "Fira Code")
-  (set-frame-font (font-spec :family "Fira Code" :size (my/nice-font-size))))
-
 (when (my/font-installed-p "Segoe UI Symbol")
   (set-fontset-font t 'symbol (font-spec :family "Segoe UI Symbol") nil 'prepend))
 
 (setq frame-resize-pixelwise t)
+
+(defvar *my/frame-initialized* nil
+  "Denotes if frame initialization already took place.")
+
+(defun my/frame-setup (&optional frame)
+  "Setups frame once."
+  (interactive)
+  (unless *my/frame-initialized*
+	(message "Setting up the frame...")
+	(setq *my/frame-initialized* t)
+	; 0123456789abcdefghijklmnopqrstuvwxyz [] () :;,. !@#$^&*
+	; 0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ {} <> "'`  ~-_/|\?
+	(when (my/font-installed-p "Fira Code")
+	  (set-frame-font (font-spec :family "Fira Code" :size (my/nice-font-size))))))
+
+(if (daemonp)
+	(progn
+	  (add-hook 'server-after-make-frame-hook 'my/frame-setup)
+	  (message "Daemon is out!"))
+  (my/frame-setup))
 
 ;; Hello, 🐈
 ; pacman -S noto-fonts-emoji
