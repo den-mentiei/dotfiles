@@ -19,10 +19,6 @@
 
 ;;; General UI/UX
 
-(defun my/font-installed-p (name)
-  "Checks if the specified font is installed."
-  (find-font (font-spec :name name)))
-
 (defun my/dpi ()
   "Gets the display DPI."
   (let* ((attrs (car (display-monitor-attributes-list)))
@@ -56,10 +52,14 @@
 	 ((> dpi 160) 40)
 	 (t 40))))
 
-(when (my/font-installed-p "Segoe UI Symbol")
-  (set-fontset-font t 'symbol (font-spec :family "Segoe UI Symbol") nil 'prepend))
-
 (setq frame-resize-pixelwise t)
+
+;; Hello, 🐈
+(set-fontset-font t 'emoji "Apple Color Emoji" nil 'prepend)
+; pacman -S noto-fonts-emoji
+(set-fontset-font t 'emoji "Noto Color Emoji" nil 'prepend)
+(set-fontset-font t 'emoji "Segoe UI Emoji" nil 'prepend)
+(set-fontset-font t 'symbol "Segoe UI Symbol" nil 'prepend)
 
 (defvar *my/frame-initialized* nil
   "Denotes if frame initialization already took place.")
@@ -67,27 +67,20 @@
 (defun my/frame-setup (&optional frame)
   "Setups frame once."
   (interactive)
+  (when frame
+	(select-frame-set-input-focus frame))
   (unless *my/frame-initialized*
 	(message "Setting up the frame...")
 	(setq *my/frame-initialized* t)
 	; 0123456789abcdefghijklmnopqrstuvwxyz [] () :;,. !@#$^&*
 	; 0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ {} <> "'`  ~-_/|\?
-	(when (my/font-installed-p "Fira Code")
-	  (set-frame-font (font-spec :family "Fira Code" :size (my/nice-font-size))))))
+	(set-frame-font (font-spec :family "Fira Code" :size (my/nice-font-size)))))
 
 (if (daemonp)
 	(progn
 	  (add-hook 'server-after-make-frame-hook 'my/frame-setup)
 	  (message "Daemon is out!"))
   (my/frame-setup))
-
-;; Hello, 🐈
-; pacman -S noto-fonts-emoji
-(cond
- ((my/font-installed-p "Noto Color Emoji")
-  (set-fontset-font t 'emoji (font-spec :family "Noto Color Emoji") nil 'prepend))
- ((my/font-installed-p "Segoe UI Emoji")
-  (set-fontset-font t 'emoji (font-spec :family "Segoe UI Emoji") nil 'prepend)))
 
 ;; Filename is enough.
 (setq frame-title-format "%b - emacs")
