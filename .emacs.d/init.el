@@ -504,6 +504,11 @@
                         vertico-quick
                         vertico-repeat
                         vertico-reverse))
+  :custom
+  (vertico-buffer-display-action
+   '(display-buffer-in-side-window
+                  (side . right)
+                  (window-width . 0.5)))
   :init
   ;; Limit the candidates list.
   (setq vertico-resize nil)
