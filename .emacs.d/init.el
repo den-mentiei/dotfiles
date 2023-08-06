@@ -835,6 +835,9 @@
   :hook
   (glsl-mode . my/glsl-settings))
 
+(use-package lua-mode
+  :mode ("\\.lua$"))
+
 (use-package zig-mode
   :mode ("\\.zig$"))
 
