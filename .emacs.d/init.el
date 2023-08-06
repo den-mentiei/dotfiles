@@ -836,7 +836,17 @@
   (glsl-mode . my/glsl-settings))
 
 (use-package lua-mode
-  :mode ("\\.lua$"))
+  :mode ("\\.lua$")
+  :config
+  (defun my/lua-settings ()
+	"Bunch of default settings valid for lua-mode."
+	(interactive)
+	(setq tab-width 4)
+	(setq c-basic-offset 4)
+	(setq indent-tabs-mode t)
+	(modify-syntax-entry ?_ "w"))
+  :hook
+  (lua-mode . my/lua-settings))
 
 (use-package zig-mode
   :mode ("\\.zig$"))
