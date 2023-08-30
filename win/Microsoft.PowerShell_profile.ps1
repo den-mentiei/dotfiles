@@ -1,6 +1,8 @@
 ## Customization
 
-# Produce UTF-8 by default
+# UTF-8 by default
+[System.Console]::InputEncoding = [System.Text.Encoding]::GetEncoding("utf-8")
+[System.Console]::OutputEncoding = [System.Text.Encoding]::GetEncoding("utf-8")
 $PSDefaultParameterValues["Out-File:Encoding"] = "utf8"
 
 # https://technet.microsoft.com/en-us/magazine/hh241048.aspx
@@ -76,3 +78,9 @@ function cwb { cargo watch -x 'build' $args }
 
 Remove-Alias ls -Force -ErrorAction SilentlyContinue
 function la { ls -lah --color=auto $args }
+
+### FZF history
+
+# Requires `Install-Module PSFzf`.
+Import-Module PSFzf
+Set-PsFzfOption -PSReadlineChordProvider 'Ctrl+e' -PSReadlineChordReverseHistory 'Ctrl+r'
