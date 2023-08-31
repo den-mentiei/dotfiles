@@ -16,7 +16,7 @@
 	autocrlf = input
     sshcommand = C:/Windows/System32/OpenSSH/ssh.exe
 [credential]
-	helper = manager-core
+	helper = manager
 [filter "lfs"]
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
