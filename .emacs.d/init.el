@@ -13,6 +13,10 @@
 ;; `early-init.el` set this to a very big number previously.
 (setq gc-cons-threshold (* 10 1024 1024))
 
+(defconst my/is-macos (eq system-type 'darwin))
+(defconst my/is-linux (eq system-type 'gnu-linux))
+(defconst my/is-win (memq system-type '(cygwin windows-nt msd-dos)))
+
 ;; That's me.
 (setq user-full-name "Denys Mentiei")
 (setq user-mail-address "endden@gmail.com")
@@ -310,7 +314,12 @@
   (straight-normalize-all)
   (straight-pull-all 'from-upstream)
   (straight-prune-build)
-  (straight-check-all)
+  ;; TODO(dmi):
+  ;; Checking requires `find` and it is absent
+  ;; on Windows. It can be configured, though.
+  (if my/is-win
+	  (straight-rebuild-all)
+	(straight-check-all))
   (straight-freeze-versions))
 
 ;; Hooks.
