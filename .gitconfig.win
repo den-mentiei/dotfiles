@@ -12,7 +12,7 @@
 	path = \"$SCOOP/apps/p4v/current/p4merge.exe\"
 	cmd = \"$SCOOP/apps/p4v/current/p4merge.exe\" \"$LOCAL\" \"$REMOTE\"
 [core]
-	editor = emacs
+	editor = emacsclient -c
 	autocrlf = input
     sshcommand = C:/Windows/System32/OpenSSH/ssh.exe
 [credential]
