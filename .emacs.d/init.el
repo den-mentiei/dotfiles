@@ -890,10 +890,7 @@
   "t"   'consult-eglot-symbols
   "r"   'consult-ripgrep
   "p"   'consult-fd
-  "f"   'consult-flymake
-  "a u" 'my/transparency-increase
-  "a d" 'my/transparency-decrease
-  "a r" 'my/transparency-reset)
+  "f"   'consult-flymake)
 
 (my/leader-def
   :states 'visual
