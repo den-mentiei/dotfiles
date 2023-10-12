@@ -314,13 +314,13 @@
   (straight-normalize-all)
   (straight-pull-all 'from-upstream)
   (straight-prune-build)
+  (straight-freeze-versions)
   ;; TODO(dmi):
   ;; Checking requires `find` and it is absent
   ;; on Windows. It can be configured, though.
   (if my/is-win
 	  (straight-rebuild-all)
-	(straight-check-all))
-  (straight-freeze-versions))
+	(straight-check-all)))
 
 ;; Hooks.
 
