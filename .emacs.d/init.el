@@ -73,12 +73,9 @@
   (interactive)
   (when frame
 	(select-frame-set-input-focus frame))
-  (unless *my/frame-initialized*
-	(message "Setting up the frame...")
-	(setq *my/frame-initialized* t)
 	; 0123456789abcdefghijklmnopqrstuvwxyz [] () :;,. !@#$^&*
 	; 0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ {} <> "'`  ~-_/|\?
-	(set-frame-font (font-spec :family "Fira Code" :size (my/nice-font-size)))))
+	(set-frame-font (font-spec :family "Fira Code" :size (my/nice-font-size))))
 
 (if (daemonp)
 	(progn
