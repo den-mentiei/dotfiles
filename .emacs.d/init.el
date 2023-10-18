@@ -488,6 +488,7 @@
   (setq evil-undo-system 'undo-redo)
   :config
   (evil-mode 1)
+  (evil-set-initial-state 'help-mode 'emacs)
   (evil-set-initial-state 'compilation-mode 'emacs))
 
 (use-package general
