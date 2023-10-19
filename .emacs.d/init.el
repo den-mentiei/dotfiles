@@ -488,6 +488,7 @@
   (setq evil-undo-system 'undo-redo)
   :config
   (evil-mode 1)
+  (evil-set-initial-state 'eww-mode 'emacs)
   (evil-set-initial-state 'help-mode 'emacs)
   (evil-set-initial-state 'compilation-mode 'emacs))
 
@@ -603,8 +604,11 @@
    ([remap load-theme]                     . consult-theme)
    ([remap switch-to-buffer]               . consult-buffer)
    ([remap switch-to-buffer-other-window]  . consult-buffer-other-window)
+   ([remap switch-to-buffer-other-frame]   . consult-buffer-other-frame)
    ([remap xref-show-xrefs-function]       . consult-xref)
    ([remap xref-show-definitions-function] . consult-xref)
+   ([remap Info-search]                    . consult-info)
+   ([remap keep-lines]                     . consult-keep-lines)
    ("C-s"                                  . consult-line))
   :config
   (advice-add #'multi-occur :override #'consult-multi-occur)
