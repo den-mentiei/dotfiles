@@ -58,24 +58,22 @@
 
 (setq frame-resize-pixelwise t)
 
-;; Hello, 🐈
-(set-fontset-font t 'emoji "Apple Color Emoji" nil 'prepend)
-; pacman -S noto-fonts-emoji
-(set-fontset-font t 'emoji "Noto Color Emoji" nil 'prepend)
-(set-fontset-font t 'emoji "Segoe UI Emoji" nil 'prepend)
-(set-fontset-font t 'symbol "Segoe UI Symbol" nil 'prepend)
-
-(defvar *my/frame-initialized* nil
-  "Denotes if frame initialization already took place.")
+;; 0123456789abcdefghijklmnopqrstuvwxyz [] () :;,. !@#$^&*
+;; 0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ {} <> "'`  ~-_/|\?
+(defun my/setup-fonts ()
+  (set-frame-font (font-spec :family "Fira Code" :size (my/nice-font-size)))
+  ;; Hello, 🐈
+  ;; pacman -S noto-fonts-emoji
+  (set-fontset-font t 'emoji "Apple Color Emoji" nil 'prepend)
+  (set-fontset-font t 'emoji "Noto Color Emoji" nil 'prepend)
+  (set-fontset-font t 'emoji "Segoe UI Emoji" nil 'prepend)
+  (set-fontset-font t 'symbol "Segoe UI Symbol" nil 'prepend))
 
 (defun my/frame-setup (&optional frame)
   "Setups frame once."
-  (interactive)
   (when frame
 	(select-frame-set-input-focus frame))
-	; 0123456789abcdefghijklmnopqrstuvwxyz [] () :;,. !@#$^&*
-	; 0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ {} <> "'`  ~-_/|\?
-	(set-frame-font (font-spec :family "Fira Code" :size (my/nice-font-size))))
+  (my/setup-fonts))
 
 (if (daemonp)
 	(progn
