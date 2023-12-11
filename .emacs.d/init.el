@@ -412,47 +412,46 @@
   ((doom-modeline-mode . my/setup-custom-modeline)
    (after-init . doom-modeline-mode)))
 
-;; Solarized theme thing.
-(setq my-solarized-faces
-	  '("My solarized theme customization."
-		(custom-theme-set-faces
-		 theme-name
-
-		 `(mode-line
-		   ((,class (:inverse-video unspecified
-									:overline nil
-									:underline nil
-									:foreground ,s-mode-line-fg
-									:background ,s-mode-line-bg
-									:box (:line-width 1
-													  :color ,s-mode-line-bg
-													  :style unspecified)))))
-
-		 `(mode-line-buffer-id ((,class (:foreground ,s-mode-line-buffer-id-fg :weight bold))))
-
-		 `(mode-line-inactive
-		   ((,class (:inverse-video unspecified
-									:overline nil
-									:underline nil
-									:foreground ,s-mode-line-inactive-fg
-									:background ,s-mode-line-inactive-bg
-									:box (:line-width 1
-													  :color ,s-mode-line-inactive-bg
-													  :style unspecified)))))
-
-		 `(doom-modeline-bar ((,class (:background ,green-hc))))
-		 `(doom-modeline-inactive-bar ((,class (:background ,s-base1)))))))
-
 (use-package solarized-theme
+  :demand t
   :init
   (setq solarized-use-less-bold t)
   (setq solarized-use-variable-pitch nil)
   (setq solarized-scale-org-headlines nil)
   (setq x-underline-at-descent-line t)
+  :config
+  (setq my-solarized-faces
+		'("My solarized theme customization."
+		  (custom-theme-set-faces
+		   theme-name
+
+		   `(mode-line
+			 ((,class (:inverse-video unspecified
+									  :overline nil
+									  :underline nil
+									  :foreground ,s-mode-line-fg
+									  :background ,s-mode-line-bg
+									  :box (:line-width 1 :color ,s-mode-line-bg)))))
+
+		   `(mode-line-buffer-id ((,class (:foreground ,s-mode-line-buffer-id-fg :weight bold))))
+
+		   `(mode-line-inactive
+			 ((,class (:inverse-video unspecified
+									  :overline nil
+									  :underline nil
+									  :foreground ,s-mode-line-inactive-fg
+									  :background ,s-mode-line-inactive-bg
+									  :box (:line-width 1 :color ,s-mode-line-inactive-bg)))))
+
+		   `(doom-modeline-bar ((,class (:background ,green-hc))))
+		   `(doom-modeline-inactive-bar ((,class (:background ,s-base1)))))))
+
   (require 'solarized)
   (eval-when-compile (require 'solarized-palettes))
   (deftheme my-solarized-dark "The dark varian of the Solarized colour theme.")
-  (solarized-with-color-variables 'dark 'my-solarized-dark solarized-dark-color-palette-alist my-solarized-faces))
+  (solarized-with-color-variables 'dark 'my-solarized-dark solarized-dark-color-palette-alist my-solarized-faces)
+  (provide-theme 'my-solarized-dark)
+  (enable-theme 'my-solarized-dark))
 
 (use-package writeroom-mode)
 
