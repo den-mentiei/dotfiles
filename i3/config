@@ -45,7 +45,11 @@ bindsym $mod+v split v
 bindsym $mod+f fullscreen
 
 # Toggle tiling / floating.
-bindsym $mod+Shift+space floating toggle
+bindsym $mod+button3 floating toggle
+
+# Scratch controls.
+bindcode $mod+Shift+23 move to scratchpad
+bindcode $mod+23 scratchpad show
 
 # Workspaces.
 set $tag1 "1:🔨"
