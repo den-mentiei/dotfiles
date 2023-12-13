@@ -6,10 +6,9 @@
         {
             "command": 
             {
-                "action": "copy",
-                "singleLine": false
+                "action": "newTab"
             },
-            "keys": "ctrl+c"
+            "keys": "ctrl+t"
         },
         {
             "command": 
@@ -19,12 +18,16 @@
             "keys": "ctrl+p"
         },
         {
-            "command": "paste",
-            "keys": "ctrl+v"
+            "command": 
+            {
+                "action": "copy",
+                "singleLine": false
+            },
+            "keys": "ctrl+c"
         },
         {
-            "command": "find",
-            "keys": "ctrl+shift+f"
+            "command": "paste",
+            "keys": "ctrl+v"
         },
         {
             "command": 
@@ -34,6 +37,10 @@
                 "splitMode": "duplicate"
             },
             "keys": "alt+shift+d"
+        },
+        {
+            "command": "find",
+            "keys": "ctrl+shift+f"
         },
         {
             "command": "unbound",
@@ -50,13 +57,6 @@
         {
             "command": "closePane",
             "keys": "ctrl+w"
-        },
-        {
-            "command": 
-            {
-                "action": "newTab"
-            },
-            "keys": "ctrl+t"
         }
     ],
     "copyFormatting": "none",
@@ -129,6 +129,12 @@
                 "hidden": true,
                 "name": "Visual Studio Debug Console",
                 "source": "VSDebugConsole"
+            },
+            {
+                "guid": "{34a13805-9b56-5e89-9234-f02de44bd971}",
+                "hidden": false,
+                "name": "PowerShell 7 (x86)",
+                "source": "Windows.Terminal.PowershellCore"
             }
         ]
     },
@@ -345,50 +351,6 @@
     "snapToGridOnResize": false,
     "tabWidthMode": "equal",
     "theme": "dark",
-    "themes": 
-    [
-        {
-            "name": "legacyDark",
-            "tab": 
-            {
-                "background": null,
-                "showCloseButton": "always",
-                "unfocusedBackground": null
-            },
-            "window": 
-            {
-                "applicationTheme": "dark",
-                "useMica": false
-            }
-        },
-        {
-            "name": "legacyLight",
-            "tab": 
-            {
-                "background": null,
-                "showCloseButton": "always",
-                "unfocusedBackground": null
-            },
-            "window": 
-            {
-                "applicationTheme": "light",
-                "useMica": false
-            }
-        },
-        {
-            "name": "legacySystem",
-            "tab": 
-            {
-                "background": null,
-                "showCloseButton": "always",
-                "unfocusedBackground": null
-            },
-            "window": 
-            {
-                "applicationTheme": "system",
-                "useMica": false
-            }
-        }
-    ],
+    "themes": [],
     "useAcrylicInTabRow": false
 }
