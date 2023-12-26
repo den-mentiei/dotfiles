@@ -6,9 +6,10 @@
         {
             "command": 
             {
-                "action": "newTab"
+                "action": "copy",
+                "singleLine": false
             },
-            "keys": "ctrl+t"
+            "keys": "ctrl+c"
         },
         {
             "command": 
@@ -20,14 +21,17 @@
         {
             "command": 
             {
-                "action": "copy",
-                "singleLine": false
+                "action": "newTab"
             },
-            "keys": "ctrl+c"
+            "keys": "ctrl+t"
         },
         {
             "command": "paste",
             "keys": "ctrl+v"
+        },
+        {
+            "command": "find",
+            "keys": "ctrl+shift+f"
         },
         {
             "command": 
@@ -37,10 +41,6 @@
                 "splitMode": "duplicate"
             },
             "keys": "alt+shift+d"
-        },
-        {
-            "command": "find",
-            "keys": "ctrl+shift+f"
         },
         {
             "command": "unbound",
@@ -59,10 +59,12 @@
             "keys": "ctrl+w"
         }
     ],
+    "centerOnLaunch": true,
     "copyFormatting": "none",
     "copyOnSelect": false,
     "defaultProfile": "{574e775e-4f2a-5b96-ac1e-a2962a402336}",
-    "launchMode": "maximized",
+    "initialPosition": ",",
+    "launchMode": "default",
     "newTabMenu": 
     [
         {
@@ -134,6 +136,12 @@
                 "guid": "{34a13805-9b56-5e89-9234-f02de44bd971}",
                 "hidden": false,
                 "name": "PowerShell 7 (x86)",
+                "source": "Windows.Terminal.PowershellCore"
+            },
+            {
+                "guid": "{5fb123f1-af88-5b5c-8953-d14a8def1978}",
+                "hidden": false,
+                "name": "PowerShell 7",
                 "source": "Windows.Terminal.PowershellCore"
             }
         ]
