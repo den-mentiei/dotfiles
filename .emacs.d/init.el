@@ -480,6 +480,7 @@
   (setq evil-want-C-i-jump t)
   (setq evil-auto-indent t)
   (setq evil-echo-state nil)
+  (setq evil-move-cursor-back nil)
   (setq evil-want-Y-yank-to-eol t)
   (setq evil-symbol-word-search t)
   (setq evil-want-fine-undo t)
