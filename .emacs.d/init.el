@@ -481,6 +481,7 @@
   (setq evil-auto-indent t)
   (setq evil-echo-state nil)
   (setq evil-want-Y-yank-to-eol t)
+  (setq evil-want-fine-undo t)
   (setq evil-symbol-word-search t)
   (setq evil-undo-system 'undo-redo)
   :config
