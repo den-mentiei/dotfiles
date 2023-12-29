@@ -477,12 +477,12 @@
 (use-package evil
   :demand t
   :init
-  (setq evil-want-C-i-jump nil)
+  (setq evil-want-C-i-jump t)
   (setq evil-auto-indent t)
   (setq evil-echo-state nil)
   (setq evil-want-Y-yank-to-eol t)
-  (setq evil-want-fine-undo t)
   (setq evil-symbol-word-search t)
+  (setq evil-want-fine-undo t)
   (setq evil-undo-system 'undo-redo)
   :config
   (evil-mode 1)
