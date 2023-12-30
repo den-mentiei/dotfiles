@@ -138,10 +138,11 @@
 (column-number-mode t)
 
 ;; Truncate lines instead of doing the visual line breaking and such.
-(setq-default truncate-lines t)
+;; (setq-default truncate-lines t)
 ;; Always truncate lines for the window splits, not depending on the
 ;; split width.
-(setq-default truncate-partial-width-windows t)
+;; (setq-default truncate-partial-width-windows t)
+(global-visual-line-mode 1)
 
 ;;; Scrolling
 
@@ -718,11 +719,11 @@
 
 (use-package eglot
   :commands eglot
+  :init
   :bind (:map eglot-mode-map
 			  ("M-RET" . eglot-code-actions)
 			  ("C-c r" . eglot-rename)
-			  ("C-c i" . eglot-code-actions-organize-imports)
-			  ("C-c h" . eldoc))
+			  ("C-c i" . eglot-code-actions-organize-imports))
   :hook
   (eglot-managed-mode . (lambda () (eglot-inlay-hints-mode -1)))
   :custom
@@ -730,28 +731,6 @@
 
 (use-package consult-eglot
   :after (eglot consult))
-
-;;
-;; TODO(dmi): Configure this to be a side windows which
-;; can be toggled.
-;;
-;; (setq display-buffer-alist
-;;       `(("*eldoc*"
-;;          (display-buffer-in-side-window)
-;;          (side . bottom)
-;;          (window-height . 0.16)
-;;          (slot . 0))))
-;;
-;; https://www.gnu.org/software/emacs/manual/html_node/elisp/The-Zen-of-Buffer-Display.html
-;;
-;; (defun jao-eldoc-toggle ()
-;;   "Toggle eldoc's documentation buffer."
-;;   (interactive)
-;;   (let ((buffer (eldoc-doc-buffer)))
-;;     (if-let (w (and buffer (get-buffer-window buffer)))
-;;         (delete-window w)
-;;       (eldoc-doc-buffer t))))
-;;
 
 ;;; File format modes.
 
@@ -861,6 +840,24 @@
 (use-package zig-mode
   :mode ("\\.zig$"))
 
+;;; Eldoc
+
+;; https://www.gnu.org/software/emacs/manual/html_node/elisp/The-Zen-of-Buffer-Display.html
+(setq display-buffer-alist
+	  `(("*eldoc*"
+		 (display-buffer-in-side-window)
+		 (side . right)
+		 (window-width . 0.5)
+		 (slot . 0))))
+
+(defun my/eldoc-toggle ()
+  "Toggles the eldoc's buffer."
+  (interactive)
+  (let ((buffer (eldoc-doc-buffer)))
+	(if-let (w (and buffer (get-buffer-window buffer)))
+		(delete-window w)
+		(eldoc-doc-buffer t))))
+
 ;;; Bindings.
 
 (general-define-key
@@ -891,7 +888,8 @@
   "t"   'consult-eglot-symbols
   "r"   'consult-ripgrep
   "p"   'consult-fd
-  "f"   'consult-flymake)
+  "f"   'consult-flymake
+  "h"   'my/eldoc-toggle)
 
 (my/leader-def
   :states 'visual
