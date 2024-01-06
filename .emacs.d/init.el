@@ -122,7 +122,7 @@
 (setq help-window-select t)
 
 ;; Stops the cursor from blinking.
-(blink-cursor-mode 0)
+;; (blink-cursor-mode 0)
 
 ;;; Lines/Columns
 
@@ -132,8 +132,6 @@
 ;; Show absolute numbers for narrowed regions, not to get lost.
 (setq-default display-line-numbers-widen t)
 
-;; Highlights the current line.
-(global-hl-line-mode t)
 ;; Shows column number in the modeline.
 (column-number-mode t)
 
