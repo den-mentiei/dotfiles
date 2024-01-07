@@ -458,7 +458,6 @@
 ;; Ligatures! != => <-
 (use-package ligature
   :demand t
-  :load-path "packages"
   :config
   (ligature-set-ligatures 'prog-mode '("www" "**" "***" "**/" "*>" "*/" "\\\\" "\\\\\\" "{-" "::"
 									   ":::" ":=" "!!" "!=" "!==" "-}" "----" "-->" "->" "->>"
