@@ -452,6 +452,13 @@
   (provide-theme 'my-solarized-dark)
   (enable-theme 'my-solarized-dark))
 
+(use-package paren-face
+ :hook (lisp-mode             . paren-face-mode)
+ :hook (emacs-lisp-mode       . paren-face-mode)
+ :hook (lisp-interaction-mode . paren-face-mode)
+ :hook (scheme-mode           . paren-face-mode)
+ :hook (clojure-mode          . paren-face-mode))
+
 (use-package writeroom-mode)
 
 ; TODO(dmi): Switch to straight and get it from https://github.com/mickeynp/ligature.el
