@@ -61,13 +61,15 @@
 ;; 0123456789abcdefghijklmnopqrstuvwxyz [] () :;,. !@#$^&*
 ;; 0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ {} <> "'`  ~-_/|\?
 (defun my/setup-fonts ()
-  (set-frame-font (font-spec :family "Fira Code" :size (my/nice-font-size)))
+  (let ((fira (font-spec :family "Fira Code" :size (my/nice-font-size))))
+	(set-frame-font fira)
+	(set-face-font 'fixed-pitch fira))
   ;; Hello, 🐈
   ;; pacman -S noto-fonts-emoji
-  (set-fontset-font t 'emoji "Apple Color Emoji" nil 'prepend)
-  (set-fontset-font t 'emoji "Noto Color Emoji" nil 'prepend)
-  (set-fontset-font t 'emoji "Segoe UI Emoji" nil 'prepend)
-  (set-fontset-font t 'symbol "Segoe UI Symbol" nil 'prepend))
+  (set-fontset-font t 'emoji  "Apple Color Emoji" nil 'prepend)
+  (set-fontset-font t 'emoji  "Noto Color Emoji"  nil 'prepend)
+  (set-fontset-font t 'emoji  "Segoe UI Emoji"    nil 'prepend)
+  (set-fontset-font t 'symbol "Segoe UI Symbol"   nil 'prepend))
 
 (defun my/frame-setup (&optional frame)
   "Setups frame once."
@@ -663,7 +665,6 @@
   (setq org-hide-leading-stars t)
   (setq org-startup-indented t)
   (setq org-indent-indentation-per-level 1)
-  (setq org-startup-folded 'content)
   (setq org-export-backends '(ascii html latex md))
   ;; Display entities like \alpha, \tilde, etc. via corresponding UTF-8 symbols.
   (setq org-pretty-entities t)
