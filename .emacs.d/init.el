@@ -866,8 +866,8 @@
 ;;; Bindings.
 
 (general-define-key
- "C-x C-r" 'my/rename-current-buffer-file
- "C-x C-k" 'my/delete-current-buffer-file)
+ "C-c C-r" 'my/rename-current-buffer-file
+ "C-c C-d" 'my/delete-current-buffer-file)
 
 (general-define-key
   :states 'normal
