@@ -800,7 +800,17 @@
   :mode ("Dockerfile$"))
 
 (use-package yaml-mode
-  :mode ("\\.yml$"))
+  :mode ("\\.yml$")
+  :config
+  (defun my/yaml-settings ()
+	"Bunch of default settings valid for yaml-mode."
+	(interactive)
+	(setq tab-width 4)
+	(setq c-basic-offset 4)
+	(setq indent-tabs-mode nil)
+	(setq indent-line-function 'insert-tab))
+  :hook
+  (yaml-mode . my/yaml-settings))
 
 (use-package pine-script-mode
   :mode ("\\.pine$"))
