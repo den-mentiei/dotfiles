@@ -657,6 +657,8 @@
 (use-package org
   :mode ("\\.org$" . org-mode)
   :commands org-agenda
+  :general
+  (:states 'normal :keymaps 'org-mode-map (kbd "<tab>") 'org-cycle)
   :init
   ;; A bit nicer than the default `...`.
   (setq org-ellipsis " ▾")
