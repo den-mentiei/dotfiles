@@ -289,6 +289,11 @@
 		 (buffer-substring (region-beginning) (region-end))
 	   (read-string "Google: "))))))
 
+(defun my/rg-dwim ()
+  "consult-ripgred the selected region if any, displays a query prompt otherwise."
+  (interactive)
+  (consult-ripgrep nil (if mark-active (buffer-substring (region-beginning) (region-end)))))
+
 (defun my/cleanup-buffer ()
   "Cleanups the current buffer."
   (interactive)
@@ -689,7 +694,11 @@
   :hook (org-mode . typo-mode))
 
 (use-package expand-region
-  :bind ("M-SPC" . 'er/expand-region))
+  :config
+  (setq expand-region-fast-keys-enabled nil)
+  :bind
+  ("S-SPC" . 'er/expand-region)
+  ("C-SPC" . 'er/contract-region))
 
 ;;; Code completion.
 
@@ -910,4 +919,5 @@
 
 (my/leader-def
   :states 'visual
-  "g" 'my/google)
+  "g" 'my/google
+  "r" 'my/rg-dwim)
