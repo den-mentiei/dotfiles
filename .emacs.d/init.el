@@ -697,8 +697,8 @@
   :config
   (setq expand-region-fast-keys-enabled nil)
   :bind
-  ("S-SPC" . 'er/expand-region)
-  ("C-SPC" . 'er/contract-region))
+  ("M-SPC"   . 'er/expand-region)
+  ("M-S-SPC" . 'er/contract-region))
 
 ;;; Code completion.
 
