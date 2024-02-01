@@ -504,6 +504,7 @@
   (evil-set-initial-state 'compilation-mode 'emacs))
 
 (use-package general
+  :demand t
   :after evil)
 
 (use-package orderless
