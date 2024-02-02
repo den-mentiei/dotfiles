@@ -5,6 +5,10 @@ usermodmap=$HOME/.Xmodmap
 sysresources=/etc/X11/xinit/.Xresources
 sysmodmap=/etc/X11/xinit/.Xmodmap
 
+if [ -x "$(command -v wezterm)" ]; then
+	export TERMINAL=wezterm
+fi
+
 # merge in defaults and keymaps
 
 if [ -f $sysresources ]; then
