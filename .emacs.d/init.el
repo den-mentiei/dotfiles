@@ -833,9 +833,6 @@
 (use-package clojure-mode
   :mode ("\\.clj$"))
 
-(use-package groovy-mode
-  :mode ("\\.groovy$"))
-
 (use-package powershell
   :mode ("\\.ps1$" . powershell-mode))
 
