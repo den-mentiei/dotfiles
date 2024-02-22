@@ -373,6 +373,8 @@
 ;; If something goes wrong with JIT, reset everything via:
 ;; M-: (byte-recompile-directory package-user-dir nil 'force)
 
+(add-hook 'compilation-filter-hook 'ansi-color-compilation-filter)
+
 ;;; Built-ins.
 
 (use-package dired
