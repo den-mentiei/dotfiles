@@ -503,7 +503,8 @@
   (evil-mode 1)
   (evil-set-initial-state 'eww-mode 'emacs)
   (evil-set-initial-state 'help-mode 'emacs)
-  (evil-set-initial-state 'compilation-mode 'emacs))
+  (evil-set-initial-state 'compilation-mode 'emacs)
+  (evil-set-initial-state 'Buffer-menu-mode 'emacs))
 
 (use-package general
   :demand t
