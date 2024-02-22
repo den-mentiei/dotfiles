@@ -3,6 +3,7 @@ local wezterm = require 'wezterm'
 local config = wezterm.config_builder()
 
 config.color_scheme = 'Solarized Dark (Gogh)'
+config.window_decorations = "TITLE|RESIZE|MACOS_FORCE_DISABLE_SHADOW"
 
 config.font = wezterm.font_with_fallback({
 	  'Fira Code',
