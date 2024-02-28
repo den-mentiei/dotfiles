@@ -21,6 +21,16 @@ function setup_cargo_abbr -d "Sets up cargo abbreviations."
 	create_abbr cwt  cargo watch -c -x '"test"'
 end
 
+function setup_zig_abbr -d "Sets up zig abbreviations."
+	create_abbr z   zig
+
+	create_abbr zb  zig build --summary all
+	create_abbr zbr zig build --release=fast --summary all
+
+	create_abbr zr  zig build run
+	create_abbr zrr zig build run --release=fast
+end
+
 function setup_git_abbr -d "Sets up git abbreviations."
 	create_abbr g     git
 
@@ -66,6 +76,7 @@ end
 function setup_all_abbr -d "Sets up all the abbreviations."
 	setup_git_abbr
 	setup_cargo_abbr
+	setup_zig_abbr
 end
 
 function remove_all_abbr -d "Removes all the abbreviations."
